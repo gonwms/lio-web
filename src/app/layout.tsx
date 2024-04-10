@@ -1,12 +1,16 @@
 import "@/styles/normalize.css"
+import "@radix-ui/themes/styles.css"
 import "@/styles/global.scss"
+// import "@radix-ui/themes/layout.css"
+import { Theme } from "@radix-ui/themes"
+
 import classNames from "classnames"
 import React from "react"
-
 import Header from "@/components/header/Header"
 import Footer from "@/components/footer/Footer"
 import LenisScroll from "@/components/lenisScroll/LenisScroll"
 import { bree, inter } from "@/fonts"
+
 // ----------------- ROOT LAYOUT -----------------------
 
 export default function RootLayout({
@@ -19,14 +23,13 @@ export default function RootLayout({
       <body
       // suppressHydrationWarning={true}
       >
-        <Header />
+        <Theme>
+          <Header />
 
-        <main>{children}</main>
+          <main>{children}</main>
 
-        <Footer />
-        {/* <div style={{ height: '100vh', width: '100vw', display: 'grid', placeItems: 'center' }}>
-          <h1>redterapia</h1>
-        </div> */}
+          <Footer />
+        </Theme>
       </body>
 
       <LenisScroll />

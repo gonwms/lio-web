@@ -1,4 +1,4 @@
-@use './main.module.scss' as *;
+@use "./main.module.scss" as *;
 
 main {
   max-width: 100vw;
@@ -58,10 +58,10 @@ h1 {
   line-height: 0.8em;
   font-size: 3rem;
 
-  @include up('md') {
+  @include up("md") {
     font-size: 3.8rem;
   }
-  @include up('lg') {
+  @include up("lg") {
     font-size: 3.75rem;
   }
 }
@@ -70,7 +70,7 @@ h2 {
   line-height: 0.8em;
   font-size: 2.8rem;
 
-  @include up('md') {
+  @include up("md") {
     font-size: 3.6rem;
   }
 }

@@ -4,6 +4,7 @@ import classNames from "classnames"
 
 import styles from "./home.module.scss"
 import { useAnimation } from "./useAnimation"
+import { Button, Grid, Skeleton } from "@radix-ui/themes"
 
 // import Button from '@/components/button/Button'
 // import { Arrow } from '@/components/icon/Icon'
@@ -13,11 +14,18 @@ import { useAnimation } from "./useAnimation"
 //
 export default function Home() {
   // --- ANIMATION
-  const scope = useRef<HTMLDivElement>(null)
-  useAnimation(scope)
+  // const scope = useRef<HTMLDivElement>(null)
+  // useAnimation(scope)
 
   return (
-    <h1>HOME</h1>
+    <Grid columns={{ xs: "1", sm: "2", lg: "4" }}>
+      <h1>HOME</h1>
+      <h2>HOME</h2>
+      <h3>HOME</h3>
+      <Button className={styles.boton}>Salsa</Button>
+      <Skeleton>Loading</Skeleton>
+      <Skeleton>Loading</Skeleton>
+    </Grid>
     //   <div className={styles.main} ref={scope}>
     //     {/*
     //      *

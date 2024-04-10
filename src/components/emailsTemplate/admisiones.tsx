@@ -14,7 +14,7 @@ export const EmailTemplateAdmisiones: React.FC<
       <h2>Ha {name}</h2>
       <p>recibimos tu mensaje:{subject}</p>
       <i>{message}</i>
-      <p>Abrazo peronista.</p>
+      <p>Saludos</p>
     </body>
   </html>
 )
@@ -23,4 +23,4 @@ export const EmailTemplateAdmisionesText = ({
   subject,
   message,
 }: EmailTemplateProps): string =>
-  `Hola ${name} recibimos tu mensaje: ${subject}. "${message}" - Abrazo peronista.`
+  `Hola ${name} recibimos tu mensaje: ${subject}. "${message}" - Saludos`
