@@ -1,0 +1,44 @@
+@use "@/styles/_breakpoints.scss" as *;
+@use "@/styles/_variables.scss" as *;
+
+.stack_section {
+  // background: green;
+
+  padding: 0 1rem;
+  @include up("md") {
+    padding: 0rem 5rem;
+  }
+  & > div {
+  }
+}
+.stack_col {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0rem;
+  gap: 2rem;
+}
+
+.spacer {
+  padding: 0rem 1rem;
+  @include up("md") {
+    padding: 0rem 5rem;
+  }
+  & > div {
+    height: 8vh;
+    @include up("md") {
+      height: 20vh;
+    }
+  }
+}
+
+/*
+* ---- MODO DE USO ------
+*
+* .section {
+*  @extend .stack_section;
+* }
+* .col {
+*  @extend .stack_col;
+* }
+*/

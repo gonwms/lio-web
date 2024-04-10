@@ -1,0 +1,11 @@
+@use '@/styles/main.module.scss' as *;
+
+.footer {
+  max-width: 1440px;
+  padding: 2rem 1rem;
+  @include up('md') {
+    padding: 2rem 5rem;
+  }
+
+  text-align: center;
+}
