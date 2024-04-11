@@ -5,6 +5,8 @@ import classNames from "classnames"
 import styles from "./home.module.scss"
 import { useAnimation } from "./useAnimation"
 import { Button, Grid, Skeleton } from "@radix-ui/themes"
+import { Http2ServerResponse } from "http2"
+import AdmisionForm from "@/components/forms/AdminisionForm"
 
 // import Button from '@/components/button/Button'
 // import { Arrow } from '@/components/icon/Icon'
@@ -20,11 +22,9 @@ export default function Home() {
   return (
     <Grid columns={{ xs: "1", sm: "2", lg: "4" }}>
       <h1>HOME</h1>
-      <h2>HOME</h2>
-      <h3>HOME</h3>
+      <h2>contact</h2>
       <Button className={styles.boton}>Salsa</Button>
-      <Skeleton>Loading</Skeleton>
-      <Skeleton>Loading</Skeleton>
+      <AdmisionForm />
     </Grid>
     //   <div className={styles.main} ref={scope}>
     //     {/*
