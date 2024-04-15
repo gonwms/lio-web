@@ -5,7 +5,7 @@ import Link from "next/link"
 
 import styles from "./header.module.scss"
 
-import useMediaQuery from "@/hooks/useMediaQuery"
+// import useMediaQuery from "@/hooks/useMediaQuery"
 
 const Header = () => {
   //
