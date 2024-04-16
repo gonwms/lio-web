@@ -19,13 +19,6 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
-  //------------------------------------------------------------------------------
-  // resend domain verification
-  //------------------------------------------------------------------------------
-  const resend = new Resend("re_123456789")
-  resend.domains.create({ name: "perci.ar" })
-  resend.domains.verify("re_4qvPr14D_EzvNtXhVCMAmCy3ySUcRSMwL")
-
   //
   return (
     <html lang="es" className={classNames(bree.variable, inter.variable)}>
