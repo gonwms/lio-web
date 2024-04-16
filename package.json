@@ -1,5 +1,5 @@
 {
-  "name": "lio",
+  "name": "web",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -15,22 +15,22 @@
     "@typescript-eslint/parser": "^7.7.0",
     "classnames": "^2.5.1",
     "gsap": "^3.12.5",
-    "next": "14.1.4",
-    "react": "^18",
-    "react-dom": "^18",
+    "next": "14.2.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "react-google-recaptcha": "^3.1.0",
-    "react-hook-form": "^7.51.2",
+    "react-hook-form": "^7.51.3",
     "resend": "^3.2.0",
-    "sass": "^1.74.1",
+    "sass": "^1.75.0",
     "zustand": "^4.5.2"
   },
   "devDependencies": {
-    "@types/node": "^20",
-    "@types/react": "^18",
-    "@types/react-dom": "^18",
+    "@types/node": "^20.12.7",
+    "@types/react": "^18.2.79",
+    "@types/react-dom": "^18.2.25",
     "@types/react-google-recaptcha": "^2.1.9",
     "eslint": "^8.57.0",
-    "eslint-config-next": "14.1.4",
-    "typescript": "^5"
+    "eslint-config-next": "14.2.1",
+    "typescript": "^5.4.5"
   }
 }
