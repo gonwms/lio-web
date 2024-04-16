@@ -16,69 +16,37 @@ interface Request {
   message: string
 }
 
-// API KEYs
-/*
- *RECAPTCHA
- * https://console.cloud.google.com/security/recaptcha
- */
-const captcha_secret = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY
-
-/*
- *RESEND
- * https://resend.com/
- */
-const resend = new Resend(process.env.NEXT_PUBLIC_RESEND_API_KEY)
+const captcha_secret = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY // https://console.cloud.google.com/security/recaptcha
+const resend = new Resend(process.env.NEXT_PUBLIC_RESEND_API_KEY) // https://resend.com/
 
 export async function POST(request: any): Promise<void | Response> {
-  //
   const { captcha, subject, name, email, message }: Request =
     await request.json()
+  //
   try {
-    // --- RECAPTCHA
-    console.log(captcha_secret)
-    const captchaTest = await reCAPTCHAcheck(captcha)
-
-    // --- RESEND
-    if (captchaTest.success) {
-      const data = await resend.emails.send({
-        from: "admisiones@perci.ar <admisiones@perci.ar>",
-        reply_to: "contacto@perci.ar",
-        to: email,
-        subject: "Confirmación de solicitud de admisión",
-        text: EmailTemplateAdmisionesText({
-          name: name,
-          subject: subject,
-          message: message,
-        }),
-        react: EmailTemplateAdmisiones({
-          name: name,
-          subject: subject,
-          message: message,
-        }),
-      })
+    const { data, error } = await resend.emails.send({
+      from: "contacto@perci.ar <contacto@perci.ar>",
+      reply_to: "contacto@perci.ar",
+      to: email,
+      subject: "Confirmación de solicitud de admisión",
+      text: EmailTemplateAdmisionesText({
+        name: name,
+        subject: subject,
+        message: message,
+      }),
+      react: EmailTemplateAdmisiones({
+        name: name,
+        subject: subject,
+        message: message,
+      }),
+    })
+    if (data) {
       return NextResponse.json(data)
+    } else {
+      return NextResponse.json(error)
     }
+    // }
   } catch (error) {
     return NextResponse.json(error)
   }
-}
-
-// --- RECAPTCHA
-// https://console.cloud.google.com/security/recaptcha?hl=es-419&project=testprojects-337400
-
-async function reCAPTCHAcheck(captcha: string) {
-  const verificationURL = `https://www.google.com/recaptcha/api/siteverify`
-  const verificationData = {
-    secret: captcha_secret as string,
-    response: captcha,
-  }
-  const reCAPTCHAResponse = await fetch(verificationURL, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/x-www-form-urlencoded",
-    },
-    body: new URLSearchParams(verificationData),
-  })
-  console.log(reCAPTCHAResponse.json())
-  return await reCAPTCHAResponse.json()
 }

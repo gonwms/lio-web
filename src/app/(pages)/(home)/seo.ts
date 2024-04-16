@@ -1,10 +1,10 @@
 export const meta = {
   title: {
-    absolute: 'redterapia | psicología online',
-    default: 'redterapia | psicología online',
-    template: '%s |redterapia.com',
+    // absolute: 'redterapia | psicología online',
+    // default: 'redterapia | psicología online',
+    // template: '%s |redterapia.com',
   },
-  description: 'somos psicologos',
+  // description: 'somos psicologos',
 
   // keywords: 'your, keywords, here',
   // author: 'Your Name',

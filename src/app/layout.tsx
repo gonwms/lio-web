@@ -10,7 +10,6 @@ import Header from "@/components/header/Header"
 import Footer from "@/components/footer/Footer"
 import LenisScroll from "@/components/lenisScroll/LenisScroll"
 import { bree, inter } from "@/fonts"
-import { Resend } from "resend"
 
 // ----------------- ROOT LAYOUT -----------------------
 

@@ -2,12 +2,7 @@
 import React, { useEffect, useRef, useState } from "react"
 import { useForm } from "react-hook-form"
 import Captcha from "react-google-recaptcha"
-
-// import Button from "../button/Button"
-
 import styles from "./form.module.scss"
-
-const RECAPTCHA_SITE_KEY = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY
 
 const initialFormValues = {
   name: "gon",
@@ -15,6 +10,8 @@ const initialFormValues = {
   message: "a",
   legal_1: true,
 }
+
+const RECAPTCHA_SITE_KEY = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY // https://console.cloud.google.com/security/recaptcha
 
 export default function AdmisionForm() {
   const [formData, setFormData] = useState(initialFormValues)
@@ -27,21 +24,25 @@ export default function AdmisionForm() {
     formState: { errors },
   } = useForm()
 
-  //---- CAPTCHA
+  //------------------------------------------------------------------------------
+  // CAPTCHA
+  //------------------------------------------------------------------------------
+
   const captchaRef = useRef<Captcha>(null)
   const onSubmit = async () => {
-    console.log("onSubmit")
     const captcha = await captchaRef.current?.executeAsync()
     if (!captcha) {
       console.log("reCAPTCHA test fail")
       return
     }
-    console.log("reCAPTCHA test:", captcha)
+    // console.log("reCAPTCHA test:", captcha)
     setSubmitingState("pending")
     sendEmail(captcha)
   }
 
-  // ---- EVENTS
+  //------------------------------------------------------------------------------
+  // EVENTS
+  //------------------------------------------------------------------------------
   async function sendEmail(captcha: string) {
     try {
       const req = {
@@ -50,6 +51,7 @@ export default function AdmisionForm() {
         body: JSON.stringify({ ...formData, captcha: captcha }),
       }
       const res = await fetch("api/resend/admision", req)
+      console.log(res)
       if (res.ok) {
         setSubmitingState("ok")
       } else {
@@ -61,7 +63,9 @@ export default function AdmisionForm() {
     }
   }
 
-  //--- RENDER
+  //------------------------------------------------------------------------------
+  // RENDER
+  //------------------------------------------------------------------------------
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
       {/* ----------------------------------- */}
