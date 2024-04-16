@@ -41,8 +41,8 @@ export async function POST(request: any): Promise<void | Response> {
     // --- RESEND
     if (captchaTest.success) {
       const data = await resend.emails.send({
-        from: "Redterapia.com <admisiones@redterapia.com>",
-        reply_to: "contacto@redterapia.com",
+        from: "Redterapia.com <admisiones@perci.ar>",
+        reply_to: "contacto@perci.ar",
         to: email,
         subject: "Confirmación de solicitud de admisión",
         text: EmailTemplateAdmisionesText({
