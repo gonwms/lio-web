@@ -1,8 +1,8 @@
 export const meta = {
   title: {
-    // absolute: 'redterapia | psicología online',
-    // default: 'redterapia | psicología online',
-    // template: '%s |redterapia.com',
+    absolute: "home | web",
+    default: "home | web",
+    template: "%s |web",
   },
   // description: 'somos psicologos',
 
