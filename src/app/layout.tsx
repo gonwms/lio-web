@@ -24,7 +24,7 @@ export default function RootLayout({
   //------------------------------------------------------------------------------
   const resend = new Resend("re_123456789")
   resend.domains.create({ name: "perci.ar" })
-  resend.domains.verify("55a50115-7ba3-4bec-91ab-477a530cc1d9")
+  resend.domains.verify("re_4qvPr14D_EzvNtXhVCMAmCy3ySUcRSMwL")
 
   //
   return (
