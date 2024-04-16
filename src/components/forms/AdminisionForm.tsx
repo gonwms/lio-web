@@ -1,3 +1,4 @@
+"use client"
 import React, { useEffect, useRef, useState } from "react"
 import { useForm } from "react-hook-form"
 import Captcha from "react-google-recaptcha"
@@ -9,10 +10,10 @@ import styles from "./form.module.scss"
 const RECAPTCHA_SITE_KEY = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY
 
 const initialFormValues = {
-  name: "",
-  email: "",
-  message: "",
-  legal_1: false,
+  name: "gon",
+  email: "gon.williams@gmail.com",
+  message: "a",
+  legal_1: true,
 }
 
 export default function AdmisionForm() {
@@ -29,12 +30,13 @@ export default function AdmisionForm() {
   //---- CAPTCHA
   const captchaRef = useRef<Captcha>(null)
   const onSubmit = async () => {
+    console.log("onSubmit")
     const captcha = await captchaRef.current?.executeAsync()
     if (!captcha) {
       console.log("reCAPTCHA test fail")
       return
     }
-    // console.log("reCAPTCHA test:", captcha)
+    console.log("reCAPTCHA test:", captcha)
     setSubmitingState("pending")
     sendEmail(captcha)
   }

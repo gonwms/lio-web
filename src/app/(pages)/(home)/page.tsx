@@ -1,11 +1,9 @@
 "use client"
 import React, { useRef } from "react"
-import classNames from "classnames"
 
 import styles from "./home.module.scss"
 import { useAnimation } from "./useAnimation"
 import { Button, Grid, Skeleton } from "@radix-ui/themes"
-import { Http2ServerResponse } from "http2"
 import AdmisionForm from "@/components/forms/AdminisionForm"
 
 // import Button from '@/components/button/Button'

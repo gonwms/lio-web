@@ -10,6 +10,7 @@ import Header from "@/components/header/Header"
 import Footer from "@/components/footer/Footer"
 import LenisScroll from "@/components/lenisScroll/LenisScroll"
 import { bree, inter } from "@/fonts"
+import { Resend } from "resend"
 
 // ----------------- ROOT LAYOUT -----------------------
 
@@ -18,6 +19,14 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
+  //------------------------------------------------------------------------------
+  // resend domain verification
+  //------------------------------------------------------------------------------
+  const resend = new Resend("re_123456789")
+  resend.domains.create({ name: "perci.ar" })
+  resend.domains.verify("55a50115-7ba3-4bec-91ab-477a530cc1d9")
+
+  //
   return (
     <html lang="es" className={classNames(bree.variable, inter.variable)}>
       <body

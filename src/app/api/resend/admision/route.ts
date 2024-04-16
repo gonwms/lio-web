@@ -35,29 +35,29 @@ export async function POST(request: any): Promise<void | Response> {
     await request.json()
   try {
     // --- RECAPTCHA
-    // console.log(captcha_secret)
+    console.log(captcha_secret)
     const captchaTest = await reCAPTCHAcheck(captcha)
 
     // --- RESEND
-    // if (captchaTest.success) {
-    const data = await resend.emails.send({
-      from: "Redterapia.com <admisiones@redterapia.com>",
-      reply_to: "contacto@redterapia.com",
-      to: email,
-      subject: "Confirmación de solicitud de admisión",
-      text: EmailTemplateAdmisionesText({
-        name: name,
-        subject: subject,
-        message: message,
-      }),
-      react: EmailTemplateAdmisiones({
-        name: name,
-        subject: subject,
-        message: message,
-      }),
-    })
-    return NextResponse.json(data)
-    // }
+    if (captchaTest.success) {
+      const data = await resend.emails.send({
+        from: "Redterapia.com <admisiones@redterapia.com>",
+        reply_to: "contacto@redterapia.com",
+        to: email,
+        subject: "Confirmación de solicitud de admisión",
+        text: EmailTemplateAdmisionesText({
+          name: name,
+          subject: subject,
+          message: message,
+        }),
+        react: EmailTemplateAdmisiones({
+          name: name,
+          subject: subject,
+          message: message,
+        }),
+      })
+      return NextResponse.json(data)
+    }
   } catch (error) {
     return NextResponse.json(error)
   }
