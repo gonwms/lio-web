@@ -5,6 +5,7 @@
   max-width: 1800px;
   margin: 0 auto;
   height: calc(100% - 64px);
+  padding-top: 2rem;
   @include up("md") {
     height: 100%;
     flex-direction: row;

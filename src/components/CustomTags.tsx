@@ -1,24 +1,33 @@
 import { Flex, FlexProps } from "@radix-ui/themes"
 import React, { Children } from "react"
 
-// Define props interface for Col component (optional)
-type IsProps = React.ComponentProps<typeof Flex>
+// type IsProps = React.ComponentProps<typeof Flex>
+type IsProps = React.DetailedHTMLProps<
+  React.HTMLAttributes<HTMLDivElement>,
+  HTMLDivElement
+>
 
-// Define Col component
+// const Col: React.FC<IsProps> = ({ children, ...props }) => {
+//   return <div {...props}>{children}</div>
+// }
+
+// const Row: React.FC<IsProps> = ({ children, ...props }) => {
+//   return <div {...props}>{children}</div>
+// }
 const Col: React.FC<IsProps> = ({ children, ...props }) => {
-  return <Flex {...props}>{children}</Flex>
+  return <div {...props}>{children}</div>
 }
-// Define Col component
+
 const Row: React.FC<IsProps> = ({ children, ...props }) => {
-  return <Flex {...props}>{children}</Flex>
+  return <div {...props}>{children}</div>
 }
 
-const Section: React.FC<IsProps> = ({ children, ...props }) => {
-  return (
-    <Flex {...props} asChild>
-      <section>{children}</section>
-    </Flex>
-  )
-}
+// const Section: React.FC<IsProps> = ({ children, ...props }) => {
+//   return (
+//     <div {...props} >
+//       <section>{children}</section>
+//     </div>
+//   )
+// }
 
-export { Col, Row, Section }
+export { Col, Row }

@@ -4,7 +4,7 @@ import React, { Suspense } from "react"
 import classNames from "classnames"
 import styles from "./home.module.scss"
 import { Grid } from "@radix-ui/themes"
-import { Col, Row, Section } from "@/components/CustomTags"
+import { Col, Row } from "@/components/CustomTags"
 
 import Featured from "./Featured"
 import ItemListProvider from "@/components/ItemListProvider"
@@ -26,46 +26,51 @@ export default async function Home({
   searchParams: any
 }) {
   return (
-    // <Grid asChild align={{ initial: "center" }}>
     <main className={styles.main}>
       {/*
        *
        * ----------------------------- HERO ---------------------
        *
        */}
-      <Section>
-        <Row direction={{ initial: "column", sm: "column" }}>
+      <section>
+        <Row>
           <Col className={classNames(styles.col)}>
-            <h1>HOME</h1>
+            <div className={styles.banner}>
+              <img src="/lio-1t.svg" alt="" />
+              <span>Nydia Lirola</span>
+              <img className={styles.foto} src="/guillermo-nydia.webp" alt="" />
+              <span>Guillermo Moreno</span>
+              <img src="/pyv-1t.svg" alt="" />
+            </div>
           </Col>
         </Row>
-      </Section>
+      </section>
       {/*
        *
        * ----------------------------- Highlights ---------------------
        *
        */}
-      <Section>
+      <section>
         <div>
           <Suspense fallback={<h1>loading featured...</h1>}>
             <Featured />
           </Suspense>
         </div>
-      </Section>
+      </section>
       {/*
        *
        * ----------------------------- GRILLA ---------------------
        *
        */}
-      <Section justify={{ initial: "start" }} className={styles.grid}>
-        <Row direction={{ initial: "column" }}>
+      <section className={styles.grid}>
+        <Row>
           <Suspense fallback={<h2>aguntá makina</h2>}>
             <ItemListProvider>
               <ItemList req={searchParams} />
             </ItemListProvider>
           </Suspense>
         </Row>
-      </Section>
+      </section>
       {/*
        *
        * ----------------------------- OTRA ---------------------

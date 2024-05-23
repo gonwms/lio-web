@@ -19,23 +19,31 @@ export default async function Featured() {
   const settings: Settings = {
     slidesToShow: data?.length >= 3 ? 3 : 1,
     slidesToScroll: 1,
-    initialSlide: 0,
-    infinite: data?.length > 3 ? true : false,
-    dots: data?.length > 3 ? true : false,
+    initialSlide: 1,
+    infinite: data?.length > 3 ? false : false,
+    dots: data?.length > 3 ? false : false,
     arrows: data?.length > 3 ? true : false,
     speed: 500,
     // autoplay: data?.length >= 4 ? true : false,
     autoplay: false,
     autoplaySpeed: 5000,
-    draggable: data?.length > 3 ? true : false,
-    // centerMode: true,
+    // centerMode: data?.length > 3 ? true : false,
     // variableWidth: true,
     responsive: [
       {
-        breakpoint: 800,
+        breakpoint: 1552,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 1024,
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
+          centerMode: data?.length > 3 ? true : false,
+          draggable: data?.length > 3 ? true : false,
         },
       },
     ],

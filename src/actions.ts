@@ -106,7 +106,7 @@ const CreateEndPointString = ({
     url: `${url}/api/${path}`,
     deep: `?populate=deep,${deep ? deep : 2}`,
     sort: `&sort=${sort ? sort : "rank:asc"}`,
-    pageSize: `&pagination[pageSize]=${pageSize ? pageSize : 4}`,
+    pageSize: `&pagination[pageSize]=${pageSize ? pageSize : 6}`,
     page: `&pagination[page]=${page ? page : 1}`,
     filter: `&filter=${filter ? filter : ""}`,
   }

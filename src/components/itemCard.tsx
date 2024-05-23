@@ -52,7 +52,7 @@ export default function ItemCard({ item, style }: props) {
           </Link>
         </div>
       )}
-      <h2>{item?.attributes.title}</h2>
+      <h3>{item?.attributes.title}</h3>
       <p className={styles.excerpt}>
         {item?.attributes?.content[0]?.children[0].text}
       </p>

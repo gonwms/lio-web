@@ -5,8 +5,6 @@ import AdmisionForm from "@/components/forms/AdminisionForm"
 import { Section } from "@radix-ui/themes"
 import { Row } from "@/components/CustomTags"
 
-// import styles from './contact.module.scss'
-
 export default function Noticias() {
   return (
     <>

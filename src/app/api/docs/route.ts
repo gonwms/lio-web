@@ -4,8 +4,6 @@ const API_URL = process.env.NEXT_PUBLIC_API_URL
 // const API_URL = "http://127.0.0.1:1337"
 
 export async function getDocs({ req }: any): Promise<NextResponse> {
-  console.log("fafafafa", req)
-
   const { page, pageSize, deep, sort } = req
   const endpoint = {
     url: `${API_URL}/api/docs`,
