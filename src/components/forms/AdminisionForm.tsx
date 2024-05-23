@@ -37,21 +37,21 @@ export default function AdmisionForm() {
     }
     // console.log("reCAPTCHA test:", captcha)
     setSubmitingState("pending")
-    sendEmail(captcha)
+    sendEmail()
   }
 
   //------------------------------------------------------------------------------
   // EVENTS
   //------------------------------------------------------------------------------
-  async function sendEmail(captcha: string) {
+  async function sendEmail() {
     try {
       const req = {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...formData, captcha: captcha }),
+        body: JSON.stringify({ ...formData }),
       }
-      const res = await fetch("api/resend/admision", req)
-      console.log(res)
+      const res = await fetch("api/resend/contact", req)
+      // console.log(res)
       if (res.ok) {
         setSubmitingState("ok")
       } else {

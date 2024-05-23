@@ -1,5 +1,11 @@
-type ThrottleFunction<T extends (...args: any[]) => any> = (func: T, delay: number) => (...args: Parameters<T>) => void
-type DebounceFunction<T extends (...args: any[]) => any> = (func: T, delay: number) => (...args: Parameters<T>) => void
+type ThrottleFunction<T extends (...args: any[]) => any> = (
+  func: T,
+  delay: number
+) => (...args: Parameters<T>) => void
+type DebounceFunction<T extends (...args: any[]) => any> = (
+  func: T,
+  delay: number
+) => (...args: Parameters<T>) => void
 
 export const throttle: ThrottleFunction<any> = (func, delay) => {
   let lastTime = 0
@@ -22,3 +28,6 @@ export const debounce: DebounceFunction<any> = (func, delay) => {
     timeoutId = setTimeout(() => func(...args), delay)
   }
 }
+
+export const pause = (delay: number) =>
+  new Promise((resolve) => setTimeout(resolve, delay))

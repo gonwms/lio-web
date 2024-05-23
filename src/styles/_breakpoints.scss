@@ -1,8 +1,10 @@
 $breakpoints: (
-  'sm': 728px,
-  'md': 992px,
-  'lg': 1440px,
-  'xl': 1640px,
+  "initial": 0px,
+  "xs": 520px,
+  "sm": 768px,
+  "md": 1024px,
+  "lg": 1280px,
+  "xl": 1640px,
 ) !default;
 
 @mixin up($breakpoint) {
@@ -30,10 +32,12 @@ $breakpoints: (
 }
 
 :export {
-  sm: map-get($breakpoints, 'sm');
-  md: map-get($breakpoints, 'md');
-  lg: map-get($breakpoints, 'lg');
-  xl: map-get($breakpoints, 'xl');
+  initial: map-get($breakpoints, "initial");
+  xs: map-get($breakpoints, "xs");
+  sm: map-get($breakpoints, "sm");
+  md: map-get($breakpoints, "md");
+  lg: map-get($breakpoints, "lg");
+  xl: map-get($breakpoints, "xl");
 }
 
 /* use

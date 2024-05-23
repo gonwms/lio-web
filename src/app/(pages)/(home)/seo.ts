@@ -4,7 +4,7 @@ export const meta = {
     default: "home | web",
     template: "%s |web",
   },
-  // description: 'somos psicologos',
+  // description: 'description here...',
 
   // keywords: 'your, keywords, here',
   // author: 'Your Name',

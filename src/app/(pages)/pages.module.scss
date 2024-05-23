@@ -1,0 +1,16 @@
+@use "@/styles/main.module.scss" as *;
+.pages {
+  display: flex;
+  flex-direction: column;
+  max-width: 1800px;
+  margin: 0 auto;
+  height: calc(100% - 64px);
+  @include up("md") {
+    height: 100%;
+    flex-direction: row;
+  }
+}
+.pages main {
+  overflow: hidden;
+  // background: red;
+}

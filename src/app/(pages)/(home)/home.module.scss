@@ -1,6 +1,43 @@
-.boton {
-  background: #d43939;
-  &:hover {
-    background: #fd4545;
+.main {
+  // background: grey;
+  // height: 100vh;
+  // width: 100%;
+  section {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    & > div {
+      width: 100%;
+      padding: 0 1rem;
+      box-sizing: border-box;
+    }
   }
+}
+section.grid {
+  // background: #4f4fff;
+  & > div {
+    // background: #4f4fff;
+  }
+}
+.carousel {
+  // padding: 0rem 1rem;
+  box-sizing: border-box;
+}
+
+.card .picture {
+  height: 450px;
+  width: 100%;
+  object-fit: contain;
+  object-position: center;
+  overflow: hidden;
+}
+
+.gridCollection {
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+}
+
+.carousel .slick-track {
+  // padding: 50px;
+  // gap: 50px;
+  border: 3px solid black;
 }

@@ -11,10 +11,11 @@ export const EmailTemplateAdmisiones: React.FC<
 > = ({ name, subject, message }) => (
   <html lang="es-ES">
     <body style={{ background: "red" }}>
-      <h2>Ha {name}</h2>
-      <p>recibimos tu mensaje:{subject}</p>
+      <p>Hola {name}</p>
+      <p>Recibimos tu mensaje:{subject}</p>
       <i>{message}</i>
       <p>Saludos</p>
+      <img src="/public/lio-logo.svg" alt="" />
     </body>
   </html>
 )

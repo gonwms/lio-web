@@ -1,0 +1,26 @@
+{
+  "home": {
+    "Title": "Lorem ipsum dolor sit",
+    "Description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum in doloribus, quisquam aperiam quam sunt sint earum provident voluptatibus quia perferendis consectetur placeat quod autem soluta minima porro rem minus.",
+    "social": [
+      {
+        "id": 1,
+        "name": "LinkedIn",
+        "link": "https://www.google.com",
+        "img": "/public/next.svg"
+      },
+      {
+        "id": 1,
+        "name": "Instagram",
+        "link": "https://www.google.com",
+        "img": "/public/next.svg"
+      },
+      {
+        "id": 1,
+        "name": "twitter",
+        "link": "https://www.google.com",
+        "img": "/public/next.svg"
+      }
+    ]
+  }
+}

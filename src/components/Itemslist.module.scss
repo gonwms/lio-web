@@ -1,0 +1,39 @@
+@use "@/styles/main.module.scss" as *;
+.card {
+  // padding: 10px;
+  // max-width: 25%;
+}
+.card .picture {
+  // height: 450px;
+  // width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: var(--radius-4);
+  overflow: hidden;
+  background: red;
+  object-fit: cover;
+  aspect-ratio: 1 / 1;
+  img {
+    width: 100%;
+    // object-fit: cover;
+    // object-position: center;
+  }
+}
+
+.gridCollection {
+  max-width: 100%;
+  display: grid;
+
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+
+  gap: 1rem;
+  @include up("md") {
+  }
+}
+.excerpt {
+  max-width: 40ch;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
