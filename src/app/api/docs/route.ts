@@ -29,12 +29,12 @@ export async function getDocs(req: any): Promise<NextResponse> {
   }
 }
 
-export async function postPosts(): Promise<void | Response> {
-  return NextResponse.json("assas")
-}
+// export async function postPosts(): Promise<void | Response> {
+//   return NextResponse.json("assas")
+// }
 
-export async function putPosts(): Promise<void | Response> {
-  return NextResponse.json("assas")
-}
+// export async function putPosts(): Promise<void | Response> {
+//   return NextResponse.json("assas")
+// }
 
-export async function deletePosts(): Promise<void | Response> {}
+// export async function deletePosts(): Promise<void | Response> {}
