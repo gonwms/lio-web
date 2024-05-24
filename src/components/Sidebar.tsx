@@ -96,13 +96,6 @@ export default function Sidebar({ className }: props) {
           <span className={styles.title}>Seguinos</span>
           <div className={styles.links}>
             <a
-              style={{ background: "#1ac0a3" }}
-              href="https://chat.whatsapp.com/FhOhNQHdUvMFRx4r8GML0w"
-              target="_blank"
-            >
-              <img src="/whatsapp.svg" alt="whatsapp" />
-            </a>
-            <a
               href="https://www.instagram.com/lio_losinorganicosorganizados"
               target="_blank"
             >

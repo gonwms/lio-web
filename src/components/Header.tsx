@@ -69,6 +69,8 @@ const Header = ({ className }: props) => {
           )}
         </div>
       </header>
+
+      {/* MENU */}
       {menuOpen && (
         <div className={styles.menu}>
           <nav>
@@ -87,6 +89,12 @@ const Header = ({ className }: props) => {
                 </Link>
               )
             })}
+            <a
+              href="https://chat.whatsapp.com/FhOhNQHdUvMFRx4r8GML0w"
+              target="_blank"
+            >
+              <img src="/whatsapp.svg" alt="whatsapp" />
+            </a>
           </nav>
         </div>
       )}
