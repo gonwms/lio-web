@@ -35,6 +35,7 @@ const Header = ({ className }: props) => {
               height={50}
             />
           </Link>
+          {/* MENU DESKTOP VERSION */}
           {mobile === false && (
             <nav>
               {menu.map((rute) => {
@@ -51,6 +52,12 @@ const Header = ({ className }: props) => {
                   </Link>
                 )
               })}
+              <a
+                href="https://chat.whatsapp.com/FhOhNQHdUvMFRx4r8GML0w"
+                target="_blank"
+              >
+                <img src="/whatsapp.svg" alt="whatsapp" />
+              </a>
             </nav>
           )}
           <img
@@ -59,6 +66,8 @@ const Header = ({ className }: props) => {
             width={67}
             height={50}
           />
+
+          {/* MOBILE BURGER */}
           {mobile === true && (
             <a
               className={classNames(styles.link, styles.burger)}
