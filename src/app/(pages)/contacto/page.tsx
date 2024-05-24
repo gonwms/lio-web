@@ -11,13 +11,13 @@ export default function Contacto() {
   return (
     <>
       <h1>Contacto</h1>
-      <Section size="1">
-        <Row direction={{ initial: "column", sm: "column" }}>
+      <section>
+        <Row>
           <Suspense fallback={<div>Loading...</div>}>
             <AdmisionForm />
           </Suspense>
         </Row>
-      </Section>
+      </section>
     </>
   )
 }
