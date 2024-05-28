@@ -12,6 +12,14 @@
   }
 }
 .pages main {
+  padding: 1rem;
   overflow: hidden;
-  // background: red;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding-bottom: 3rem;
+  h1 {
+    margin: 0;
+  }
 }

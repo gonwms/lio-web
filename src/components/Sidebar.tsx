@@ -45,12 +45,19 @@ export default function Sidebar({ className }: props) {
                 key={item.label}
                 href={item.href}
                 className={styles.link}
-                // data-active={path === item.href}
+                data-active={path === item.href}
               >
                 <img src={`/ico-${item.ico}.svg`} alt="" />
               </Link>
             )
           })}
+          <a
+            className={styles.link}
+            href="https://chat.whatsapp.com/FhOhNQHdUvMFRx4r8GML0w"
+            target="_blank"
+          >
+            <img src="/whatsapp.svg" alt="whatsapp" />
+          </a>
         </nav>
       </div>
     )
@@ -107,7 +114,7 @@ export default function Sidebar({ className }: props) {
             >
               <img src="/facebook.svg" alt="facebook" />
             </a>
-            <a href="https://vm.tiktok.com/ZMLDMaSVt/" target="_blank">
+            <a href="https://www.tiktok.com/@lio_nacional" target="_blank">
               <img src="/tiktok.svg" alt="tiktok" />
             </a>
             <a href="https://twitter.com/Hacemos_Lio" target="_blank">

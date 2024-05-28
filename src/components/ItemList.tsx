@@ -30,7 +30,11 @@ export default async function ItemList({ req }: propsType) {
   }
   return (
     <div>
-      <div className={classNames(styles.row)}>filters</div>
+      <div className={classNames(styles.filters)}>
+        <span>Ordenar por</span>
+        <span>Categorias</span>
+        <span>Buscar</span>
+      </div>
       <div className={classNames(styles.gridCollection)}>
         {data?.map((item: any) => {
           return <ItemCard key={item.id} item={item} />

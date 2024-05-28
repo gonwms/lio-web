@@ -1,71 +1,41 @@
-.main {
-  // background: grey;
-  // height: 100vh;
-  // width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-  section {
-    display: flex;
-    align-content: center;
-    justify-content: center;
-    & > div {
-      width: 100%;
-      padding: 0 1rem;
-      box-sizing: border-box;
-    }
-  }
-}
+@use "@/styles/main.module.scss" as *;
 
 // BANNER
 .banner {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
   padding: 0 2rem;
   overflow: hidden;
   border-radius: var(--radius-6);
   background: #93dff6 url("/lio-amarillo.png") no-repeat center;
   background-size: 50%;
-  background-position: 30% 20%;
+  background-position: 30% 00%;
+  @include up("md") {
+    padding: 0 2rem;
+    background-size: 50%;
+    background-position: 30% 20%;
+  }
   .foto {
     object-fit: cover;
     object-position: top;
     width: 300px;
-    max-height: 130px;
+    max-height: 100px;
+    @include up("md") {
+      max-height: 130px;
+    }
   }
   span {
     color: white;
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     font-family: var(--font-wix);
+    line-height: 1.3rem;
   }
-}
-
-section.grid {
-  // background: #4f4fff;
-  & > div {
-    // background: #4f4fff;
+  .logo {
+    height: 70px;
+    display: none;
+    @include up("lg") {
+      display: block;
+    }
   }
-}
-.carousel {
-  // padding: 0rem 1rem;
-  box-sizing: border-box;
-}
-
-.card .picture {
-  height: 450px;
-  width: 100%;
-  object-fit: contain;
-  object-position: center;
-  overflow: hidden;
-}
-
-.gridCollection {
-  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
-}
-
-.carousel .slick-track {
-  // padding: 50px;
-  // gap: 50px;
-  border: 3px solid black;
 }

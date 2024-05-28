@@ -3,7 +3,6 @@
 import React, { Suspense } from "react"
 import classNames from "classnames"
 import styles from "./home.module.scss"
-import { Grid } from "@radix-ui/themes"
 import { Col, Row } from "@/components/CustomTags"
 
 import Featured from "./Featured"
@@ -26,7 +25,7 @@ export default async function Home({
   searchParams: any
 }) {
   return (
-    <main className={styles.main}>
+    <>
       {/*
        *
        * ----------------------------- HERO ---------------------
@@ -36,11 +35,23 @@ export default async function Home({
         <Row>
           <Col className={classNames(styles.col)}>
             <div className={styles.banner}>
-              <img src="/lio-1t.svg" alt="" />
+              <img
+                className={styles.logo}
+                src="/lio-1t.svg"
+                alt="LIO, los inorganicos organizados"
+              />
               <span>Nydia Lirola</span>
-              <img className={styles.foto} src="/guillermo-nydia.webp" alt="" />
+              <img
+                className={styles.foto}
+                src="/guillermo-nydia.webp"
+                alt="Nydia Lirola y Guillermo Moreno"
+              />
               <span>Guillermo Moreno</span>
-              <img src="/pyv-1t.svg" alt="" />
+              <img
+                className={styles.logo}
+                src="/pyv-1t.svg"
+                alt="Principios y Valores"
+              />
             </div>
           </Col>
         </Row>
@@ -62,7 +73,7 @@ export default async function Home({
        * ----------------------------- GRILLA ---------------------
        *
        */}
-      <section className={styles.grid}>
+      <section>
         <Row>
           <Suspense fallback={<h2>aguntá makina</h2>}>
             <ItemListProvider>
@@ -71,39 +82,6 @@ export default async function Home({
           </Suspense>
         </Row>
       </section>
-      {/*
-       *
-       * ----------------------------- OTRA ---------------------
-       *
-       */}
-      {/* <Section>
-        <Row className={classNames(styles.row)} align={{ initial: "center" }}>
-          <Col
-            className={classNames(styles.col, styles.col1)}
-            direction={{ initial: "column" }}
-          >
-            <h2>section 2</h2>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam sint
-              quos officiis asperiores odio, esse beatae. Adipisci vero deleniti
-              ipsa quaerat facilis eveniet soluta dicta voluptates autem!
-              Impedit, libero corrupti.
-            </p>
-          </Col>
-          <Col
-            className={classNames(styles.col, styles.col2)}
-            direction={{ initial: "column" }}
-          >
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam sint
-              quos officiis asperiores odio, esse beatae. Adipisci vero deleniti
-              ipsa quaerat facilis eveniet soluta dicta voluptates autem!
-              Impedit, libero corrupti.
-            </p>
-          </Col>
-        </Row>
-      </Section> */}
-    </main>
-    // </Grid>
+    </>
   )
 }

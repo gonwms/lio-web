@@ -26,7 +26,7 @@ export default function ItemCard({ item, style }: props) {
     default:
       return ""
   }
-  console.log(style)
+
   const miniatura = item?.attributes?.miniatura?.data?.attributes
   return (
     <div key={item.id} className={styles.card} style={style}>
@@ -52,6 +52,7 @@ export default function ItemCard({ item, style }: props) {
           </Link>
         </div>
       )}
+      <span>{item?.attributes.type}</span>
       <h3>{item?.attributes.title}</h3>
       <p className={styles.excerpt}>
         {item?.attributes?.content[0]?.children[0].text}

@@ -51,7 +51,7 @@ export default function ItemListProvider({ children }: ItemListProviderProps) {
   // ------------------------------------------
   return (
     <div>
-      <div>
+      {/* <div>
         <Link href={{ pathname: "/", query: { page: 1 } }} scroll={false}>
           page 1
         </Link>
@@ -61,7 +61,7 @@ export default function ItemListProvider({ children }: ItemListProviderProps) {
       </Button>
       <Button disabled={disabledBtn[1]} onClick={() => handleClick("plus")}>
         Siguiente
-      </Button>
+      </Button> */}
       <Suspense fallback={<h2>esperando docs...</h2>}>
         <div>{children}</div>
       </Suspense>
