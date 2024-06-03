@@ -25,8 +25,8 @@ export async function POST(request: any): Promise<void | Response> {
   //
   try {
     const { data, error } = await resend.emails.send({
-      from: "contacto@perci.ar <contacto@perci.ar>",
-      reply_to: "contacto@perci.ar",
+      from: "contacto@lio.com.ar <contacto@lio.com.ar>",
+      reply_to: "contacto@lio.com.ar",
       to: email,
       subject: "Confirmación de solicitud de admisión",
       text: EmailTemplateAdmisionesText({

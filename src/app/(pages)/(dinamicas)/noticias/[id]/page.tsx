@@ -1,4 +1,5 @@
-import BlogContent from "@/components/blogContent"
+import BlogContent from "@/components/blogTemplate"
+import { Button } from "@radix-ui/themes"
 const URL = process.env.NEXT_PUBLIC_API_URL
 
 //FETCH DATA FROM API
@@ -24,8 +25,8 @@ export default async function Posts({ params }: any) {
 
   return (
     <section>
-      <h1>noticias</h1>
-      {data.data && <BlogContent data={data} />}
+      <Button>back</Button>
+      {data.data && <BlogContent data={data.data} />}
     </section>
   )
 }

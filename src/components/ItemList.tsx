@@ -1,12 +1,8 @@
 import "server-only"
 
-import { Grid } from "@radix-ui/themes"
-// import { Row, Section } from "@/components/customTags/CustomTags"
 import classNames from "classnames"
 import styles from "./Itemslist.module.scss"
-import { getDocs, getPosts } from "@/actions"
-import InfiniteScroll from "./InfiniteScroll"
-import { Suspense } from "react"
+import { getAllResource } from "@/actions"
 import ItemCard from "./itemCard"
 
 interface propsType {
@@ -17,8 +13,13 @@ export default async function ItemList({ req }: propsType) {
   // ------------------------------------------
   // fetch data
   // ------------------------------------------
-  const { data, error, meta } = await getDocs(req)
-
+  const { data, error } = await getAllResource()
+  var sortedData = data?.sort(
+    (a: any, b: any) =>
+      new Date(b.attributes.publishedAt).getTime() -
+      new Date(a.attributes.publishedAt).getTime()
+  )
+  console.log(sortedData)
   // ------------------------------------------
   // Render
   // ------------------------------------------
@@ -36,8 +37,14 @@ export default async function ItemList({ req }: propsType) {
         <span>Buscar</span>
       </div>
       <div className={classNames(styles.gridCollection)}>
-        {data?.map((item: any) => {
-          return <ItemCard key={item.id} item={item} />
+        {sortedData?.map((item: any) => {
+          return (
+            <ItemCard
+              data-key={`${item.attributes.type}-${item.id}`}
+              key={`${item.attributes.type}-${item.id}`}
+              item={item}
+            />
+          )
         })}
       </div>
     </div>

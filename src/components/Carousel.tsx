@@ -13,8 +13,8 @@ interface IsProps {
 
 export function Carousel({ children, settings, style, className }: IsProps) {
   const settingsDefault: Settings = {
-    nextArrow: <SampleNextArrow />,
-    prevArrow: <SamplePrevArrow />,
+    nextArrow: <NextArrow />,
+    prevArrow: <PrevArrow />,
     ...settings,
   }
 
@@ -27,7 +27,7 @@ export function Carousel({ children, settings, style, className }: IsProps) {
   )
 }
 
-function SampleNextArrow(props: any) {
+function NextArrow(props: any) {
   const { className, style, onClick } = props
   return (
     <div className={className} onClick={onClick}>
@@ -37,7 +37,7 @@ function SampleNextArrow(props: any) {
     </div>
   )
 }
-function SamplePrevArrow(props: any) {
+function PrevArrow(props: any) {
   const { className, style, onClick } = props
   return (
     <div className={className} onClick={onClick}>

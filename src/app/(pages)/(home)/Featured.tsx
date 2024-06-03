@@ -1,6 +1,6 @@
 import "server-only"
 
-import { getDocs, getPosts } from "@/actions"
+import { getAllResource } from "@/actions"
 import React from "react"
 import { Carousel, Settings } from "@/components/Carousel"
 import styles from "./home.module.scss"
@@ -10,16 +10,24 @@ export default async function Featured() {
   // ------------------------------------------
   // fetch data
   // ------------------------------------------
-  const { data, error, meta } = await getPosts({ pageSize: 4 })
+  const { data, error } = await getAllResource()
 
   // ------------------------------------------
   // Carousel settings
   // ------------------------------------------
+  if (error) {
+    return <h1>{error?.message}</h1>
+  }
+  if (data === undefined) return <h1>loading...</h1>
+
+  if (data?.length === 0) {
+    return <h1>no hay resultados</h1>
+  }
 
   const settings: Settings = {
     slidesToShow: data?.length >= 3 ? 3 : 1,
     slidesToScroll: 1,
-    initialSlide: 1,
+    initialSlide: 0,
     infinite: data?.length > 3 ? false : false,
     dots: data?.length > 3 ? false : false,
     arrows: data?.length > 3 ? true : false,
@@ -51,19 +59,13 @@ export default async function Featured() {
   //------------------------------------------
   // Render
   //------------------------------------------
-  if (error) {
-    return <h1>{error.message}</h1>
-  }
-  if (data?.length === 0) {
-    return <h1>no hay resultados</h1>
-  }
+
   return (
     <Carousel settings={settings} className={styles.carousel}>
       {data?.map((item: any) => {
         return (
           <ItemCard
-            data-fafa="fafa"
-            key={item.id}
+            key={`${item.attributes.type}-${item.id}`}
             item={item}
             style={{ margin: "10px", border: "3px solid red" }}
           />

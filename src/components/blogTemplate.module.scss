@@ -1,0 +1,99 @@
+@use "@/styles/main.module.scss" as *;
+.blogTemplate {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  width: 100%;
+  align-items: center;
+  // padding: 0 1rem;
+  // background: red;
+}
+.header {
+  display: flex;
+  // flex-wrap: wrap;
+  width: 100%;
+  gap: 2rem;
+  padding: 1rem;
+  background: #eef3f7;
+  border-radius: var(--radius-4);
+
+  @include down("lg") {
+    flex-direction: column;
+    padding: 1rem;
+  }
+  picture {
+    max-width: 100%;
+    min-width: fit-content;
+  }
+  & > div {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    justify-content: flex-end;
+    position: relative;
+    padding-right: 2rem;
+    h1 {
+      font-size: 6rem;
+      text-transform: uppercase;
+      @include down("lg") {
+        font-size: 4rem;
+      }
+    }
+    h2 {
+      font-size: 3rem;
+      line-height: 1em;
+      font-weight: 400;
+      @include down("lg") {
+        font-size: 2rem;
+      }
+    }
+    .publishedAt {
+      font-size: 0.8rem;
+      color: var(--gray-10);
+    }
+  }
+}
+.content {
+  max-width: 950px;
+  h3 {
+    font-size: 2rem;
+  }
+  h4 {
+    font-size: 1.5rem;
+    font-weight: 600;
+  }
+  p {
+    line-height: 1.5em;
+    margin: 1rem 0;
+  }
+  img {
+    width: 100%;
+  }
+  ul,
+  ol {
+    padding: 1em;
+  }
+  blockquote {
+    font-family: var(--font-wix);
+    display: block;
+    position: relative;
+    margin: 1.5rem;
+    margin-left: 4rem;
+    font-size: 1.8rem;
+    line-height: 1.1em;
+  }
+  blockquote::before {
+    position: absolute;
+    left: -4rem;
+    top: -0.8rem;
+    display: inline-block;
+    content: "”";
+    font-size: 8rem;
+    line-height: 1em;
+    color: skyblue;
+  }
+  em {
+    font-size: 1rem;
+    display: block;
+  }
+}

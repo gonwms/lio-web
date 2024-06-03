@@ -1,4 +1,4 @@
-import BlogContent from "@/components/blogContent"
+import BlogContent from "@/components/blogTemplate"
 const URL = process.env.NEXT_PUBLIC_API_URL
 
 //FETCH DATA FROM API
@@ -29,8 +29,7 @@ export default async function Recursos({ params }: any) {
 
   return (
     <section>
-      <h1>recursos</h1>
-      <BlogContent data={data} />
+      <BlogContent data={data.data} />
     </section>
   )
 }

@@ -10,7 +10,7 @@ export const EmailTemplateAdmisiones: React.FC<
   Readonly<EmailTemplateProps>
 > = ({ name, subject, message }) => (
   <html lang="es-ES">
-    <body style={{ background: "red" }}>
+    <body style={{ background: "#eeeeee" }}>
       <p>Hola {name}</p>
       <p>Recibimos tu mensaje:{subject}</p>
       <i>{message}</i>

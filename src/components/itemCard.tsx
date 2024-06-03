@@ -1,6 +1,8 @@
 import React from "react"
 import styles from "./Itemslist.module.scss"
 import Link from "next/link"
+import { formatDate } from "@/libs/formateDate"
+
 const API_URL = process.env.NEXT_PUBLIC_API_URL
 
 interface props {
@@ -29,10 +31,15 @@ export default function ItemCard({ item, style }: props) {
 
   const miniatura = item?.attributes?.miniatura?.data?.attributes
   return (
-    <div key={item.id} className={styles.card} style={style}>
+    <div
+      key={item.id}
+      className={styles.card}
+      style={style}
+      data-key={`${item.attributes.type}-${item.id}`}
+    >
       {miniatura && (
         <div className={styles.picture}>
-          <Link href={`/${path}/${item.attributes.slug}`}>
+          <Link href={`/${path}/${item.attributes.slug}`} scroll={true}>
             <picture>
               <source
                 media="(max-width <= 600px)"
@@ -52,7 +59,10 @@ export default function ItemCard({ item, style }: props) {
           </Link>
         </div>
       )}
-      <span>{item?.attributes.type}</span>
+      <span className={styles.publishAt}>{item?.attributes.type}</span>
+      <span className={styles.publishedAt}>
+        {formatDate(item.attributes.publishedAt)}
+      </span>
       <h3>{item?.attributes.title}</h3>
       <p className={styles.excerpt}>
         {item?.attributes?.content[0]?.children[0].text}
