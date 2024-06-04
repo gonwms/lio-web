@@ -72,12 +72,19 @@ export const getAllResource = async () => {
       )
     }
 
-    console.log("docs")
-    console.log(docs)
-    return { data: [...docs.data, ...posts.data, ...events.data] }
+    const data = [
+      ...(docs.dat ? docs.data : []),
+      ...(posts.data ? posts.data : []),
+      ...(events.data ? events.data : []),
+    ]
+    return { data: data }
   } catch (error) {
     console.error("❌ actions.ts ~ CATCH getAllResource", "\n ❌", error)
-    return { error: { message: "server conection fail" } }
+    return {
+      error: {
+        message: "actions.ts ~ CATCH getAllResource - server conection fail",
+      },
+    }
   }
 }
 

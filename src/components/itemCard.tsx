@@ -65,7 +65,7 @@ export default function ItemCard({ item, style }: props) {
       </span>
       <h3>{item?.attributes.title}</h3>
       <p className={styles.excerpt}>
-        {item?.attributes?.content[0]?.children[0].text}
+        {item?.attributes?.content?.[0]?.children?.[0].text}
       </p>
     </div>
   )
