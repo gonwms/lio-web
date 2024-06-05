@@ -16,9 +16,9 @@ export default async function Featured() {
   // Carousel settings
   // ------------------------------------------
   if (error) {
-    return <h1>{error?.message}</h1>
+    return <span>{error?.message}</span>
   }
-  if (data === undefined) return <h1>loading...</h1>
+  if (data === undefined) return <h1>cargando featured inner...</h1>
 
   if (data?.length === 0) {
     return <h1>no hay resultados</h1>
@@ -64,11 +64,7 @@ export default async function Featured() {
     <Carousel settings={settings} className={styles.carousel}>
       {data?.map((item: any) => {
         return (
-          <ItemCard
-            key={`${item.attributes.type}-${item.id}`}
-            item={item}
-            style={{ margin: "10px", border: "3px solid red" }}
-          />
+          <ItemCard key={`${item.attributes.type}-${item.id}`} item={item} />
         )
       })}
     </Carousel>

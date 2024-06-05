@@ -65,7 +65,7 @@ export default async function Home({
     <>
       {/*
        *
-       * ----------------------------- HERO ---------------------
+       * ----------------------------- HERO BANNER---------------------
        *
        */}
       <section>
@@ -100,47 +100,49 @@ export default async function Home({
        */}
       <section>
         {
-          <Carousel settings={settings}>
-            <div>
-              <div className={classNames(styles.quickLink, styles.pep)}>
-                <img src="/ico-download.svg" alt="" />
-                <div>
-                  <strong>Plan económico Peronista</strong>
-                  <span>Descargá: PDF EPUB</span>
+          <Suspense fallback={<span>cargando home cards...</span>}>
+            <Carousel settings={settings}>
+              <div>
+                <div className={classNames(styles.quickLink, styles.pep)}>
+                  <img src="/ico-download.svg" alt="" />
+                  <div>
+                    <strong>Plan económico Peronista</strong>
+                    <span>Descargá: PDF EPUB</span>
+                  </div>
                 </div>
               </div>
-            </div>
 
-            <div>
-              <div className={classNames(styles.quickLink, styles.pgp)}>
-                <img src="/ico-download.svg" alt="" />
-                <div>
-                  <strong>Plan de gobierno</strong>
-                  <span>Descargá: PDF EPUB</span>
+              <div>
+                <div className={classNames(styles.quickLink, styles.pgp)}>
+                  <img src="/ico-download.svg" alt="" />
+                  <div>
+                    <strong>Plan de gobierno</strong>
+                    <span>Descargá: PDF EPUB</span>
+                  </div>
                 </div>
               </div>
-            </div>
 
-            <div>
-              <div className={classNames(styles.quickLink, styles.plan)}>
-                <img src="/ico-credit-card.svg" alt="" />
-                <div>
-                  <strong>Aportes económicos</strong>
-                  <span>Colaborá con el financiamiento</span>
+              <div>
+                <div className={classNames(styles.quickLink, styles.plan)}>
+                  <img src="/ico-credit-card.svg" alt="" />
+                  <div>
+                    <strong>Aportes económicos</strong>
+                    <span>Colaborá con el financiamiento</span>
+                  </div>
                 </div>
               </div>
-            </div>
 
-            <div>
-              <div className={classNames(styles.quickLink, styles.plan)}>
-                <img src="/ico-cast.svg" alt="" />
-                <div>
-                  <strong>Mundo LIO</strong>
-                  <span>Miercoles 19:00hs</span>
+              <div>
+                <div className={classNames(styles.quickLink, styles.plan)}>
+                  <img src="/ico-cast.svg" alt="" />
+                  <div>
+                    <strong>Mundo LIO</strong>
+                    <span>Miercoles 19:00hs</span>
+                  </div>
                 </div>
               </div>
-            </div>
-          </Carousel>
+            </Carousel>
+          </Suspense>
         }
       </section>
       {/*
@@ -150,7 +152,7 @@ export default async function Home({
        */}
       <section>
         <div>
-          <Suspense fallback={<h1>loading featured...</h1>}>
+          <Suspense fallback={<span>cargando destacados... </span>}>
             <Featured />
           </Suspense>
         </div>
@@ -162,7 +164,7 @@ export default async function Home({
        */}
       <section>
         <Row>
-          <Suspense fallback={<h2>aguntá makina</h2>}>
+          <Suspense fallback={<span>cargando grilla...</span>}>
             {/* <ItemListProvider> */}
             <ItemList req={searchParams} />
             {/* </ItemListProvider> */}

@@ -37,9 +37,9 @@ export default function ItemCard({ item, style }: props) {
       style={style}
       data-key={`${item.attributes.type}-${item.id}`}
     >
-      {miniatura && (
-        <div className={styles.picture}>
-          <Link href={`/${path}/${item.attributes.slug}`} scroll={true}>
+      <div className={styles.picture}>
+        <Link href={`/${path}/${item.attributes.slug}`} scroll={false}>
+          {miniatura && (
             <picture>
               <source
                 media="(max-width <= 600px)"
@@ -56,9 +56,14 @@ export default function ItemCard({ item, style }: props) {
                 alt={miniatura.alternativeText}
               />
             </picture>
-          </Link>
-        </div>
-      )}
+          )}
+          {!miniatura && (
+            <picture>
+              <img src="/no-image.webp" alt="no image" />
+            </picture>
+          )}
+        </Link>
+      </div>
       <span className={styles.publishAt}>{item?.attributes.type}</span>
       <span className={styles.publishedAt}>
         {formatDate(item.attributes.publishedAt)}

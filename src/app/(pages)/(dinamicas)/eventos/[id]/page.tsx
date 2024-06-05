@@ -3,7 +3,7 @@ const URL = process.env.NEXT_PUBLIC_API_URL
 
 //FETCH DATA FROM API
 async function getPostById(id: string) {
-  const res = await fetch(`${URL}/api/docs/${id}`, {
+  const res = await fetch(`${URL}/api/events/${id}`, {
     method: "GET",
   })
   return res.json()
@@ -19,7 +19,7 @@ export async function generateMetadata({ params }: any) {
 }
 
 // PAGE
-export default async function Recursos({ params }: any) {
+export default async function Eventos({ params }: any) {
   const data = await getPostById(params.id)
 
   return (

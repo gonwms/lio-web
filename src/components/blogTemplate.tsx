@@ -33,7 +33,12 @@ export default function BlogTemplate({ data }: any) {
                 />
               </picture>
             )}
-            <div>
+            {!miniatura && (
+              <picture>
+                <img src="/no-image.webp" alt="no image" />
+              </picture>
+            )}
+            <div className={styles.headerContent}>
               <h1>{data?.attributes?.title}</h1>
               <h2>
                 Subtitulo hardcodeado Lorem ipsum dolor, sit amet eveniet, enim?
@@ -43,6 +48,7 @@ export default function BlogTemplate({ data }: any) {
               </div>
             </div>
           </div>
+
           <div className={styles.content}>
             <BlocksRenderer content={data?.attributes?.content} />
           </div>

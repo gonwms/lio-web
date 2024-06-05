@@ -24,10 +24,10 @@ export default async function ItemList({ req }: propsType) {
   // Render
   // ------------------------------------------
   if (error) {
-    return <h1>{error.message}</h1>
+    return <span>{error.message}</span>
   }
   if (data?.length === 0) {
-    return <h1>no hay resultados</h1>
+    return <h3>no hay resultados</h3>
   }
   return (
     <div>

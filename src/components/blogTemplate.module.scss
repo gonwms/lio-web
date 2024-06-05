@@ -22,10 +22,17 @@
     padding: 1rem;
   }
   picture {
-    max-width: 100%;
-    min-width: fit-content;
+    flex-shrink: 0;
+    img {
+      width: 480px;
+      max-width: min(100%, 480px);
+
+      border-radius: 1rem;
+      object-fit: cover;
+      aspect-ratio: 1 / 1;
+    }
   }
-  & > div {
+  .headerContent {
     display: flex;
     flex-direction: column;
     gap: 2rem;
@@ -33,10 +40,12 @@
     position: relative;
     padding-right: 2rem;
     h1 {
-      font-size: 6rem;
+      font-size: 3.5rem;
       text-transform: uppercase;
+      font-weight: 600;
+      line-height: 1.1em;
       @include down("lg") {
-        font-size: 4rem;
+        font-size: 2.5rem;
       }
     }
     h2 {

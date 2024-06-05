@@ -33,7 +33,7 @@ export default function InfiniteScroll() {
   // Render
   // ------------------------------------------
   if (error) {
-    return <h1>{error.message}</h1>
+    return <span>{error.message}</span>
   }
   if (dataState?.length === 0) {
     return <h1>no hay resultados</h1>

@@ -1,14 +1,16 @@
 import BlogContent from "@/components/blogTemplate"
-import { Button } from "@radix-ui/themes"
 const URL = process.env.NEXT_PUBLIC_API_URL
 
 //FETCH DATA FROM API
 async function getPostById(id: string) {
-  const res = await fetch(`${URL}/api/posts/${id}?populate=deep,2`, {
-    method: "GET",
-  })
-  console.log(res)
-  return res.json()
+  try {
+    const res = await fetch(`${URL}/api/posts/${id}`, {
+      method: "GET",
+    })
+    return res.json()
+  } catch (error) {
+    console.error("❌ actions.ts ~ CATCH error", "\n ❌", error)
+  }
 }
 // SEO
 export async function generateMetadata({ params }: any) {
@@ -19,14 +21,16 @@ export async function generateMetadata({ params }: any) {
     openGraph: [data?.data?.attributes?.image],
   }
 }
+
 // PAGE
-export default async function Posts({ params }: any) {
+export default async function Noticias({ params }: any) {
   const data = await getPostById(params.id)
 
   return (
-    <section>
-      <Button>back</Button>
-      {data.data && <BlogContent data={data.data} />}
-    </section>
+    data && (
+      <section>
+        <BlogContent data={data.data} />
+      </section>
+    )
   )
 }

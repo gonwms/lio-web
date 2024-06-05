@@ -43,7 +43,7 @@ export const getResource = async (req: req) => {
     }
   } catch (error) {
     console.error("❌ actions.ts ~ CATCH error", "\n ❌", error)
-    return { error: { message: "server conection fail" } }
+    return { error: { message: "falló la conexion con el servidor" } }
   }
 }
 
@@ -81,9 +81,7 @@ export const getAllResource = async () => {
   } catch (error) {
     console.error("❌ actions.ts ~ CATCH getAllResource", "\n ❌", error)
     return {
-      error: {
-        message: "actions.ts ~ CATCH getAllResource - server conection fail",
-      },
+      error: { message: "falló la conexion con el servidor" },
     }
   }
 }

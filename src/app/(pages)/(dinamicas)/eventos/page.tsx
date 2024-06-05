@@ -12,7 +12,7 @@ export default function Eventos() {
   return (
     <>
       <h1>Eventos</h1>
-      <Suspense fallback={<h2>infinite .com</h2>}>
+      <Suspense fallback={<span>cargando eventos...</span>}>
         <InfiniteScroll />
       </Suspense>
     </>
