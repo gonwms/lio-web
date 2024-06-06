@@ -20,11 +20,11 @@ export const metadata = {
   },
 }
 
-export default function RootLayout({
-  children,
-}: {
+type props = {
   children: React.ReactNode
-}) {
+}
+
+export default function RootLayout({ children }: props) {
   return (
     <html lang="es" className={classNames(wix.variable, inter.variable)}>
       <body
@@ -40,7 +40,7 @@ export default function RootLayout({
         </Theme>
       </body>
       {/* <LenisScroll /> */}
-      <IpDetector />
+      {/* <IpDetector /> */}
     </html>
   )
 }

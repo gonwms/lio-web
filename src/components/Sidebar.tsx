@@ -32,11 +32,11 @@ export default function Sidebar({ className }: props) {
   // console.log(mobile)
   // console.log(path)
 
-  // ---------------------
-  // MOBILE VERSION
-  // ---------------------
-  if (mobile === true) {
-    return (
+  return (
+    <>
+      {/* -----------------------------------------
+       *           MOBILE VERSION
+      ----------------------------------------- */}
       <div className={styles.mobileButtons}>
         <nav className={classNames(styles.nav)}>
           {menu.map((item, index) => {
@@ -60,13 +60,9 @@ export default function Sidebar({ className }: props) {
           </a>
         </nav>
       </div>
-    )
-  }
-  // ---------------------
-  // DESKTOP VERSION
-  // ---------------------
-  else if (mobile === false) {
-    return (
+      {/* -----------------------------------------
+      *           DESKTOP VERSION
+      ----------------------------------------- */}
       <Flex className={classNames(styles.sidebar, className)}>
         {/* NAV 1 */}
         <div className={styles.navs}>
@@ -127,11 +123,11 @@ export default function Sidebar({ className }: props) {
               <img src="/youtube.svg" alt="youtube" />
             </a>
             {/* <a href="https://t.me/lioenpyv" target="_blank">
-              <img src="/telegram.svg" alt="telegram" />
-            </a> */}
+        <img src="/telegram.svg" alt="telegram" />
+      </a> */}
           </div>
         </div>
       </Flex>
-    )
-  }
+    </>
+  )
 }

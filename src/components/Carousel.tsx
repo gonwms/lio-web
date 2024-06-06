@@ -4,6 +4,7 @@ import Slider, { Settings } from "react-slick"
 import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
 import "@/styles/react-slick.css"
+
 interface IsProps {
   children: React.ReactNode
   settings: Settings
@@ -37,6 +38,7 @@ function NextArrow(props: any) {
     </div>
   )
 }
+
 function PrevArrow(props: any) {
   const { className, style, onClick } = props
   return (

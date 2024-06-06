@@ -18,7 +18,7 @@ interface Request {
 
 // const captcha_secret = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY // https://console.cloud.google.com/security/recaptcha
 const resend = new Resend(process.env.RECAPTCHA_SITE_KEY) // https://resend.com/
-console.log("resend key", resend)
+// console.log("resend key", resend)
 export async function POST(request: any): Promise<void | Response> {
   const { captcha, subject, name, email, message }: Request =
     await request.json()

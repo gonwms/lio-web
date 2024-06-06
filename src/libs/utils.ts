@@ -2,6 +2,7 @@ type ThrottleFunction<T extends (...args: any[]) => any> = (
   func: T,
   delay: number
 ) => (...args: Parameters<T>) => void
+
 type DebounceFunction<T extends (...args: any[]) => any> = (
   func: T,
   delay: number
@@ -29,5 +30,6 @@ export const debounce: DebounceFunction<any> = (func, delay) => {
   }
 }
 
-export const pause = (delay: number) =>
+export const pause = (delay: number) => {
   new Promise((resolve) => setTimeout(resolve, delay))
+}

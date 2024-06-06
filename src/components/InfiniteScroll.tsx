@@ -6,22 +6,29 @@ import ItemCard from "@/components/itemCard"
 import styles from "./Itemslist.module.scss"
 import { Button } from "@radix-ui/themes"
 
-export default function InfiniteScroll() {
+interface props {
+  resourceType: "events" | "products" | "docs" | "posts"
+}
+
+export default function InfiniteScroll({ resourceType }: props) {
   const [page, setPage] = useState(1)
   //------------------------------------------
   const [dataState, setData] = useState<any>([])
+  const [loading, setLoading] = useState<any>(true)
   const [error, setError] = useState<any>(null)
   const [pagination, setPagination] = useState<any>(null)
 
   useEffect(() => {
+    setLoading(true)
     ;(async () => {
-      const { data, error, meta } = await getResource({
-        resource: "docs",
+      const { data, error } = await getResource({
+        resource: resourceType,
         page: page,
       })
-      data && setData([...dataState, ...data])
+      data && setData([...dataState, ...data.data])
+      data && setPagination(data?.meta?.pagination)
       error && setError(error)
-      meta && setPagination(meta.pagination)
+      setLoading(false)
     })()
   }, [page])
 
@@ -35,8 +42,11 @@ export default function InfiniteScroll() {
   if (error) {
     return <span>{error.message}</span>
   }
-  if (dataState?.length === 0) {
+
+  if (dataState?.length === 0 && loading === false) {
     return <h1>no hay resultados</h1>
+  }
+  {
   }
   return (
     <>

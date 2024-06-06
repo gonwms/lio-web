@@ -22,7 +22,7 @@ export default function ItemCard({ item, style }: props) {
     case "docs":
       path = "recursos"
       break
-    case "tienda":
+    case "products":
       path = "tienda"
       break
     default:
