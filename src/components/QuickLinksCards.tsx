@@ -45,37 +45,45 @@ export default function QuickLinksCards() {
       <Carousel settings={settings}>
         <div>
           <div className={classNames(styles.quickLink, styles.pep)}>
-            <img src="/ico-download.svg" alt="" />
-            <div>
-              <strong>Plan económico Peronista</strong>
-              <span>Descargá: PDF EPUB</span>
+            <div className={styles.content}>
+              <img src="/ico-download.svg" alt="" />
+              <div>
+                <strong>Plan económico Peronista</strong>
+                <span>Descargá: PDF EPUB</span>
+              </div>
             </div>
           </div>
         </div>
         <div>
           <div className={classNames(styles.quickLink, styles.pgp)}>
-            <img src="/ico-download.svg" alt="" />
-            <div>
-              <strong>Plan de gobierno</strong>
-              <span>Descargá: PDF EPUB</span>
+            <div className={styles.content}>
+              <img src="/ico-download.svg" alt="" />
+              <div>
+                <strong>Plan de gobierno</strong>
+                <span>Descargá: PDF EPUB</span>
+              </div>
             </div>
           </div>
         </div>
         <div>
           <div className={classNames(styles.quickLink, styles.plan)}>
-            <img src="/ico-credit-card.svg" alt="" />
-            <div>
-              <strong>Aportes económicos</strong>
-              <span>Colaborá con el financiamiento</span>
+            <div className={styles.content}>
+              <img src="/ico-credit-card.svg" alt="" />
+              <div>
+                <strong>Aportes económicos</strong>
+                <span>Colaborá con el financiamiento</span>
+              </div>
             </div>
           </div>
         </div>
         <div>
           <div className={classNames(styles.quickLink, styles.plan)}>
-            <img src="/ico-cast.svg" alt="" />
-            <div>
-              <strong>Mundo LIO</strong>
-              <span>Miercoles 19:00hs</span>
+            <div className={styles.content}>
+              <img src="/ico-cast.svg" alt="" />
+              <div>
+                <strong>Mundo LIO</strong>
+                <span>Miercoles 19:00hs</span>
+              </div>
             </div>
           </div>
         </div>

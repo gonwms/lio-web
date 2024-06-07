@@ -117,7 +117,7 @@ const CreateEndPointString = ({
     sort: `&sort=${sort ? sort : "rank:asc"}`,
     pageSize: `&pagination[pageSize]=${pageSize ? pageSize : 3}`,
     page: `&pagination[page]=${page ? page : 1}`,
-    filter: `&filter=${filter ? filter : ""}`,
+    // filter: `&filter=${filter ? filter : ""}`,
   }
   const endpointString = Object.values(ep).join("")
   return endpointString
