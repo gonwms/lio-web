@@ -11,7 +11,7 @@ export default function QuienesSomos() {
   return (
     <>
       <h1>Peronistas</h1>
-      <h3>siguiente pregunta</h3>
+      {/* <h3>siguiente pregunta</h3> */}
 
       <p>
         Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quae

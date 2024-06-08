@@ -1,18 +1,15 @@
 "use client"
-import React, { useRef } from "react"
-import classNames from "classnames"
-import AdmisionForm from "@/components/forms/AdminisionForm"
-import { Section } from "@radix-ui/themes"
-import { Row } from "@/components/CustomTags"
-import InfiniteScroll from "@/components/InfiniteScroll"
+import React from "react"
 
+import ItemsInfiniteScroll from "@/components/ItemInfiniteScroll"
+import styles from "../../layout.module.scss"
 // import styles from './contact.module.scss'
 
 export default function Tienda() {
   return (
     <>
-      <h1>Tienda</h1>
-      <InfiniteScroll resourceType="products" />
+      <h1 className={styles.plp}>Tienda</h1>
+      <ItemsInfiniteScroll resourceType="products" />
     </>
   )
 }

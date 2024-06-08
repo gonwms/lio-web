@@ -1,5 +1,5 @@
 import React from "react"
-import styles from "./Itemslist.module.scss"
+import styles from "./Item.module.scss"
 import Link from "next/link"
 import { formatDate } from "@/libs/formateDate"
 
@@ -38,7 +38,7 @@ export default function ItemCard({ item, style }: props) {
       data-key={`${item.attributes.type}-${item.id}`}
     >
       <div className={styles.picture}>
-        <Link href={`/${path}/${item.attributes.slug}`} scroll={false}>
+        <Link href={`/${path}/${item.attributes.slug}`}>
           {miniatura && (
             <picture>
               <source
@@ -53,22 +53,26 @@ export default function ItemCard({ item, style }: props) {
               />
               <img
                 src={API_URL + miniatura.formats.original_avif.url}
-                alt={miniatura.alternativeText}
+                alt={item?.attributes.title}
               />
             </picture>
           )}
           {!miniatura && (
             <picture>
-              <img src="/no-image.webp" alt="no image" />
+              <img src="/no-image.webp" alt={item?.attributes.title} />
             </picture>
           )}
         </Link>
       </div>
-      <span className={styles.publishAt}>{item?.attributes.type}</span>
-      <span className={styles.publishedAt}>
-        {formatDate(item.attributes.publishedAt)}
-      </span>
-      <h3>{item?.attributes.title}</h3>
+      <div className={styles.meta}>
+        <span>{item?.attributes.type}</span> -{" "}
+        <span>{formatDate(item.attributes.publishedAt)}</span>
+      </div>
+      <h3>
+        <Link href={`/${path}/${item.attributes.slug}`}>
+          {item?.attributes.title}
+        </Link>
+      </h3>
       <p className={styles.excerpt}>
         {item?.attributes?.content?.[0]?.children?.[0].text}
       </p>

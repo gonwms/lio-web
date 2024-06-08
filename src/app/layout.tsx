@@ -2,6 +2,7 @@ import { Theme } from "@radix-ui/themes"
 import "@radix-ui/themes/styles.css"
 import "@/styles/normalize.css"
 import "@/styles/global.scss"
+import "@/styles/common.css"
 // import "@radix-ui/themes/layout.css"
 
 import classNames from "classnames"

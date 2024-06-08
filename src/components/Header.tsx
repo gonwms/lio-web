@@ -26,40 +26,42 @@ const Header = ({ className }: props) => {
     <>
       <header className={classNames(styles.header, className)}>
         <div>
-          <Link href="/">
+          <Link href="/" className={styles.logo}>
             <img
               src="/lio-logo.svg"
               alt="LIO los inorgánicos organizados"
               width={52}
               height={50}
-            />
+            />{" "}
+            Los Inorgánicos Organizados
           </Link>
+
           {/* MENU DESKTOP VERSION */}
-          {mobile === false && (
-            <nav>
-              {menu.map((rute) => {
-                return (
-                  <Link
-                    style={{
-                      fontWeight: pathname === rute.href ? "600" : "400",
-                    }}
-                    key={rute.href}
-                    href={rute.href}
-                    target={rute.target}
-                  >
-                    {rute.label}
-                  </Link>
-                )
-              })}
-              <a
-                href="https://chat.whatsapp.com/FhOhNQHdUvMFRx4r8GML0w"
-                target="_blank"
-              >
-                <img src="/whatsapp.svg" alt="whatsapp" />
-              </a>
-            </nav>
-          )}
+          <nav>
+            {menu.map((rute) => {
+              return (
+                <Link
+                  style={{
+                    fontWeight: pathname === rute.href ? "600" : "400",
+                  }}
+                  key={rute.href}
+                  href={rute.href}
+                  target={rute.target}
+                >
+                  {rute.label}
+                </Link>
+              )
+            })}
+            <a
+              href="https://chat.whatsapp.com/FhOhNQHdUvMFRx4r8GML0w"
+              target="_blank"
+            >
+              <img src="/whatsapp.svg" alt="whatsapp" />
+            </a>
+          </nav>
+
           <img
+            className={styles.logoPyV}
             src="/pyv-logo.svg"
             alt="LIO los inorgánicos organizados"
             width={67}
@@ -67,14 +69,13 @@ const Header = ({ className }: props) => {
           />
 
           {/* MOBILE BURGER */}
-          {mobile === true && (
-            <a
-              className={classNames(styles.link, styles.burger)}
-              onClick={() => setMenuOpen(!menuOpen)}
-            >
-              <img src={`/ico-burger-black.svg`} alt="" />
-            </a>
-          )}
+
+          <a
+            className={classNames(styles.link, styles.burger)}
+            onClick={() => setMenuOpen(!menuOpen)}
+          >
+            <img src={`/ico-burger-black.svg`} alt="" />
+          </a>
         </div>
       </header>
 
@@ -110,7 +111,7 @@ const Header = ({ className }: props) => {
                 href="https://chat.whatsapp.com/FhOhNQHdUvMFRx4r8GML0w"
                 target="_blank"
               >
-                <img src="/whatsapp.svg" alt="whatsapp" />
+                Whatsapp <img src="/whatsapp.svg" alt="whatsapp" />
               </a>
             </nav>
             <div className={styles.social}>

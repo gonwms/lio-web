@@ -1,15 +1,26 @@
 "use client"
-import { Skeleton } from "@radix-ui/themes"
 import styles from "./skeletonGrid.module.scss"
 
-export default function SkeletonGrid({ loading }: { loading?: boolean }) {
+export function SkeletonGrid({ count }: { count: number }) {
+  const items = Array.from({ length: count })
   return (
     <div className={styles.skeletonGrid}>
-      <SkeletonCard />
-      <SkeletonCard />
-      <SkeletonCard />
-      <SkeletonCard />
-      <SkeletonCard />
+      <>
+        {items.map((item, index) => {
+          return <SkeletonCard key={index} />
+        })}
+      </>
+    </div>
+  )
+}
+
+export function SkeletonFeatured({ count }: { count: number }) {
+  const items = Array.from({ length: count })
+  return (
+    <div className={styles.skeletonFeatured}>
+      {items.map((item, index) => {
+        return <SkeletonCard key={index} />
+      })}
     </div>
   )
 }
@@ -17,10 +28,10 @@ export default function SkeletonGrid({ loading }: { loading?: boolean }) {
 export function SkeletonCard() {
   return (
     <div className={styles.skeletonCard}>
-      <Skeleton height="310px"></Skeleton>
-      <Skeleton height="15px" width="20%"></Skeleton>
-      <Skeleton height="22px"></Skeleton>
-      <Skeleton height="22px" width="50%"></Skeleton>
+      <div className={styles.skeletonImageBox}></div>
+      <div style={{ height: "15px", width: "20%" }}></div>
+      <div style={{ height: "22px" }}></div>
+      <div style={{ height: "22px", width: "50%" }}></div>
     </div>
   )
 }

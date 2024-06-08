@@ -1,68 +1,80 @@
-import "server-only"
+// import "server-only"
+"use client"
 
 import { getAllResource } from "@/actions"
-import React from "react"
+import React, { useEffect, useState } from "react"
 import { Carousel, Settings } from "@/components/Carousel"
 import styles from "./home.module.scss"
 import ItemCard from "@/components/itemCard"
+import { SkeletonFeatured } from "@/components/SkeletonGrid"
 
-export default async function Featured() {
-  // ------------------------------------------
-  // fetch data
-  // ------------------------------------------
-  const { data, error } = await getAllResource()
+export default function Featured() {
+  //
+  const [dataState, setData] = useState<any[] | null>(null)
+  const [errorState, setError] = useState<{ message: string }>()
+
+  useEffect(() => {
+    ;(async () => {
+      const { data, error } = await getAllResource()
+      data !== undefined && setData(data)
+      error && setError(error)
+    })()
+  }, [])
 
   // ------------------------------------------
   // Carousel settings
   // ------------------------------------------
-  if (error) {
-    return <span>{error?.message}</span>
-  }
-  if (data === undefined) return <h1>cargando featured inner...</h1>
 
-  if (data?.length === 0) {
-    return <h1>no hay resultados</h1>
-  }
+  const settings: Settings | {} =
+    dataState === null
+      ? {}
+      : {
+          slidesToShow: dataState?.length >= 3 ? 3 : 1,
+          slidesToScroll: 1,
+          initialSlide: 0,
+          infinite: dataState?.length > 3 ? false : false,
+          dots: dataState?.length > 3 ? false : false,
+          arrows: dataState?.length > 3 ? true : false,
+          speed: 500,
+          autoplay: dataState?.length >= 4 ? true : false,
+          // autoplay: false,
+          autoplaySpeed: 5000,
+          // centerMode: dataState?.length > 3 ? true : false,
+          // variableWidth: true,
+          responsive: [
+            {
+              breakpoint: 1552,
+              settings: {
+                slidesToShow: 2,
+                slidesToScroll: 1,
+              },
+            },
+            {
+              breakpoint: 1024,
+              settings: {
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                centerMode: dataState?.length > 3 ? true : false,
+                draggable: dataState?.length > 3 ? true : false,
+              },
+            },
+          ],
+        }
 
-  const settings: Settings = {
-    slidesToShow: data?.length >= 3 ? 3 : 1,
-    slidesToScroll: 1,
-    initialSlide: 0,
-    infinite: data?.length > 3 ? false : false,
-    dots: data?.length > 3 ? false : false,
-    arrows: data?.length > 3 ? true : false,
-    speed: 500,
-    // autoplay: data?.length >= 4 ? true : false,
-    autoplay: false,
-    autoplaySpeed: 5000,
-    // centerMode: data?.length > 3 ? true : false,
-    // variableWidth: true,
-    responsive: [
-      {
-        breakpoint: 1552,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 1,
-        },
-      },
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-          centerMode: data?.length > 3 ? true : false,
-          draggable: data?.length > 3 ? true : false,
-        },
-      },
-    ],
-  }
   //------------------------------------------
   // Render
   //------------------------------------------
+  if (errorState) {
+    return <span>{errorState?.message}</span>
+  }
+  if (!dataState) return <SkeletonFeatured count={3} />
+  if (dataState?.length === 0) {
+    return <h1>no hay resultados</h1>
+  }
 
   return (
     <Carousel settings={settings} className={styles.carousel}>
-      {data?.map((item: any) => {
+      {dataState?.map((item: any) => {
         return (
           <ItemCard key={`${item.attributes.type}-${item.id}`} item={item} />
         )

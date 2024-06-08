@@ -5,9 +5,9 @@ import Captcha from "react-google-recaptcha"
 import styles from "./form.module.scss"
 
 const initialFormValues = {
-  name: "gon",
-  email: "gon.williams@gmail.com",
-  message: "a",
+  name: "",
+  email: "",
+  message: "",
   legal_1: true,
 }
 
@@ -114,7 +114,7 @@ export default function AdmisionForm() {
       </label>
 
       {/* ----------------------------------- */}
-      <label className={styles.legal}>
+      {/* <label className={styles.legal}>
         <input
           type="checkbox"
           onChange={() =>
@@ -123,7 +123,7 @@ export default function AdmisionForm() {
           checked={formData.legal_1}
         />
         <span>Acepto recibir notificaciones en mi correo electrónico.</span>
-      </label>
+      </label> */}
 
       {/* ----------------------------------- */}
       <button

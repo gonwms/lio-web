@@ -1,4 +1,20 @@
 @use "@/styles/main.module.scss" as *;
+
+.skeletonCard {
+  display: grid;
+  gap: 0.5em;
+}
+
+.skeletonCard div {
+  width: 100%;
+
+  background: #ebebeb;
+}
+.skeletonImageBox {
+  aspect-ratio: 1 / 1;
+  border-radius: 0.5rem;
+}
+
 .skeletonGrid {
   max-width: 100%;
   display: grid;
@@ -10,7 +26,21 @@
   }
 }
 
-.skeletonCard {
+.skeletonFeatured {
+  max-width: 100%;
+  width: 100%;
   display: grid;
-  gap: 0.5em;
+  grid-auto-flow: column;
+  gap: 1rem;
+}
+
+.skeletonCard:nth-last-of-type(2) {
+  @media (width < 1024px) {
+    display: none;
+  }
+}
+.skeletonCard:nth-last-of-type(1) {
+  @media (width < 1552px) {
+    display: none;
+  }
 }

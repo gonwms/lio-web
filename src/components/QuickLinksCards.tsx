@@ -1,4 +1,5 @@
-import React from "react"
+"use client"
+import React, { useEffect, useState } from "react"
 
 import styles from "./quickLinks.module.scss"
 import { Carousel, Settings } from "./Carousel"
@@ -6,11 +7,17 @@ import classNames from "classnames"
 
 export default function QuickLinksCards() {
   //
+  const [isClient, setIsClient] = useState(false)
+
+  useEffect(() => {
+    setIsClient(true)
+  }, [])
+
   const settings: Settings = {
-    // slidesToShow: 4,
+    slidesToShow: 4,
     slidesToScroll: 1,
     initialSlide: 0,
-    infinite: true,
+    infinite: false,
     dots: false,
     arrows: false,
     speed: 500,
@@ -18,11 +25,11 @@ export default function QuickLinksCards() {
     autoplay: false,
     autoplaySpeed: 5000,
     // centerMode: true,
-    variableWidth: true,
     responsive: [
       {
         breakpoint: 1600,
         settings: {
+          // variableWidth: true,
           arrows: true,
           slidesToShow: 2,
           slidesToScroll: 1,
@@ -42,9 +49,10 @@ export default function QuickLinksCards() {
   }
   return (
     <>
-      <Carousel settings={settings}>
-        <div>
-          <div className={classNames(styles.quickLink, styles.pep)}>
+      {!isClient && <div className={styles.loaderSkeleton}></div>}
+      {isClient && (
+        <Carousel settings={settings} className={styles.carousel}>
+          <a href="#" className={classNames(styles.quickLink, styles.pep)}>
             <div className={styles.content}>
               <img src="/ico-download.svg" alt="" />
               <div>
@@ -52,10 +60,9 @@ export default function QuickLinksCards() {
                 <span>Descargá: PDF EPUB</span>
               </div>
             </div>
-          </div>
-        </div>
-        <div>
-          <div className={classNames(styles.quickLink, styles.pgp)}>
+          </a>
+
+          <a href="#" className={classNames(styles.quickLink, styles.pgp)}>
             <div className={styles.content}>
               <img src="/ico-download.svg" alt="" />
               <div>
@@ -63,10 +70,9 @@ export default function QuickLinksCards() {
                 <span>Descargá: PDF EPUB</span>
               </div>
             </div>
-          </div>
-        </div>
-        <div>
-          <div className={classNames(styles.quickLink, styles.plan)}>
+          </a>
+
+          <a href="#" className={classNames(styles.quickLink, styles.plan)}>
             <div className={styles.content}>
               <img src="/ico-credit-card.svg" alt="" />
               <div>
@@ -74,10 +80,9 @@ export default function QuickLinksCards() {
                 <span>Colaborá con el financiamiento</span>
               </div>
             </div>
-          </div>
-        </div>
-        <div>
-          <div className={classNames(styles.quickLink, styles.plan)}>
+          </a>
+
+          <a href="#" className={classNames(styles.quickLink, styles.plan)}>
             <div className={styles.content}>
               <img src="/ico-cast.svg" alt="" />
               <div>
@@ -85,9 +90,9 @@ export default function QuickLinksCards() {
                 <span>Miercoles 19:00hs</span>
               </div>
             </div>
-          </div>
-        </div>
-      </Carousel>
+          </a>
+        </Carousel>
+      )}
     </>
   )
 }

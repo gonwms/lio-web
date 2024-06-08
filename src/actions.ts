@@ -31,7 +31,7 @@ export const getResource = async (req: req) => {
   })
 
   try {
-    const res = await fetch(endpoint, { next: { revalidate: 5 } })
+    const res = await fetch(endpoint)
     console.log(res)
     // const wait = pause(2000)
     let data = await res.json()
@@ -52,34 +52,25 @@ export const getResource = async (req: req) => {
 //  GET ALL RESOURCE
 // ---------------------------------------------------------------
 export const getAllResource = async () => {
-  const revalidate = { next: { revalidate: 5 } }
   try {
-    const [docsRes, postsRes, eventsRes] = await Promise.all([
-      fetch(
-        `${API_URL}/api/docs?populate=deep,2?page=1&pagesize=10`,
-        revalidate
-      ),
-      fetch(
-        `${API_URL}/api/posts?populate=deep,2?page=1&pagesize=10`,
-        revalidate
-      ),
-      fetch(
-        `${API_URL}/api/events?populate=deep,2?page=1&pagesize=10`,
-        revalidate
-      ),
-      // fetch(`${API_URL}/api/products?populate=deep,2?page=1&pagesize=10`),
+    const [docsRes, postsRes, eventsRes, productsRes] = await Promise.all([
+      fetch(`${API_URL}/api/docs?populate=deep,2?page=1&pagesize=10`),
+      fetch(`${API_URL}/api/posts?populate=deep,2?page=1&pagesize=10`),
+      fetch(`${API_URL}/api/events?populate=deep,2?page=1&pagesize=10`),
+      fetch(`${API_URL}/api/products?populate=deep,2?page=1&pagesize=10`),
     ])
 
     const docs = await docsRes.json()
     const posts = await postsRes.json()
     const events = await eventsRes.json()
-    // const products = await productsRes.json()
+    const products = await productsRes.json()
     if (!docsRes.ok || !postsRes.ok || !eventsRes.ok) {
       console.error(
         `❌ actions.ts ~ getAllResource
         \n docs ${JSON.stringify(docs)}
         \n posts ${JSON.stringify(posts)}
-        \n events ${JSON.stringify(events)}`
+        \n events ${JSON.stringify(events)}
+        \n products ${JSON.stringify(products)}`
       )
     }
 
@@ -87,6 +78,7 @@ export const getAllResource = async () => {
       ...(docs.dat ? docs.data : []),
       ...(posts.data ? posts.data : []),
       ...(events.data ? events.data : []),
+      ...(products.data ? products.data : []),
     ]
     // pause(5000)
     return { data: data }
@@ -115,7 +107,7 @@ const CreateEndPointString = ({
     url: `${url}/api/${resource}`,
     deep: `?populate=deep,${deep ? deep : 2}`,
     sort: `&sort=${sort ? sort : "rank:asc"}`,
-    pageSize: `&pagination[pageSize]=${pageSize ? pageSize : 3}`,
+    pageSize: `&pagination[pageSize]=${pageSize ? pageSize : 5}`,
     page: `&pagination[page]=${page ? page : 1}`,
     // filter: `&filter=${filter ? filter : ""}`,
   }

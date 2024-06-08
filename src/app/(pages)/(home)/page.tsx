@@ -9,7 +9,7 @@ import { Col, Row } from "@/components/CustomTags"
 import Featured from "./Featured"
 import ItemList from "@/components/ItemList"
 import { Carousel, Settings } from "@/components/Carousel"
-import SkeletonGrid from "@/components/SkeletonGrid"
+import { SkeletonGrid } from "@/components/SkeletonGrid"
 import QuickLinksCards from "@/components/QuickLinksCards"
 
 // ---------------------
@@ -72,9 +72,7 @@ export default async function Home({ params, searchParams }: propsType) {
        */}
       <section>
         <div>
-          <Suspense fallback={<SkeletonGrid />}>
-            <Featured />
-          </Suspense>
+          <Featured />
         </div>
       </section>
       {/*
@@ -84,10 +82,8 @@ export default async function Home({ params, searchParams }: propsType) {
        */}
       <section>
         <Row>
-          <Suspense fallback={<SkeletonGrid />}>
-            {/* <ItemListProvider> */}
+          <Suspense fallback={<SkeletonGrid count={3} />}>
             <ItemList req={searchParams} />
-            {/* </ItemListProvider> */}
           </Suspense>
         </Row>
       </section>

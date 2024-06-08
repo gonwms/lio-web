@@ -1,18 +1,14 @@
 "use client"
-import React, { Suspense, useRef } from "react"
-import classNames from "classnames"
-import AdmisionForm from "@/components/forms/AdminisionForm"
-import { Section } from "@radix-ui/themes"
-import { Row } from "@/components/CustomTags"
-import InfiniteScroll from "@/components/InfiniteScroll"
+import React, { Suspense } from "react"
 
-// import styles from './contact.module.scss'
+import ItemsInfiniteScroll from "@/components/ItemInfiniteScroll"
+import styles from "../../layout.module.scss"
 
 export default function Recursos() {
   return (
     <>
-      <h1>Recursos</h1>
-      <InfiniteScroll resourceType="docs" />
+      <h1 className={styles.plp}>Recursos</h1>
+      <ItemsInfiniteScroll resourceType="docs" />
     </>
   )
 }

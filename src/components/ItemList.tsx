@@ -1,7 +1,7 @@
 import "server-only"
 
 import classNames from "classnames"
-import styles from "./Itemslist.module.scss"
+import styles from "./Item.module.scss"
 import { getAllResource } from "@/actions"
 import ItemCard from "./itemCard"
 

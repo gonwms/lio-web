@@ -1,8 +1,11 @@
 @use "@/styles/main.module.scss" as *;
+
 .filters {
   display: flex;
-  gap: 1rem;
+  gap: 2rem;
+  padding: 2rem 0;
 }
+
 .gridCollection {
   max-width: 100%;
   display: grid;
@@ -14,31 +17,44 @@
   }
 }
 
+.loadMoreBtn {
+  align-self: center;
+  border: 1px solid grey;
+  padding: 0.8rem 2rem;
+  text-decoration: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+// CARD
 .card:hover img {
   filter: brightness(0.9);
 }
 .card .picture {
   aspect-ratio: 1 / 1;
-  border-radius: var(--radius-4);
+  border-radius: 0.5rem;
   overflow: hidden;
   // background: red;
   object-fit: cover;
   aspect-ratio: 1 / 1;
   img {
     width: 100%;
-    // object-fit: cover;
-    // object-position: center;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
   }
 }
-
-.card h3 {
+.card h3 a {
   margin: 0.1em 0;
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   line-height: 1.2em;
   font-weight: 600;
+  text-decoration: none;
 }
 .card .excerpt {
-  // max-width: 40ch;
   line-height: 1.2em;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -46,7 +62,12 @@
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
 }
-.card .publishedAt {
-  font-size: 0.8rem;
-  color: var(--gray-10);
+.card .meta {
+  display: flex;
+  gap: 0.5rem;
+  font-size: 0.75rem;
+  padding-top: 0.3rem;
+  span {
+    color: var(--gray-9);
+  }
 }

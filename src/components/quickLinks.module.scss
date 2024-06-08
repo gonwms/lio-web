@@ -1,23 +1,18 @@
 .quickLink {
   background: var(--gray-3);
-
-  gap: 0.5rem 2rem;
-  border-radius: var(--radius-3);
+  border-radius: 0.5rem;
+  text-decoration: none;
   .content {
     align-items: center;
     display: flex;
-    padding: 1rem 2rem;
+    padding: 1rem 1.5rem;
     gap: 1rem;
-    img {
-    }
     div {
       span {
-        // color: white;
         display: block;
         font-size: 0.9em;
       }
       strong {
-        // color: white;
       }
     }
   }
@@ -30,7 +25,10 @@
 }
 .quickLink.pgp {
   background: #f9e74f;
-  // * {
-  //   color: white;
-  // }
+}
+
+.loaderSkeleton {
+  background: #ebebeb;
+  height: 82px;
+  border-radius: 0.5rem;
 }

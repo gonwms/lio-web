@@ -13,7 +13,7 @@ export default function Contacto() {
       <h1>Contacto</h1>
       <section>
         <Row>
-          <Suspense fallback={<div>Loading...</div>}>
+          <Suspense fallback={<div>Cargando...</div>}>
             <AdmisionForm />
           </Suspense>
         </Row>

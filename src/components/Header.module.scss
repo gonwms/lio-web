@@ -5,7 +5,6 @@
   background: white;
   z-index: 2;
   border-bottom: 1px solid var(--gray-3);
-
   & > div {
     @include up("md") {
       padding: 0rem 3rem;
@@ -22,9 +21,25 @@
     nav {
       display: flex;
       gap: 50px;
+      @media (width < 1025px) {
+        display: none;
+      }
       a {
         text-decoration: none;
       }
+    }
+  }
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 400;
+  }
+  .logoPyV {
+    @include down("md") {
+      display: none;
     }
   }
 }
@@ -38,6 +53,9 @@
   padding: 1rem;
   border-radius: 100%;
   background: var(--sky-2);
+  @media (width > 1025px) {
+    display: none;
+  }
 }
 
 .menu {
@@ -61,7 +79,7 @@
     width: 80%;
     height: 100vh;
     background: #fff;
-    padding: 2rem 2rem 2rem 2rem;
+    padding: 2rem 2rem 5rem 2rem;
     animation: openMenu 0.2s ease-in-out;
     display: flex;
     justify-content: space-between;
@@ -79,6 +97,9 @@
     a {
       font-size: 1.5rem;
       text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
     }
   }
 }
