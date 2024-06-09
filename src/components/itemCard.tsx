@@ -12,18 +12,23 @@ interface props {
 
 export default function ItemCard({ item, style }: props) {
   let path
+  let ico
   switch (item.attributes.type) {
     case "posts":
       path = "noticias"
+      ico = "/ico-noticias.svg"
       break
     case "events":
       path = "eventos"
+      ico = "/ico-eventos.svg"
       break
     case "docs":
       path = "recursos"
+      ico = "/ico-recursos.svg"
       break
     case "products":
       path = "tienda"
+      ico = "/ico-tienda.svg"
       break
     default:
       return ""
@@ -65,8 +70,9 @@ export default function ItemCard({ item, style }: props) {
         </Link>
       </div>
       <div className={styles.meta}>
+        <img src={ico} alt={path} height={14} width={14} />
         <span>{formatDate(item.attributes.publishedAt)}</span>
-        <span>{path}</span>
+        {/* <span>{path}</span> */}
         <span>{item?.attributes.author}</span>
       </div>
       <h3>

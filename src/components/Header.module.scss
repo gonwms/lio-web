@@ -77,10 +77,11 @@
     width: fit-content;
     height: 100vh;
     background: #fff;
+    gap: 3rem;
     padding: 2rem 3rem 5rem 3rem;
     animation: openMenu 0.2s ease-in-out;
     display: flex;
-    justify-content: space-between;
+    // justify-content: space-between;
     flex-direction: column;
     // background: red;
     .logos {
