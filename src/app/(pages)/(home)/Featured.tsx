@@ -1,7 +1,7 @@
 // import "server-only"
 "use client"
 
-import { getAllResource } from "@/actions"
+import { getFeatured } from "@/actions"
 import React, { useEffect, useState } from "react"
 import { Carousel, Settings } from "@/components/Carousel"
 import styles from "./home.module.scss"
@@ -15,8 +15,9 @@ export default function Featured() {
 
   useEffect(() => {
     ;(async () => {
-      const { data, error } = await getAllResource()
+      const { data, error } = await getFeatured()
       data !== undefined && setData(data)
+
       error && setError(error)
     })()
   }, [])
@@ -54,7 +55,8 @@ export default function Featured() {
               settings: {
                 slidesToShow: 1,
                 slidesToScroll: 1,
-                centerMode: dataState?.length > 3 ? true : false,
+                // centerMode: dataState?.length > 3 ? true : false,
+
                 draggable: dataState?.length > 3 ? true : false,
               },
             },

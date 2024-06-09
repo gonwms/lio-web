@@ -22,16 +22,17 @@
     flex-direction: column;
     padding: 1rem;
   }
-  picture {
+  .picture {
     flex-shrink: 0;
+    picture {
+      object-fit: fill;
+    }
     img {
-      max-width: min(100%, 480px);
+      max-width: min(100%, 600px);
       border-radius: 1rem;
-      object-fit: cover;
+      object-fit: fill;
       aspect-ratio: 1 / 1;
-      // @include down("lg") {
-      //   max-width: 50%;
-      // }
+      vertical-align: middle;
     }
   }
   .headerContent {
@@ -58,9 +59,16 @@
         font-size: 2rem;
       }
     }
-    .publishedAt {
-      font-size: 0.8rem;
-      color: var(--gray-10);
+    .meta {
+      display: flex;
+      gap: 2rem;
+      span {
+        font-size: 0.8rem;
+        color: var(--gray-10);
+        // background: red;
+        border-radius: 0.2rem;
+        padding: 0em 0.4em;
+      }
     }
   }
 }

@@ -32,27 +32,27 @@ export default function ItemCard({ item, style }: props) {
   const miniatura = item?.attributes?.miniatura?.data?.attributes
   return (
     <div
-      key={item.id}
+      key={`${item.attributes.type}-${item.id}`}
       className={styles.card}
       style={style}
       data-key={`${item.attributes.type}-${item.id}`}
     >
       <div className={styles.picture}>
-        <Link href={`/${path}/${item.attributes.slug}`}>
+        <Link href={`/${path}/${item?.attributes?.slug}`}>
           {miniatura && (
             <picture>
               <source
                 media="(max-width <= 600px)"
-                srcSet={API_URL + miniatura.formats.md_avif.url}
-                type="image/avif"
+                srcSet={API_URL + miniatura.formats.md_webp?.url}
+                type="image/webp"
               />
               <source
                 media="(min-width < 600px)"
-                srcSet={API_URL + miniatura.formats.sm_avif.url}
-                type="image/avif"
+                srcSet={API_URL + miniatura.formats.sm_webp?.url}
+                type="image/webp"
               />
               <img
-                src={API_URL + miniatura.formats.original_avif.url}
+                src={API_URL + miniatura.formats.original_webp?.url}
                 alt={item?.attributes.title}
               />
             </picture>
@@ -65,8 +65,9 @@ export default function ItemCard({ item, style }: props) {
         </Link>
       </div>
       <div className={styles.meta}>
-        <span>{item?.attributes.type}</span> -{" "}
         <span>{formatDate(item.attributes.publishedAt)}</span>
+        <span>{path}</span>
+        <span>{item?.attributes.author}</span>
       </div>
       <h3>
         <Link href={`/${path}/${item.attributes.slug}`}>

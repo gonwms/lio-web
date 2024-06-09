@@ -62,7 +62,9 @@ export default async function Home({ params, searchParams }: propsType) {
        */}
       <section>
         <Row>
-          <QuickLinksCards />
+          <>
+            <QuickLinksCards />
+          </>
         </Row>
       </section>
       {/*

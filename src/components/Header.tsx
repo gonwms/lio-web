@@ -81,16 +81,25 @@ const Header = ({ className }: props) => {
 
       {/* MENU */}
       {menuOpen && (
-        <div className={styles.menu} onClick={() => setMenuOpen(false)}>
+        <div className={styles.mobileMenu} onClick={() => setMenuOpen(false)}>
           <div className={styles.inner}>
-            <Link href="/">
+            <div className={styles.logos}>
+              <Link href="/">
+                <img
+                  src="/lio-logo.svg"
+                  alt="LIO los inorgánicos organizados"
+                  width={52}
+                  height={50}
+                />
+              </Link>
               <img
-                src="/lio-logo.svg"
+                className={styles.logoPyV}
+                src="/pyv-logo.svg"
                 alt="LIO los inorgánicos organizados"
-                width={52}
+                width={67}
                 height={50}
               />
-            </Link>
+            </div>
             <nav>
               {menu.map((rute) => {
                 return (

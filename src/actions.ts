@@ -52,19 +52,20 @@ export const getResource = async (req: req) => {
 //  GET ALL RESOURCE
 // ---------------------------------------------------------------
 export const getAllResource = async () => {
+  const string = `?populate=deep,2&pagination[page]=1&pagination[pagesize]=10`
   try {
     const [docsRes, postsRes, eventsRes, productsRes] = await Promise.all([
-      fetch(`${API_URL}/api/docs?populate=deep,2?page=1&pagesize=10`),
-      fetch(`${API_URL}/api/posts?populate=deep,2?page=1&pagesize=10`),
-      fetch(`${API_URL}/api/events?populate=deep,2?page=1&pagesize=10`),
-      fetch(`${API_URL}/api/products?populate=deep,2?page=1&pagesize=10`),
+      fetch(`${API_URL}/api/docs/${string}`),
+      fetch(`${API_URL}/api/posts/${string}`),
+      fetch(`${API_URL}/api/events/${string}`),
+      fetch(`${API_URL}/api/products/${string}`),
     ])
 
     const docs = await docsRes.json()
     const posts = await postsRes.json()
     const events = await eventsRes.json()
     const products = await productsRes.json()
-    if (!docsRes.ok || !postsRes.ok || !eventsRes.ok) {
+    if (!docsRes.ok || !postsRes.ok || !eventsRes.ok || !productsRes.ok) {
       console.error(
         `❌ actions.ts ~ getAllResource
         \n docs ${JSON.stringify(docs)}
@@ -75,7 +76,7 @@ export const getAllResource = async () => {
     }
 
     const data = [
-      ...(docs.dat ? docs.data : []),
+      ...(docs.data ? docs.data : []),
       ...(posts.data ? posts.data : []),
       ...(events.data ? events.data : []),
       ...(products.data ? products.data : []),
@@ -87,6 +88,48 @@ export const getAllResource = async () => {
     return {
       error: { message: "falló la conexion con el servidor" },
     }
+  }
+}
+
+// ---------------------------------------------------------------
+//  GET FEATURED RESOURCE
+// ---------------------------------------------------------------
+export const getFeatured = async () => {
+  const filter = `?populate=deep,2&filters[featured][$eq]=true`
+  try {
+    const [docsRes, postsRes, eventsRes, productsRes] = await Promise.all([
+      fetch(`${API_URL}/api/docs/${filter}`),
+      fetch(`${API_URL}/api/posts/${filter}`),
+      fetch(`${API_URL}/api/events/${filter}`),
+      fetch(`${API_URL}/api/products/${filter}`),
+    ])
+    const docs = await docsRes.json()
+    const posts = await postsRes.json()
+    const events = await eventsRes.json()
+    const products = await productsRes.json()
+
+    if (!docsRes.ok || !postsRes.ok || !eventsRes.ok || !productsRes.ok) {
+      console.error(
+        `❌ actions.ts ~ getFeatured
+        \n docs ${JSON.stringify(docs)}
+        \n posts ${JSON.stringify(posts)}
+        \n events ${JSON.stringify(events)}
+        \n products ${JSON.stringify(products)}`
+      )
+    }
+
+    const data = [
+      ...(docs.data ? docs.data : []),
+      ...(posts.data ? posts.data : []),
+      ...(events.data ? events.data : []),
+      ...(products.data ? products.data : []),
+    ]
+    // console.log(docs)
+
+    return { data: data }
+  } catch (error) {
+    console.error("❌ actions.ts ~ CATCH error", "\n ❌", error)
+    return { error: { message: "falló la conexion con el servidor" } }
   }
 }
 

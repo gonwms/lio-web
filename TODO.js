@@ -8,7 +8,8 @@ TODO:
 * Actions Filter / buscador
 * ordernar por taqgs/fecha etc
 * Paginar
-
+* SEO
+* 
 
 
 */

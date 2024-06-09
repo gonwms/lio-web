@@ -16,28 +16,32 @@ export default function QuickLinksCards() {
   const settings: Settings = {
     slidesToShow: 4,
     slidesToScroll: 1,
-    initialSlide: 0,
+    // initialSlide: 1,
     infinite: false,
     dots: false,
-    arrows: false,
+    arrows: true,
     speed: 500,
-    // autoplay:  >= 4 ? true : false,
-    autoplay: false,
-    autoplaySpeed: 5000,
+    autoplay: true,
+    autoplaySpeed: 4000,
     // centerMode: true,
+    // variableWidth: true,
+
     responsive: [
       {
         breakpoint: 1600,
         settings: {
-          // variableWidth: true,
+          initialSlide: 0,
+          variableWidth: true,
           arrows: true,
+          // centerMode: true,
           slidesToShow: 2,
           slidesToScroll: 1,
         },
       },
       {
-        breakpoint: 1024,
+        breakpoint: 1000,
         settings: {
+          variableWidth: false,
           arrows: true,
           slidesToShow: 1,
           slidesToScroll: 1,
@@ -77,7 +81,7 @@ export default function QuickLinksCards() {
               <img src="/ico-credit-card.svg" alt="" />
               <div>
                 <strong>Aportes económicos</strong>
-                <span>Colaborá con el financiamiento</span>
+                <span>Colaborar</span>
               </div>
             </div>
           </a>

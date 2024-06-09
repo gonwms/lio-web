@@ -16,22 +16,24 @@ export default function BlogTemplate({ data }: any) {
         <div className={styles.blogTemplate}>
           <div className={styles.header}>
             {miniatura && (
-              <picture>
-                <source
-                  media="(max-width <= 600px)"
-                  srcSet={API_URL + miniatura?.formats?.md_avif.url}
-                  type="image/avif"
-                />
-                <source
-                  media="(min-width < 600px)"
-                  srcSet={API_URL + miniatura?.formats?.sm_avif.url}
-                  type="image/avif"
-                />
-                <img
-                  src={API_URL + miniatura?.formats?.original_avif.url}
-                  alt={miniatura?.alternativeText}
-                />
-              </picture>
+              <div className={styles.picture}>
+                <picture>
+                  <source
+                    media="(max-width <= 600px)"
+                    srcSet={API_URL + miniatura?.formats?.md_webp?.url}
+                    type="image/webp"
+                  />
+                  <source
+                    media="(min-width < 600px)"
+                    srcSet={API_URL + miniatura?.formats?.sm_webp?.url}
+                    type="image/webp"
+                  />
+                  <img
+                    src={API_URL + miniatura?.formats?.original_webp?.url}
+                    alt={miniatura?.alternativeText}
+                  />
+                </picture>
+              </div>
             )}
             {!miniatura && (
               <picture>
@@ -41,10 +43,15 @@ export default function BlogTemplate({ data }: any) {
             <div className={styles.headerContent}>
               <h1>{data?.attributes?.title}</h1>
               <h2>
-                Subtitulo hardcodeado Lorem ipsum dolor, sit amet eveniet, enim?
+                Guillermo Moreno presenta el consejo superior nacional
+                justicialista en ferro en 1 de junio a las 17 horas en av las
+                heras
               </h2>
-              <div className={styles.publishedAt}>
-                {formatDate(data?.attributes?.publishedAt)}
+              <div className={styles.meta}>
+                <span>{formatDate(data?.attributes?.publishedAt)}</span>
+                {data?.attributes?.author && (
+                  <span>{data?.attributes?.author}</span>
+                )}
               </div>
             </div>
           </div>
