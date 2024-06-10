@@ -55,10 +55,10 @@ export const getAllResource = async () => {
   const string = `?populate=deep,2&pagination[page]=1&pagination[pagesize]=10`
   try {
     const [docsRes, postsRes, eventsRes, productsRes] = await Promise.all([
-      fetch(`${API_URL}/api/docs/${string}, { next: { revalidate: 5 } }`),
-      fetch(`${API_URL}/api/posts/${string}, { next: { revalidate: 5 } }`),
-      fetch(`${API_URL}/api/events/${string}, { next: { revalidate: 5 } }`),
-      fetch(`${API_URL}/api/products/${string}, { next: { revalidate: 5 } }`),
+      fetch(`${API_URL}/api/docs/${string}, { next: { revalidate: 600 } }`),
+      fetch(`${API_URL}/api/posts/${string}, { next: { revalidate: 600 } }`),
+      fetch(`${API_URL}/api/events/${string}, { next: { revalidate: 600 } }`),
+      fetch(`${API_URL}/api/products/${string}, { next: { revalidate: 600 } }`),
     ])
 
     const docs = await docsRes.json()
