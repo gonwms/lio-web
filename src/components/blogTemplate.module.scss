@@ -24,9 +24,14 @@
   }
   .picture {
     flex: 0 0 480px;
+    max-width: 480px;
     background: url("/no-image.webp") no-repeat center;
     background-size: 100%;
     border-radius: 1rem;
+    aspect-ratio: 1 / 1;
+    @include down("md") {
+      flex: 0 1 100%;
+    }
 
     picture {
       // max-width: min(100%, 600px);
@@ -40,7 +45,6 @@
     }
   }
   .headerContent {
-    // flex: 1 0 auto;
     display: flex;
     flex-direction: column;
     gap: 2rem;
@@ -68,6 +72,9 @@
       display: flex;
       align-items: center;
       gap: 1rem;
+      @include down("lg") {
+        margin-bottom: 01rem;
+      }
       span {
         gap: 0.4rem;
         display: flex;
@@ -89,8 +96,9 @@
   margin-top: 2rem;
   // border-left: 1px solid var(--gray-3);
   // border-right: 1px solid var(--gray-3);
-  // padding: 0 3rem;
-  max-width: 800px;
+  padding: 0 1.5rem;
+  max-width: calc(800px + 3rem);
+
   h3 {
     font-size: 2rem;
   }
