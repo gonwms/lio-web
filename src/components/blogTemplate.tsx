@@ -64,11 +64,7 @@ export default function BlogTemplate({ data }: any) {
             </div>
             <div className={styles.headerContent}>
               <h1>{data?.attributes?.title}</h1>
-              <h2>
-                Guillermo Moreno presenta el consejo superior nacional
-                justicialista en ferro en 1 de junio a las 17 horas en av las
-                heras
-              </h2>
+              <h2>{data?.attributes?.subTitle}</h2>
               <div className={styles.meta}>
                 <img src={ico} alt={path} height={14} width={14} />
                 <span>{formatDate(data?.attributes?.publishedAt)}</span>
