@@ -1,8 +1,8 @@
 export const meta = {
   title: {
-    absolute: "home | web",
-    default: "home | web",
-    template: "%s |web",
+    absolute: "LIO",
+    default: "incio | LIO",
+    template: "%s |LIO",
   },
   // description: 'description here...',
 

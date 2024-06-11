@@ -1,5 +1,5 @@
 "use client"
-import styles from "./skeletonGrid.module.scss"
+import styles from "./skeleton.module.scss"
 
 export function SkeletonGrid({ count }: { count: number }) {
   const items = Array.from({ length: count })

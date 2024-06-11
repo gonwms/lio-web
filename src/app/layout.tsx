@@ -15,7 +15,7 @@ import { wix, inter } from "@/fonts"
 
 export const metadata = {
   title: "LIO",
-  description: "Los Inorgánicos Orgánizados",
+  description: "Los Inorgánicos Organizados",
   icons: {
     icon: "/favicon.png",
   },

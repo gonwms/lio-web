@@ -5,11 +5,9 @@ import React, { Suspense } from "react"
 import classNames from "classnames"
 import styles from "./home.module.scss"
 import { Col, Row } from "@/components/CustomTags"
-
 import Featured from "./Featured"
 import ItemList from "@/components/ItemList"
-import { Carousel, Settings } from "@/components/Carousel"
-import { SkeletonGrid } from "@/components/SkeletonGrid"
+import { SkeletonGrid } from "@/components/Skeleton"
 import QuickLinksCards from "@/components/QuickLinksCards"
 
 // ---------------------
@@ -25,11 +23,7 @@ export default async function Home({ params, searchParams }: propsType) {
 
   return (
     <>
-      {/*
-       *
-       * ----------------------------- HERO BANNER---------------------
-       *
-       */}
+      {/* ----------------------------- HERO BANNER---------------------*/}
       <section>
         <Row>
           <Col className={classNames(styles.col)}>
@@ -55,11 +49,7 @@ export default async function Home({ params, searchParams }: propsType) {
           </Col>
         </Row>
       </section>
-      {/*
-       *
-       * ----------------------------- Cards ---------------------
-       *
-       */}
+      {/* ----------------------------- Cards --------------------- */}
       <section>
         <Row>
           <>
@@ -67,24 +57,18 @@ export default async function Home({ params, searchParams }: propsType) {
           </>
         </Row>
       </section>
-      {/*
-       *
-       * ----------------------------- Highlights ---------------------
-       *
-       */}
-      <section>
-        <div>
-          <Featured />
-        </div>
-      </section>
-      {/*
-       *
-       * ----------------------------- GRILLA ---------------------
-       *
-       */}
+      {/* ----------------------------- Highlights --------------------- */}
       <section>
         <Row>
-          <Suspense fallback={<SkeletonGrid count={3} />}>
+          <Featured />
+        </Row>
+      </section>
+
+      {/* ----------------------------- Grid --------------------- */}
+
+      <section>
+        <Row>
+          <Suspense fallback={<SkeletonGrid count={10} />}>
             <ItemList req={searchParams} />
           </Suspense>
         </Row>

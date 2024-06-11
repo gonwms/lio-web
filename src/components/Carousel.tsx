@@ -29,7 +29,7 @@ export function Carousel({ children, settings, style, className }: IsProps) {
 }
 
 function NextArrow(props: any) {
-  const { className, style, onClick } = props
+  const { className, onClick } = props
   return (
     <div className={className} onClick={onClick}>
       <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
@@ -40,7 +40,7 @@ function NextArrow(props: any) {
 }
 
 function PrevArrow(props: any) {
-  const { className, style, onClick } = props
+  const { className, onClick } = props
   return (
     <div className={className} onClick={onClick}>
       <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">

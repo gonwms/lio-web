@@ -6,7 +6,7 @@ import React, { useEffect, useState } from "react"
 import { Carousel, Settings } from "@/components/Carousel"
 import styles from "./home.module.scss"
 import ItemCard from "@/components/itemCard"
-import { SkeletonFeatured } from "@/components/SkeletonGrid"
+import { SkeletonFeatured } from "@/components/Skeleton"
 
 export default function Featured() {
   //

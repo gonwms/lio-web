@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react"
 import { getResource } from "@/actions"
 import ItemCard from "@/components/itemCard"
 import styles from "./Item.module.scss"
-import { SkeletonGrid } from "./SkeletonGrid"
+import { SkeletonGrid } from "./Skeleton"
 
 interface props {
   resourceType: "events" | "products" | "docs" | "posts"
