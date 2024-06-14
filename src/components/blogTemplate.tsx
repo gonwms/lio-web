@@ -7,7 +7,7 @@ import formatDataType from "@/libs/formatDataType"
 
 export default function BlogTemplate({ data }: any) {
   const API_URL = process.env.NEXT_PUBLIC_API_URL
-  const thumbnail = data?.attributes?.thumbnail?.data?.attributes
+  const cover = data?.attributes?.cover?.data?.attributes
 
   /*--------------------------------
    * HANDLE TYPES
@@ -74,28 +74,28 @@ export default function BlogTemplate({ data }: any) {
         <div className={styles.blogTemplate}>
           <div className={styles.header}>
             <div className={styles.picture}>
-              {thumbnail && (
+              {cover && (
                 <picture>
                   <source
                     media="(max-width <= 600px)"
-                    srcSet={API_URL + thumbnail?.formats?.md_webp?.url}
+                    srcSet={API_URL + cover?.formats?.md_webp?.url}
                     type="image/webp"
                   />
                   <source
                     media="(min-width < 600px)"
-                    srcSet={API_URL + thumbnail?.formats?.sm_webp?.url}
+                    srcSet={API_URL + cover?.formats?.sm_webp?.url}
                     type="image/webp"
                   />
                   <img
-                    src={API_URL + thumbnail?.formats?.original_webp?.url}
+                    src={API_URL + cover?.formats?.original_webp?.url}
                     alt={
-                      thumbnail?.alternativeText ||
+                      cover?.alternativeText ||
                       "LIO, los inorgánicos organizados"
                     }
                   />
                 </picture>
               )}
-              {!thumbnail && (
+              {!cover && (
                 <picture>
                   <img src="/no-image.webp" alt="no image" />
                 </picture>

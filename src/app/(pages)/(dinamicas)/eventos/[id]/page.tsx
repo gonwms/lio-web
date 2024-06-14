@@ -30,14 +30,14 @@ export async function generateMetadata({ params }: any) {
       description: data?.attributes?.subTitle,
       type: "website",
       url: "https://www.lio.com.ar",
-      image: [data?.attributes?.thumbnail],
+      image: [data?.attributes?.cover],
     },
     twitter: {
       card: "summary_large_image",
       title: "LIO | " + data?.attributes?.title,
       description: "Your website description goes here.",
       url: "https://www.lio.com.ar",
-      image: [data?.attributes?.thumbnail],
+      image: [data?.attributes?.cover],
     },
   }
 }

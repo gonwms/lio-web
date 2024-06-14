@@ -16,7 +16,7 @@ export default function ItemCard({ item, style }: props) {
     item?.attributes?.type
   )
 
-  const thumbnail = item?.attributes?.thumbnail?.data?.attributes
+  const cover = item?.attributes?.cover?.data?.attributes
   return (
     <div
       key={`${item.attributes.type}-${item.id}`}
@@ -26,25 +26,25 @@ export default function ItemCard({ item, style }: props) {
     >
       <div className={styles.picture}>
         <Link href={`/${type.path}/${item?.attributes?.slug}`}>
-          {thumbnail && (
+          {cover && (
             <picture>
               <source
                 media="(max-width <= 600px)"
-                srcSet={API_URL + thumbnail.formats.md_webp?.url}
+                srcSet={API_URL + cover.formats.md_webp?.url}
                 type="image/webp"
               />
               <source
                 media="(min-width < 600px)"
-                srcSet={API_URL + thumbnail.formats.sm_webp?.url}
+                srcSet={API_URL + cover.formats.sm_webp?.url}
                 type="image/webp"
               />
               <img
-                src={API_URL + thumbnail.formats.original_webp?.url}
+                src={API_URL + cover.formats.original_webp?.url}
                 alt={item?.attributes.title}
               />
             </picture>
           )}
-          {!thumbnail && (
+          {!cover && (
             <picture>
               <img src="/no-image.webp" alt={item?.attributes.title} />
             </picture>
