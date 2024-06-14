@@ -1,0 +1,132 @@
+@use "@/styles/main.module.scss" as *;
+.header {
+  position: sticky;
+  top: 0;
+  background: white;
+  z-index: 2;
+  border-bottom: 1px solid var(--gray-3);
+  & > div {
+    @include up("md") {
+      padding: 0rem 3rem;
+    }
+    margin: 0 auto;
+    height: 64px;
+    padding: 0rem 1rem;
+    max-width: 1800px;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    justify-content: space-between;
+    // box-shadow: inset 0 0 0 1px $border;
+    nav {
+      display: flex;
+      gap: 50px;
+      @media (width < 1025px) {
+        display: none;
+      }
+      a {
+        text-decoration: none;
+      }
+    }
+  }
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 400;
+  }
+  .logoPyV {
+    @include down("md") {
+      display: none;
+    }
+  }
+}
+
+.header a img {
+  display: block;
+}
+
+.burger {
+  border: none;
+  padding: 1rem;
+  border-radius: 100%;
+  background: var(--sky-2);
+  @media (width > 1025px) {
+    display: none;
+  }
+}
+
+.mobileMenu {
+  z-index: 2;
+  position: fixed;
+  background: #fff;
+  height: 100%;
+  width: 100%;
+  z-index: 99;
+  position: absolute;
+  background: rgba(0, 0, 0, 0.6);
+  top: 0;
+  left: 0;
+
+  .inner {
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: fit-content;
+    height: 100vh;
+    background: #fff;
+    gap: 3rem;
+    padding: 2rem 4rem 5rem 3rem;
+    animation: openMenu 0.2s ease-in-out;
+    display: flex;
+    // justify-content: space-between;
+    flex-direction: column;
+    // background: red;
+    .logos {
+      display: flex;
+      gap: 2rem;
+    }
+    nav {
+      border-top: 1px solid var(--gray-3);
+      border-bottom: 1px solid var(--gray-3);
+      padding: 2rem 0;
+      margin: 2rem 0;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+    a {
+      font-size: 1.35rem;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+  }
+}
+//
+.social {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  .title {
+    font-size: 11px;
+    padding: 0.5rem 0;
+    text-transform: uppercase;
+  }
+  & > div {
+    display: flex;
+    gap: 1.5rem;
+  }
+}
+
+@keyframes openMenu {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
