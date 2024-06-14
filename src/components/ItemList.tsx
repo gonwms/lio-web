@@ -34,7 +34,7 @@ export default async function ItemList({ req }: propsType) {
       <div className={classNames(styles.filters)}>
         <span>Ordenar por</span>
         <span>Categorias</span>
-        <span>Buscar</span>
+        <input type="text" name="" id="" placeholder="Buscar" />
       </div>
       <div className={classNames(styles.gridCollection)}>
         {sortedData?.map((item: any) => {
