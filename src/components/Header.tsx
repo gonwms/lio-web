@@ -4,6 +4,7 @@ import React, { useState } from "react"
 import Link from "next/link"
 
 import styles from "./header.module.scss"
+
 import { usePathname } from "next/navigation"
 import classNames from "classnames"
 import useMediaQuery from "@/app/hooks/useMediaQuery"

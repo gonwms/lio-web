@@ -34,9 +34,9 @@ export default function Sidebar({ className }: props) {
 
   return (
     <>
-      {/* -----------------------------------------
+      {/* ------------------------------------------
        *           MOBILE VERSION
-      ----------------------------------------- */}
+      ------------------------------------------ */}
       <div className={styles.mobileButtons}>
         <nav className={classNames(styles.nav)}>
           {menu.map((item, index) => {
