@@ -3,7 +3,7 @@
 import React, { useState } from "react"
 import Link from "next/link"
 
-import styles from "@/styles/header.module.scss"
+import styles from "./header.module.scss"
 
 import { usePathname } from "next/navigation"
 import classNames from "classnames"

@@ -1,7 +1,7 @@
 "use client"
 import { Flex } from "@radix-ui/themes"
 import React from "react"
-import styles from "@/styles/sidebar.module.scss"
+import styles from "./sidebar.module.scss"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import classNames from "classnames"
