@@ -4,12 +4,12 @@ export const meta = {
     default: "incio | LIO",
     template: "%s |LIO",
   },
-  // description: 'description here...',
-
-  // keywords: 'your, keywords, here',
-  // author: 'Your Name',
-  // robots: 'index, follow',
-  // googlebot: 'index, follow',
+  description: "description here...",
+  keywords:
+    "Peronismo, Guillermo Moreno, Principios y valores, LIO, Movimiento peronista, Militancia peronista",
+  author: "LIO",
+  robots: "index, follow",
+  googlebot: "index, follow",
   // openGraph: {
   //   title: 'Your Page Title | Your Website Name',
   //   description: 'Your website description goes here.',

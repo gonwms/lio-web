@@ -1,30 +1,54 @@
 import BlogContent from "@/components/blogTemplate"
-const URL = process.env.NEXT_PUBLIC_API_URL
 
-//FETCH DATA FROM API
+const URL = process.env.NEXT_PUBLIC_API_URL
+const PATH = "events"
+
+//FETCH
 async function getPostById(id: string) {
-  const res = await fetch(`${URL}/api/events/${id}`, {
-    method: "GET",
-  })
-  return res.json()
+  try {
+    const res = await fetch(`${URL}/api/${PATH}/${id}?populate=deep,2`, {
+      method: "GET",
+    })
+    const data = await res.json()
+    return data.data
+  } catch (error) {
+    console.error("❌ actions.ts ~ CATCH error", "\n ❌", error)
+  }
 }
 // SEO
 export async function generateMetadata({ params }: any) {
   const data = await getPostById(params.id)
   return {
-    title: data.data?.attributes?.title,
-    description: data.data?.attributes?.description,
-    openGraph: [data.data?.attributes?.image],
+    title: "LIO | " + data?.attributes?.title,
+    description: data?.attributes?.subTitle,
+    // keywords: "your, keywords, here",
+    author: "LIO",
+    robots: "index, follow",
+    googlebot: "index, follow",
+    openGraph: {
+      title: data?.attributes?.title,
+      description: data?.attributes?.subTitle,
+      type: "website",
+      url: "https://www.lio.com.ar",
+      image: [data?.attributes?.thumbnail],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: "LIO | " + data?.attributes?.title,
+      description: "Your website description goes here.",
+      url: "https://www.lio.com.ar",
+      image: [data?.attributes?.thumbnail],
+    },
   }
 }
 
 // PAGE
-export default async function Eventos({ params }: any) {
+export default async function Eventos({ params, searchParams }: any) {
   const data = await getPostById(params.id)
 
   return (
     <section>
-      <BlogContent data={data.data} />
+      <BlogContent data={data} />
     </section>
   )
 }

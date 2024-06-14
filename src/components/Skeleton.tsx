@@ -29,9 +29,9 @@ export function SkeletonCard() {
   return (
     <div className={styles.skeletonCard}>
       <div className={styles.skeletonImageBox}></div>
-      <div style={{ height: "15px", width: "20%" }}></div>
-      <div style={{ height: "22px" }}></div>
-      <div style={{ height: "22px", width: "50%" }}></div>
+      <div style={{ height: "0.8em", width: "30%" }}></div>
+      <div style={{ height: "1.2em" }}></div>
+      <div style={{ height: "1.2em", width: "50%" }}></div>
     </div>
   )
 }

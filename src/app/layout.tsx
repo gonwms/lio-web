@@ -1,8 +1,8 @@
-import { Theme } from "@radix-ui/themes"
-import "@radix-ui/themes/styles.css"
+// import { Theme } from "@radix-ui/themes"
+// import "@radix-ui/themes/styles.css"
+import "@/styles/common.css"
 import "@/styles/normalize.css"
 import "@/styles/global.scss"
-import "@/styles/common.css"
 // import "@radix-ui/themes/layout.css"
 
 import classNames from "classnames"
@@ -31,14 +31,14 @@ export default function RootLayout({ children }: props) {
       <body
       // suppressHydrationWarning={true}
       >
-        <Theme
+        {/* <Theme
           accentColor="sky"
           panelBackground="solid"
           radius="large"
           scaling="105%"
-        >
-          {children}
-        </Theme>
+        > */}
+        {children}
+        {/* </Theme> */}
       </body>
       {/* <LenisScroll /> */}
       {/* <IpDetector /> */}

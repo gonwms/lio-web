@@ -59,23 +59,24 @@ const Header = ({ className }: props) => {
               <img src="/whatsapp.svg" alt="whatsapp" />
             </a>
           </nav>
-
-          <img
-            className={styles.logoPyV}
-            src="/pyv-logo.svg"
-            alt="LIO los inorgánicos organizados"
-            width={67}
-            height={50}
-          />
+          <a href="https://www.principiosyvalores.org/" target="_blank">
+            <img
+              className={styles.logoPyV}
+              src="/pyv-logo.svg"
+              alt="LIO los inorgánicos organizados"
+              width={67}
+              height={50}
+            />
+          </a>
 
           {/* MOBILE BURGER */}
 
-          <a
+          <button
             className={classNames(styles.link, styles.burger)}
             onClick={() => setMenuOpen(!menuOpen)}
           >
             <img src={`/ico-burger-black.svg`} alt="" />
-          </a>
+          </button>
         </div>
       </header>
 
@@ -92,13 +93,15 @@ const Header = ({ className }: props) => {
                   height={50}
                 />
               </Link>
-              <img
-                className={styles.logoPyV}
-                src="/pyv-logo.svg"
-                alt="LIO los inorgánicos organizados"
-                width={67}
-                height={50}
-              />
+              <a href="https://www.principiosyvalores.org/" target="_blank">
+                <img
+                  className={styles.logoPyV}
+                  src="/pyv-logo.svg"
+                  alt="Principios y Valores"
+                  width={67}
+                  height={50}
+                />
+              </a>
             </div>
             <nav>
               {menu.map((rute) => {
@@ -124,33 +127,36 @@ const Header = ({ className }: props) => {
               </a>
             </nav>
             <div className={styles.social}>
-              <a
-                href="https://www.instagram.com/lio_losinorganicosorganizados"
-                target="_blank"
-              >
-                <img src="/instagram.svg" alt="instagram" />
-              </a>
-              <a
-                href="https://www.facebook.com/losinorganicosorganizados"
-                target="_blank"
-              >
-                <img src="/facebook.svg" alt="facebook" />
-              </a>
-              <a href="https://www.tiktok.com/@lio_nacional" target="_blank">
-                <img src="/tiktok.svg" alt="tiktok" />
-              </a>
-              <a href="https://twitter.com/Hacemos_Lio" target="_blank">
-                <img src="/twitter.svg" alt="twitter" />
-              </a>
-              <a
-                href="https://www.youtube.com/@losinorganicosorganizados4394/"
-                target="_blank"
-              >
-                <img src="/youtube.svg" alt="youtube" />
-              </a>
-              {/* <a href="https://t.me/lioenpyv" target="_blank">
+              <span className={styles.title}>Seguinos</span>
+              <div>
+                <a
+                  href="https://www.instagram.com/lio_losinorganicosorganizados"
+                  target="_blank"
+                >
+                  <img src="/instagram.svg" alt="instagram" />
+                </a>
+                <a
+                  href="https://www.facebook.com/losinorganicosorganizados"
+                  target="_blank"
+                >
+                  <img src="/facebook.svg" alt="facebook" />
+                </a>
+                <a href="https://www.tiktok.com/@lio_nacional" target="_blank">
+                  <img src="/tiktok.svg" alt="tiktok" />
+                </a>
+                <a href="https://twitter.com/Hacemos_Lio" target="_blank">
+                  <img src="/twitter.svg" alt="twitter" />
+                </a>
+                <a
+                  href="https://www.youtube.com/@losinorganicosorganizados4394/"
+                  target="_blank"
+                >
+                  <img src="/youtube.svg" alt="youtube" />
+                </a>
+                {/* <a href="https://t.me/lioenpyv" target="_blank">
               <img src="/telegram.svg" alt="telegram" />
             </a> */}
+              </div>
             </div>
           </div>
         </div>

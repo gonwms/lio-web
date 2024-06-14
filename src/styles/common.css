@@ -2,3 +2,12 @@
   margin-top: 0.5em !important;
   font-size: 2rem;
 } */
+:root {
+  --sky-2: #f1fafd;
+  --sky-3: #e1f6fd;
+
+  --gray-1: #fcfcfd;
+  --gray-2: #f9f9fb;
+  --gray-3: #f0f0f3;
+  --gray-4: #e8e8ec;
+}

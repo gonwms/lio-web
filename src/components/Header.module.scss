@@ -109,7 +109,17 @@
 
 .social {
   display: flex;
-  gap: 1.5rem;
+  flex-direction: column;
+  gap: 0.5rem;
+  .title {
+    font-size: 11px;
+    padding: 0.5rem 0;
+    text-transform: uppercase;
+  }
+  & > div {
+    display: flex;
+    gap: 1.5rem;
+  }
 }
 
 @keyframes openMenu {

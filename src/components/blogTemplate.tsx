@@ -1,62 +1,101 @@
 import React from "react"
-import {
-  BlocksRenderer,
-  type BlocksContent,
-} from "@strapi/blocks-react-renderer"
+
+import CustomBlocksRenderer from "@/components/CustomBlocksRenderer"
 import styles from "./blogTemplate.module.scss"
 import { formatDate } from "@/libs/formateDate"
+import formatDataType from "@/libs/formatDataType"
 
 export default function BlogTemplate({ data }: any) {
   const API_URL = process.env.NEXT_PUBLIC_API_URL
-  const miniatura = data?.attributes?.miniatura?.data?.attributes
+  const thumbnail = data?.attributes?.thumbnail?.data?.attributes
 
-  let path
-  let ico
-  switch (data.attributes.type) {
-    case "posts":
-      path = "noticias"
-      ico = "/ico-noticias.svg"
-      break
-    case "events":
-      path = "eventos"
-      ico = "/ico-eventos.svg"
-      break
-    case "docs":
-      path = "recursos"
-      ico = "/ico-recursos.svg"
-      break
-    case "products":
-      path = "tienda"
-      ico = "/ico-tienda.svg"
-      break
-    default:
-      return ""
-  }
+  /*--------------------------------
+   * HANDLE TYPES
+   *------------------------------  */
+  const type: { path: string; ico: string } = formatDataType(
+    data?.attributes?.type
+  )
+  /*--------------------------------
+   * HANDLE EXTRA CONTENTS BLOCKS
+   *-------------------------------  */
+  const extrablocks = data?.attributes?.contents
+
+  const extraContents = extrablocks?.reduce((acc: any, curr: any) => {
+    switch (curr.__component) {
+      //
+      //  TEXTOS
+      case "texto.texto":
+        return [
+          ...acc,
+          <CustomBlocksRenderer
+            key={curr.__component + curr.id}
+            content={curr.content}
+          />,
+        ]
+        break
+
+      //  GALERIA
+      case "galeria.galeria":
+        //
+        const images = curr.galeria.data.reduce((acc: any, cur: any) => {
+          return [...acc, cur.attributes.name]
+        }, [])
+        return [...acc, images]
+        break
+
+      //  VIDEO
+      case "video.video":
+        //
+        const videoURL = curr.url.includes("watch?v=")
+          ? curr.url.split("watch?v=")[1]
+          : curr.url.split("/").pop()
+        return [
+          ...acc,
+          <iframe
+            className={styles.youtube}
+            key={curr.id}
+            src={`https://www.youtube.com/embed/${videoURL}`}
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+            frameBorder={0}
+          ></iframe>,
+        ]
+        break
+      default:
+        return [acc]
+        break
+    }
+  }, [])
+
+  // RETURN ----------------------
   return (
     <>
       {data && (
         <div className={styles.blogTemplate}>
           <div className={styles.header}>
             <div className={styles.picture}>
-              {miniatura && (
+              {thumbnail && (
                 <picture>
                   <source
                     media="(max-width <= 600px)"
-                    srcSet={API_URL + miniatura?.formats?.md_webp?.url}
+                    srcSet={API_URL + thumbnail?.formats?.md_webp?.url}
                     type="image/webp"
                   />
                   <source
                     media="(min-width < 600px)"
-                    srcSet={API_URL + miniatura?.formats?.sm_webp?.url}
+                    srcSet={API_URL + thumbnail?.formats?.sm_webp?.url}
                     type="image/webp"
                   />
                   <img
-                    src={API_URL + miniatura?.formats?.original_webp?.url}
-                    alt={miniatura?.alternativeText}
+                    src={API_URL + thumbnail?.formats?.original_webp?.url}
+                    alt={
+                      thumbnail?.alternativeText ||
+                      "LIO, los inorgánicos organizados"
+                    }
                   />
                 </picture>
               )}
-              {!miniatura && (
+              {!thumbnail && (
                 <picture>
                   <img src="/no-image.webp" alt="no image" />
                 </picture>
@@ -66,11 +105,16 @@ export default function BlogTemplate({ data }: any) {
               <h1>{data?.attributes?.title}</h1>
               <h2>{data?.attributes?.subTitle}</h2>
               <div className={styles.meta}>
-                <img src={ico} alt={path} height={14} width={14} />
+                <img src={type.ico} alt={type.path} height={14} width={14} />
                 <span>{formatDate(data?.attributes?.publishedAt)}</span>
                 {data?.attributes?.author && (
                   <span>
-                    <img src="/ico-pen.svg" alt={path} height={14} width={14} />
+                    <img
+                      src="/ico-pen.svg"
+                      alt={type.path}
+                      height={14}
+                      width={14}
+                    />
                     {data?.attributes?.author}
                   </span>
                 )}
@@ -78,7 +122,8 @@ export default function BlogTemplate({ data }: any) {
             </div>
           </div>
           <div className={styles.content}>
-            <BlocksRenderer content={data?.attributes?.content} />
+            <CustomBlocksRenderer content={data?.attributes?.content} />
+            {extraContents}
           </div>
         </div>
       )}

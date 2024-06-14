@@ -1,13 +1,15 @@
 import BlogContent from "@/components/blogTemplate"
 const URL = process.env.NEXT_PUBLIC_API_URL
+const PATH = "posts"
 
-//FETCH DATA FROM API
+// FETCH
 async function getPostById(id: string) {
   try {
-    const res = await fetch(`${URL}/api/posts/${id}`, {
+    const res = await fetch(`${URL}/api/${PATH}/${id}?populate=deep,2`, {
       method: "GET",
     })
-    return res.json()
+    const data = await res.json()
+    return data.data
   } catch (error) {
     console.error("❌ actions.ts ~ CATCH error", "\n ❌", error)
   }
@@ -16,9 +18,9 @@ async function getPostById(id: string) {
 export async function generateMetadata({ params }: any) {
   const data = await getPostById(params.id)
   return {
-    title: data?.data?.attributes?.title,
-    description: data?.data?.attributes?.description,
-    openGraph: [data?.data?.attributes?.image],
+    title: data?.attributes?.title,
+    description: data?.attributes?.description,
+    openGraph: [data?.attributes?.image],
   }
 }
 
@@ -29,7 +31,7 @@ export default async function Noticias({ params }: any) {
   return (
     data && (
       <section>
-        <BlogContent data={data.data} />
+        <BlogContent data={data} />
       </section>
     )
   )

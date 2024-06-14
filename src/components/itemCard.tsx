@@ -2,6 +2,7 @@ import React from "react"
 import styles from "./Item.module.scss"
 import Link from "next/link"
 import { formatDate } from "@/libs/formateDate"
+import formatDataType from "@/libs/formatDataType"
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL
 
@@ -11,30 +12,11 @@ interface props {
 }
 
 export default function ItemCard({ item, style }: props) {
-  let path
-  let ico
-  switch (item.attributes.type) {
-    case "posts":
-      path = "noticias"
-      ico = "/ico-noticias.svg"
-      break
-    case "events":
-      path = "eventos"
-      ico = "/ico-eventos.svg"
-      break
-    case "docs":
-      path = "recursos"
-      ico = "/ico-recursos.svg"
-      break
-    case "products":
-      path = "tienda"
-      ico = "/ico-tienda.svg"
-      break
-    default:
-      return ""
-  }
+  const type: { path: string; ico: string } = formatDataType(
+    item?.attributes?.type
+  )
 
-  const miniatura = item?.attributes?.miniatura?.data?.attributes
+  const thumbnail = item?.attributes?.thumbnail?.data?.attributes
   return (
     <div
       key={`${item.attributes.type}-${item.id}`}
@@ -43,26 +25,26 @@ export default function ItemCard({ item, style }: props) {
       data-key={`${item.attributes.type}-${item.id}`}
     >
       <div className={styles.picture}>
-        <Link href={`/${path}/${item?.attributes?.slug}`}>
-          {miniatura && (
+        <Link href={`/${type.path}/${item?.attributes?.slug}`}>
+          {thumbnail && (
             <picture>
               <source
                 media="(max-width <= 600px)"
-                srcSet={API_URL + miniatura.formats.md_webp?.url}
+                srcSet={API_URL + thumbnail.formats.md_webp?.url}
                 type="image/webp"
               />
               <source
                 media="(min-width < 600px)"
-                srcSet={API_URL + miniatura.formats.sm_webp?.url}
+                srcSet={API_URL + thumbnail.formats.sm_webp?.url}
                 type="image/webp"
               />
               <img
-                src={API_URL + miniatura.formats.original_webp?.url}
+                src={API_URL + thumbnail.formats.original_webp?.url}
                 alt={item?.attributes.title}
               />
             </picture>
           )}
-          {!miniatura && (
+          {!thumbnail && (
             <picture>
               <img src="/no-image.webp" alt={item?.attributes.title} />
             </picture>
@@ -70,13 +52,13 @@ export default function ItemCard({ item, style }: props) {
         </Link>
       </div>
       <div className={styles.meta}>
-        <img src={ico} alt={path} height={14} width={14} />
+        <img src={type.ico} alt={type.path} height={14} width={14} />
         <span>{formatDate(item.attributes.publishedAt)}</span>
-        {/* <span>{path}</span> */}
+
         <span>{item?.attributes.author}</span>
       </div>
       <h3>
-        <Link href={`/${path}/${item.attributes.slug}`}>
+        <Link href={`/${type.path}/${item.attributes.slug}`}>
           {item?.attributes.title}
         </Link>
       </h3>
