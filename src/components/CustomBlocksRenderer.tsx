@@ -12,6 +12,7 @@ interface props {
 const API_URL = process.env.NEXT_PUBLIC_API_URL
 
 export default function CustomBlocksRender({ content, key }: props) {
+  if (!content) return null
   return (
     <BlocksRenderer
       content={content}
@@ -49,10 +50,10 @@ export default function CustomBlocksRender({ content, key }: props) {
         },
         image: ({ image }) => {
           console.log(image)
-          const formats = image.formats as { md_webp: { url: string } }
-          const path = formats.md_webp.url
+          const formats = image?.formats as { md_webp: { url: string } }
+          const path = formats?.md_webp.url
           return (
-            <img src={API_URL + path} alt={image.alternativeText || "LIO"} />
+            <img src={API_URL + path} alt={image?.alternativeText || "LIO"} />
           )
         },
       }}

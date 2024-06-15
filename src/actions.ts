@@ -15,6 +15,8 @@ interface req {
   filter?: string
 }
 
+const REVALIDATE = { next: { revalidate: 5 } }
+
 // ---------------------------------------------------------------
 //  GET RESOURCE
 // ---------------------------------------------------------------
@@ -31,7 +33,7 @@ export const getResource = async (req: req) => {
   })
 
   try {
-    const res = await fetch(endpoint)
+    const res = await fetch(endpoint, REVALIDATE)
     console.log(res)
     // const wait = pause(2000)
     let data = await res.json()
@@ -55,10 +57,10 @@ export const getAllResource = async () => {
   const string = `?populate=deep,2&pagination[page]=1&pagination[pagesize]=10`
   try {
     const [docsRes, postsRes, eventsRes, productsRes] = await Promise.all([
-      fetch(`${API_URL}/api/docs/${string}, { next: { revalidate: 600 } }`),
-      fetch(`${API_URL}/api/posts/${string}, { next: { revalidate: 600 } }`),
-      fetch(`${API_URL}/api/events/${string}, { next: { revalidate: 600 } }`),
-      fetch(`${API_URL}/api/products/${string}, { next: { revalidate: 600 } }`),
+      fetch(`${API_URL}/api/docs/${string}, REVALIDATE`),
+      fetch(`${API_URL}/api/posts/${string}, REVALIDATE`),
+      fetch(`${API_URL}/api/events/${string}, REVALIDATE`),
+      fetch(`${API_URL}/api/products/${string}, REVALIDATE`),
     ])
 
     const docs = await docsRes.json()
@@ -98,10 +100,10 @@ export const getFeatured = async () => {
   const filter = `?populate=deep,2&filters[featured][$eq]=true`
   try {
     const [docsRes, postsRes, eventsRes, productsRes] = await Promise.all([
-      fetch(`${API_URL}/api/docs/${filter}`),
-      fetch(`${API_URL}/api/posts/${filter}`),
-      fetch(`${API_URL}/api/events/${filter}`),
-      fetch(`${API_URL}/api/products/${filter}`),
+      fetch(`${API_URL}/api/docs/${filter},REVALIDATE`),
+      fetch(`${API_URL}/api/posts/${filter},REVALIDATE`),
+      fetch(`${API_URL}/api/events/${filter},REVALIDATE`),
+      fetch(`${API_URL}/api/products/${filter},REVALIDATE`),
     ])
     const docs = await docsRes.json()
     const posts = await postsRes.json()
