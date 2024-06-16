@@ -77,21 +77,18 @@ export default function BlogTemplate({ data }: any) {
               {cover && (
                 <picture>
                   <source
-                    media="(max-width <= 600px)"
-                    srcSet={API_URL + cover?.formats?.md_webp?.url}
+                    media="(max-width: 480px)"
+                    srcSet={API_URL + cover.formats.sm_webp?.url}
                     type="image/webp"
                   />
                   <source
-                    media="(min-width < 600px)"
-                    srcSet={API_URL + cover?.formats?.sm_webp?.url}
+                    media="(min-width: 481px) and (max-width: 960px)"
+                    srcSet={API_URL + cover.formats.md_webp?.url}
                     type="image/webp"
                   />
                   <img
-                    src={API_URL + cover?.formats?.original_webp?.url}
-                    alt={
-                      cover?.alternativeText ||
-                      "LIO, los inorgánicos organizados"
-                    }
+                    src={API_URL + cover.formats.xl_webp?.url}
+                    alt={data?.attributes.title}
                   />
                 </picture>
               )}

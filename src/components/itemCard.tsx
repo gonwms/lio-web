@@ -29,17 +29,17 @@ export default function ItemCard({ item, style }: props) {
           {cover && (
             <picture>
               <source
-                media="(max-width <= 600px)"
-                srcSet={API_URL + cover.formats.md_webp?.url}
-                type="image/webp"
-              />
-              <source
-                media="(min-width < 600px)"
+                media="(max-width: 480px)"
                 srcSet={API_URL + cover.formats.sm_webp?.url}
                 type="image/webp"
               />
+              <source
+                media="(min-width: 481px) and (max-width: 960px)"
+                srcSet={API_URL + cover.formats.md_webp?.url}
+                type="image/webp"
+              />
               <img
-                src={API_URL + cover.formats.original_webp?.url}
+                src={API_URL + cover.formats.xl_webp?.url}
                 alt={item?.attributes.title}
               />
             </picture>
