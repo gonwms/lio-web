@@ -5,6 +5,8 @@ import styles from "./blogTemplate.module.scss"
 import { formatDate } from "@/libs/formateDate"
 import formatDataType from "@/libs/formatDataType"
 
+export const revalidate = 5
+
 export default function BlogTemplate({ data }: any) {
   const API_URL = process.env.NEXT_PUBLIC_API_URL
   const cover = data?.attributes?.cover?.data?.attributes
