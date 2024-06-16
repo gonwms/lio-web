@@ -18,6 +18,8 @@ interface propsType {
   searchParams: any
 }
 
+export const revalidate = 5
+
 export default async function Home({ params, searchParams }: propsType) {
   //
 

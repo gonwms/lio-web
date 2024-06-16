@@ -5,6 +5,8 @@ import ItemsInfiniteScroll from "@/components/ItemInfiniteScroll"
 import styles from "../../layout.module.scss"
 // import styles from './contact.module.scss'
 
+export const revalidate = 5
+
 export default function Eventos() {
   return (
     <>
