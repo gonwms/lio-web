@@ -6,7 +6,7 @@ const PATH = "events"
 //FETCH
 async function getPostById(id: string) {
   try {
-    const res = await fetch(`${URL}/api/${PATH}/${id}?populate=deep,2`, {
+    const res = await fetch(`${URL}/api/${PATH}/${id}?populate=deep,3`, {
       method: "GET",
     })
     const data = await res.json()

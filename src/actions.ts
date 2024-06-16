@@ -34,11 +34,11 @@ export const getResource = async (req: req) => {
 
   try {
     const res = await fetch(endpoint, REVALIDATE)
-    console.log(res)
     // const wait = pause(2000)
     let data = await res.json()
-    data = JSON.parse(JSON.stringify(data))
+
     if (res.ok) {
+      data = JSON.parse(JSON.stringify(data))
       return { data: data }
     } else {
       console.error("❌ endpoint ~", endpoint, "\n❌ data ~", data)
@@ -67,6 +67,7 @@ export const getAllResource = async () => {
     const posts = await postsRes.json()
     const events = await eventsRes.json()
     const products = await productsRes.json()
+
     if (!docsRes.ok || !postsRes.ok || !eventsRes.ok || !productsRes.ok) {
       console.error(
         `❌ actions.ts ~ getAllResource
@@ -100,10 +101,10 @@ export const getFeatured = async () => {
   const filter = `?populate=deep,2&filters[featured][$eq]=true`
   try {
     const [docsRes, postsRes, eventsRes, productsRes] = await Promise.all([
-      fetch(`${API_URL}/api/docs/${filter},REVALIDATE`),
-      fetch(`${API_URL}/api/posts/${filter},REVALIDATE`),
-      fetch(`${API_URL}/api/events/${filter},REVALIDATE`),
-      fetch(`${API_URL}/api/products/${filter},REVALIDATE`),
+      fetch(`${API_URL}/api/docs/${filter}`, REVALIDATE),
+      fetch(`${API_URL}/api/posts/${filter}`, REVALIDATE),
+      fetch(`${API_URL}/api/events/${filter}`, REVALIDATE),
+      fetch(`${API_URL}/api/products/${filter}`, REVALIDATE),
     ])
     const docs = await docsRes.json()
     const posts = await postsRes.json()
