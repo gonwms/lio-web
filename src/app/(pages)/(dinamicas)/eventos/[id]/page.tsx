@@ -20,9 +20,9 @@ async function getPostById(id: string) {
 export async function generateMetadata({ params }: any) {
   const data = await getPostById(params.id)
   return {
-    title: "LIO | " + data?.attributes?.title,
+    title: data?.attributes?.title,
     description: data?.attributes?.subTitle,
-    // keywords: "your, keywords, here",
+    keywords: data?.attributes?.tags,
     author: "LIO",
     robots: "index, follow",
     googlebot: "index, follow",
@@ -31,14 +31,19 @@ export async function generateMetadata({ params }: any) {
       description: data?.attributes?.subTitle,
       type: "website",
       url: "https://www.lio.com.ar",
-      image: [data?.attributes?.cover],
+      // images: `${URL}/uploads/open-graph.jpg`,
+      images: [
+        URL + data?.attributes?.cover?.data?.attributes?.formats?.xl_webp?.url,
+      ],
     },
     twitter: {
       card: "summary_large_image",
       title: "LIO | " + data?.attributes?.title,
-      description: "Your website description goes here.",
+      description: data?.attributes?.subTitle,
+      site: "@Hacemos_Lio",
       url: "https://www.lio.com.ar",
-      image: [data?.attributes?.cover],
+      images:
+        URL + data?.attributes?.cover?.data?.attributes?.formats?.xl_webp?.url,
     },
   }
 }
