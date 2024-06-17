@@ -49,7 +49,7 @@ export default function CustomBlocksRender({ content, key }: props) {
           }
         },
         image: ({ image }) => {
-          console.log(image)
+          // console.log(image)
           const formats = image?.formats as { md_webp: { url: string } }
           const path = formats?.md_webp.url
           return (

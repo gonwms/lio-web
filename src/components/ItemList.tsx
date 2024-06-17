@@ -19,7 +19,7 @@ export default async function ItemList({ req }: propsType) {
       new Date(b.attributes.publishedAt).getTime() -
       new Date(a.attributes.publishedAt).getTime()
   )
-  console.log(sortedData)
+  // console.log(sortedData)
   // ------------------------------------------
   // Render
   // ------------------------------------------

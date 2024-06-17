@@ -20,8 +20,30 @@ export async function generateMetadata({ params }: any) {
   const data = await getPostById(params.id)
   return {
     title: data?.attributes?.title,
-    description: data?.attributes?.description,
-    openGraph: [data?.attributes?.image],
+    description: data?.attributes?.subTitle,
+    keywords: data?.attributes?.tags,
+    author: "LIO",
+    robots: "index, follow",
+    googlebot: "index, follow",
+    openGraph: {
+      title: data?.attributes?.title,
+      description: data?.attributes?.subTitle,
+      type: "website",
+      url: "https://www.lio.com.ar",
+      // images: `${URL}/uploads/open-graph.jpg`,
+      images: [
+        URL + data?.attributes?.cover?.data?.attributes?.formats?.xl_webp?.url,
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: "LIO | " + data?.attributes?.title,
+      description: data?.attributes?.subTitle,
+      site: "@Hacemos_Lio",
+      url: "https://www.lio.com.ar",
+      images:
+        URL + data?.attributes?.cover?.data?.attributes?.formats?.xl_webp?.url,
+    },
   }
 }
 
