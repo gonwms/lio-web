@@ -24,12 +24,12 @@ export default async function Home({ params, searchParams }: propsType) {
 
   return (
     <section className={styles.welcome}>
-      <Row className={classNames(styles.row, styles.row1)}>
+      <Row className={classNames(styles.row, styles)}>
         <Col className={classNames(styles.logos)}>
           <img
             src="/lio-logo.svg"
             alt="LIO los inorgánicos organizados"
-            height={80}
+            height={130}
           />
 
           {/* <a href="https://www.principiosyvalores.org/" target="_blank"> */}
@@ -37,12 +37,10 @@ export default async function Home({ params, searchParams }: propsType) {
             className={styles.logoPyV}
             src="/pyv-logo.svg"
             alt="Principios y Valores"
-            height={80}
+            height={130}
           />
           {/* </a> */}
         </Col>
-      </Row>
-      <Row className={classNames(styles.row, styles.row2)}>
         <Col className={classNames(styles.comunicate)}>
           <span className={styles.title}>comunicate</span>
           <a
@@ -52,8 +50,6 @@ export default async function Home({ params, searchParams }: propsType) {
             Whatsapp <img src="/whatsapp.svg" alt="whatsapp" />
           </a>
         </Col>
-      </Row>
-      <Row className={classNames(styles.row, styles.row3)}>
         <Col className={classNames(styles.social)}>
           <span className={styles.title}>Seguinos</span>
           <div className={classNames(styles.socialLinks)}>

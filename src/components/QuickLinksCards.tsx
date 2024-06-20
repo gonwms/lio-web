@@ -91,7 +91,7 @@ export default function QuickLinksCards() {
               <img src="/ico-cast.svg" alt="" />
               <div>
                 <strong>Mundo LIO</strong>
-                <span>Miercoles 19:00hs</span>
+                <span>Miercoles 20:00hs</span>
               </div>
             </div>
           </a>
