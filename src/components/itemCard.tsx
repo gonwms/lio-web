@@ -4,7 +4,7 @@ import Link from "next/link"
 import { formatDate } from "@/libs/formateDate"
 import formatDataType from "@/libs/formatDataType"
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL
+// const API_URL = process.env.NEXT_PUBLIC_API_URL
 
 interface props {
   item: any
@@ -30,16 +30,16 @@ export default function ItemCard({ item, style }: props) {
             <picture>
               <source
                 media="(max-width: 480px)"
-                srcSet={API_URL + cover.formats.sm_webp?.url}
+                srcSet={cover.formats.sm_webp?.url}
                 type="image/webp"
               />
               <source
                 media="(min-width: 481px) and (max-width: 960px)"
-                srcSet={API_URL + cover.formats.md_webp?.url}
+                srcSet={cover.formats.md_webp?.url}
                 type="image/webp"
               />
               <img
-                src={API_URL + cover.formats.xl_webp?.url}
+                src={cover.formats.xl_webp?.url}
                 alt={item?.attributes.title}
               />
             </picture>

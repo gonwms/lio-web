@@ -8,7 +8,7 @@ import formatDataType from "@/libs/formatDataType"
 export const revalidate = 6
 
 export default function BlogTemplate({ data }: any) {
-  const API_URL = process.env.NEXT_PUBLIC_API_URL
+  // const API_URL = process.env.NEXT_PUBLIC_API_URL
   const cover = data?.attributes?.cover?.data?.attributes
 
   /*--------------------------------
@@ -80,16 +80,16 @@ export default function BlogTemplate({ data }: any) {
                 <picture>
                   <source
                     media="(max-width: 480px)"
-                    srcSet={API_URL + cover.formats.sm_webp?.url}
+                    srcSet={cover.formats.sm_webp?.url}
                     type="image/webp"
                   />
                   <source
                     media="(min-width: 481px) and (max-width: 960px)"
-                    srcSet={API_URL + cover.formats.md_webp?.url}
+                    srcSet={cover.formats.md_webp?.url}
                     type="image/webp"
                   />
                   <img
-                    src={API_URL + cover.formats.xl_webp?.url}
+                    src={cover.formats.xl_webp?.url}
                     alt={data?.attributes.title}
                   />
                 </picture>
