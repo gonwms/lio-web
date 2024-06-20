@@ -1,0 +1,46 @@
+@use "@/styles/main.module.scss" as *;
+
+.welcome {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 1rem;
+  gap: 3rem;
+  height: 100vh;
+  width: 100vw;
+  background: #eef1f1;
+
+  a {
+    text-decoration: none;
+  }
+}
+.logos {
+  display: flex;
+  gap: 2rem;
+}
+.title {
+  font-size: 11px;
+  padding: 0.5rem 0;
+  text-transform: uppercase;
+}
+.social {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .socialLinks {
+    display: flex;
+    gap: 1rem;
+  }
+}
+
+.comunicate {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  a {
+    gap: 0.5rem;
+    display: flex;
+    align-content: center;
+  }
+}
