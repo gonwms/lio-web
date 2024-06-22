@@ -2,7 +2,7 @@ export const meta = {
   title: {
     absolute: "LIO",
     default: "incio | LIO",
-    template: "%s |LIO",
+    template: "|LIO",
   },
   description: "description here...",
   keywords:

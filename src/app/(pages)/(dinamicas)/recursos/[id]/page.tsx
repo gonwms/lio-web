@@ -2,7 +2,7 @@ import BlogContent from "@/components/blogTemplate"
 const URL = process.env.NEXT_PUBLIC_API_URL
 const PATH = "docs"
 
-export const revalidate = 5
+const revalidate = 3600
 // FETCH
 async function getPostById(id: string) {
   try {

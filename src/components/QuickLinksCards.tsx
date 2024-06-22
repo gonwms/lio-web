@@ -56,7 +56,11 @@ export default function QuickLinksCards() {
       {!isClient && <div className={styles.loaderSkeleton}></div>}
       {isClient && (
         <Carousel settings={settings} className={styles.carousel}>
-          <a href="#" className={classNames(styles.quickLink, styles.pep)}>
+          <a
+            href="https://lioapi.stream/Plan%20Economico%20Peronista.pdf"
+            className={classNames(styles.quickLink, styles.pep)}
+            target="_blank"
+          >
             <div className={styles.content}>
               <img src="/ico-download.svg" alt="" />
               <div>
@@ -66,7 +70,11 @@ export default function QuickLinksCards() {
             </div>
           </a>
 
-          <a href="#" className={classNames(styles.quickLink, styles.pgp)}>
+          <a
+            href="https://lioapi.stream/Plan%20de%20Gobierno%20Peronista.pdf"
+            className={classNames(styles.quickLink, styles.pgp)}
+            target="_blank"
+          >
             <div className={styles.content}>
               <img src="/ico-download.svg" alt="" />
               <div>

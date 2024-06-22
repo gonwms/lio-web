@@ -18,7 +18,7 @@ interface propsType {
   searchParams: any
 }
 
-export const revalidate = 5
+const revalidate = 3600
 
 export default async function Home({ params, searchParams }: propsType) {
   //

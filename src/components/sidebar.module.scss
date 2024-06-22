@@ -52,7 +52,9 @@
       background: var(--sky-1);
     }
     &[data-active="true"] {
-      background: var(--sky-3);
+      // background: var(--sky-3);
+      background: #eef3f7;
+      // color: white;
     }
   }
 }

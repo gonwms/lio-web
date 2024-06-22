@@ -17,26 +17,26 @@ export async function metadata() {
     robots: "index, follow",
     googlebot: "index, follow",
     author: "LIO",
-    title: `LIO`,
+    title: `LIO ~ Los Inorgánicos Organizados`,
     description: "Movimiento peronistaA",
     icons: { icon: "/favicon.png" },
     keywords:
       "LIO, Los Inorganicos Organizados, Peronismo, Guillermo Moreno, Nydia Lirola, ",
 
     openGraph: {
-      title: "%s LIO",
+      title: `LIO | Los inorgánicos organizados`,
       description: "Movimiento peronista",
       type: "website",
       url: "https://www.lio.com.ar",
-      images: [URL_WEB + "/cover.webp"],
+      images: ["https://www.lio.com.ar/cover.webp"],
     },
     twitter: {
       card: "summary_large_image",
-      title: "%s LIO",
+      title: `LIO ~ Los Inorgánicos Organizados`,
       description: "Movimiento peronista",
       site: "@Hacemos_Lio",
       url: "https://www.lio.com.ar",
-      images: URL_WEB + "/cover.webp",
+      images: "https://www.lio.com.ar/cover.webp",
     },
   }
 }
