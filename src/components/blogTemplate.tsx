@@ -1,15 +1,70 @@
-import React from "react"
+"use client"
 
+import React, { useEffect, useRef, useState } from "react"
 import CustomBlocksRenderer from "@/components/CustomBlocksRenderer"
 import styles from "./blogTemplate.module.scss"
 import { formatDate } from "@/libs/formateDate"
 import formatDataType from "@/libs/formatDataType"
+import Lightbox from "yet-another-react-lightbox"
+import Zoom from "yet-another-react-lightbox/plugins/zoom"
+import "yet-another-react-lightbox/styles.css"
+import "@/styles/lightbox.css"
 
-export const revalidate = 6
+export const revalidate = 3600
 
 export default function BlogTemplate({ data }: any) {
-  // const API_URL = process.env.NEXT_PUBLIC_API_URL
+  //
   const cover = data?.attributes?.cover?.data?.attributes
+  const allContent = [
+    { id: 0, __component: "texto.texto", content: data?.attributes?.content },
+    ...data?.attributes?.contents,
+  ]
+
+  // const img_xl = image?.formats as { xl_webp: { url: string } }
+
+  const [album, setAlbum] = useState<{ src: string }[]>([])
+  const [index, setIndex] = useState(-1)
+  // const [open, setOpen] = useState(false)
+  const [animationDuration, setAnimationDuration] = useState(500)
+  const [maxZoomPixelRatio, setMaxZoomPixelRatio] = useState(1)
+  const [zoomInMultiplier, setZoomInMultiplier] = useState(2)
+  const [doubleTapDelay, setDoubleTapDelay] = useState(300)
+  const [doubleClickDelay, setDoubleClickDelay] = useState(300)
+  const [doubleClickMaxStops, setDoubleClickMaxStops] = useState(2)
+  const [keyboardMoveDistance, setKeyboardMoveDistance] = useState(50)
+  const [wheelZoomDistanceFactor, setWheelZoomDistanceFactor] = useState(100)
+  const [pinchZoomDistanceFactor, setPinchZoomDistanceFactor] = useState(100)
+  const [scrollToZoom, setScrollToZoom] = useState(false)
+
+  const srcs: { src: string }[] = []
+
+  const onClick = (index: number) => {
+    setIndex(index)
+    console.log(album)
+  }
+  // buscar todas las imágenes y almacenarlas en album
+  useEffect(() => {
+    if (index !== -1) return
+    const images = Array.from(
+      document.querySelectorAll(`.${styles.content} img`)
+    ) as HTMLImageElement[]
+    const albums = images.map((image) => {
+      return { src: image.src.replace("md_webp_", "xl_webp_") }
+    })
+    setAlbum(albums)
+  }, [])
+
+  // agregar click a todas las imagenes para abrir el lightbox
+  useEffect(() => {
+    if (index !== -1) return
+    const images = Array.from(
+      document.querySelectorAll(`.${styles.content} img`)
+    ) as HTMLImageElement[]
+    images?.forEach((img, index) => {
+      img.addEventListener("click", () => onClick(index))
+      img.style.cursor = "pointer"
+    })
+  }, [album, index])
 
   /*--------------------------------
    * HANDLE TYPES
@@ -17,20 +72,19 @@ export default function BlogTemplate({ data }: any) {
   const type: { path: string; ico: string } = formatDataType(
     data?.attributes?.type
   )
-  /*--------------------------------
-   * HANDLE EXTRA CONTENTS BLOCKS
-   *-------------------------------  */
-  const extrablocks = data?.attributes?.contents
 
-  const extraContents = extrablocks?.reduce((acc: any, curr: any) => {
+  /*--------------------------------
+   * HANDLE CONTENTS BLOCKS
+   *-------------------------------  */
+  const contents = allContent.reduce((acc: any, curr: any, index) => {
     switch (curr.__component) {
-      //
       //  TEXTOS
       case "texto.texto":
         return [
           ...acc,
           <CustomBlocksRenderer
-            key={curr.__component + curr.id}
+            key={index}
+            id={index}
             content={curr.content}
           />,
         ]
@@ -69,7 +123,7 @@ export default function BlogTemplate({ data }: any) {
     }
   }, [])
 
-  // RETURN ----------------------
+  // RENDER  ----------------------
   return (
     <>
       {data && (
@@ -120,12 +174,29 @@ export default function BlogTemplate({ data }: any) {
               </div>
             </div>
           </div>
-          <div className={styles.content}>
-            <CustomBlocksRenderer content={data?.attributes?.content} />
-            {extraContents}
-          </div>
+          <div className={styles.content}>{contents}</div>
         </div>
       )}
+      <Lightbox
+        className={styles.lightbox}
+        index={index}
+        open={index >= 0}
+        close={() => setIndex(-1)}
+        slides={album}
+        plugins={[Zoom]}
+        animation={{ zoom: animationDuration }}
+        zoom={{
+          maxZoomPixelRatio,
+          zoomInMultiplier,
+          doubleTapDelay,
+          doubleClickDelay,
+          doubleClickMaxStops,
+          keyboardMoveDistance,
+          wheelZoomDistanceFactor,
+          pinchZoomDistanceFactor,
+          scrollToZoom,
+        }}
+      ></Lightbox>
     </>
   )
 }

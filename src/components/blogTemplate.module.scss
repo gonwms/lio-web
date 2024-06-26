@@ -102,8 +102,17 @@
     height: 400px;
     width: 100%;
     object-fit: cover;
-    margin: 1.2rem 0;
+    margin: 1.2rem 0 0rem 0;
   }
+  .caption {
+    font-size: 0.8rem;
+    // opacity: 0.8;
+    font-style: italic;
+    display: block;
+    margin-bottom: 2rem;
+    text-align: end;
+  }
+
   .youtube {
     width: 100%;
     max-width: 100%;

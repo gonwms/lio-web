@@ -1,0 +1,13 @@
+:root {
+  --yarl__color_backdrop: #000000e7;
+  --yarl__color_button: #fff;
+  --yarl__color_button_active: #fff;
+  --yarl__color_button_disabled: #fff;
+  --yarl__slide_title_color: #fff;
+  --yarl__slide_title_font_size: #fff;
+  --yarl__slide_title_font_weight: #fff;
+  --yarl__slide_description_color: #fff;
+  --yarl__icon: #fff;
+  --yarl__navigation_prev: #fff;
+  --yarl__navigation_next: #fff;
+}

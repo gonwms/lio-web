@@ -19,7 +19,7 @@ export async function metadata() {
     author: "LIO",
     title: `LIO ~ Los Inorgánicos Organizados`,
     description:
-      "Somos LIO, una organización comprometida con los ideales del Movimiento Peronista, enfocada en la justicia social, la igualdad y el bienestar del pueblo argentino. Nos alineamos con el partido político Principios y Valores, bajo la conducción de Guillermo Moreno.",
+      "Guillermo Moreno conducción. Con Principios y Valores en el movimiento peronista",
     icons: { icon: "/favicon.png" },
     keywords:
       "LIO, Los Inorganicos Organizados, Peronismo, Guillermo Moreno, Nydia Lirola, ",
@@ -27,7 +27,7 @@ export async function metadata() {
     openGraph: {
       title: `LIO ~ Los Inorgánicos Organizados`,
       description:
-        "Somos LIO, una organización comprometida con los ideales del Movimiento Peronista, enfocada en la justicia social, la igualdad y el bienestar del pueblo argentino. Nos alineamos con el partido político Principios y Valores, bajo la conducción de Guillermo Moreno.",
+        "Guillermo Moreno conducción. Con Principios y Valores en el movimiento peronista",
       type: "website",
       url: "https://www.lio.com.ar",
       images: ["https://www.lio.com.ar/cover.webp"],
@@ -36,7 +36,7 @@ export async function metadata() {
       card: "summary_large_image",
       title: `LIO ~ Los Inorgánicos Organizados`,
       description:
-        "Somos LIO, una organización comprometida con los ideales del Movimiento Peronista, enfocada en la justicia social, la igualdad y el bienestar del pueblo argentino. Nos alineamos con el partido político Principios y Valores, bajo la conducción de Guillermo Moreno.",
+        "Guillermo Moreno conducción. Con Principios y Valores en el movimiento peronista",
       site: "@Hacemos_Lio",
       url: "https://www.lio.com.ar",
       images: "https://www.lio.com.ar/cover.webp",
@@ -54,14 +54,7 @@ export default function RootLayout({ children }: props) {
       <body
       // suppressHydrationWarning={true}
       >
-        {/* <Theme
-          accentColor="sky"
-          panelBackground="solid"
-          radius="large"
-          scaling="105%"
-        > */}
         {children}
-        {/* </Theme> */}
       </body>
       {/* <LenisScroll /> */}
       {/* <IpDetector /> */}
