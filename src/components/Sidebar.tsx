@@ -6,7 +6,7 @@ import Link from "next/link"
 import { usePathname } from "next/navigation"
 import classNames from "classnames"
 import useMediaQuery from "@/app/hooks/useMediaQuery"
-
+import { sendGTMEvent } from "@next/third-parties/google"
 const menu = [
   { ico: "inicio", label: "Inicio", href: "/" },
   { ico: "eventos", label: "Eventos", href: "/eventos" },
@@ -52,8 +52,11 @@ export default function Sidebar({ className }: props) {
             )
           })}
           <a
+            onClick={() =>
+              sendGTMEvent({ event: "whatsapp mobile", value: "click" })
+            }
             className={styles.link}
-            href="https://chat.whatsapp.com/FhOhNQHdUvMFRx4r8GML0w"
+            href="https://chat.whatsapp.com/FhOhNQHdUvMFRx4r8GML0w?text=Hola"
             target="_blank"
           >
             <img src="/whatsapp.svg" alt="whatsapp" />

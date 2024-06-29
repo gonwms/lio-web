@@ -50,7 +50,14 @@ export default function ItemCard({ item, style }: props) {
             </picture>
           )}
         </Link>
+        <div className={styles.categories}>
+          {item.attributes.category &&
+            item.attributes.category.map((cat: string) => (
+              <span key={cat}>{cat}</span>
+            ))}
+        </div>
       </div>
+
       <div className={styles.meta}>
         <img src={type.ico} alt={type.path} height={14} width={14} />
         <span>{formatDate(item.attributes.publishedAt)}</span>

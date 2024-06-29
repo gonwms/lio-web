@@ -1,13 +1,9 @@
 // import "server-only"
-// "use client"
 
-import React, { Suspense } from "react"
+import React from "react"
 import classNames from "classnames"
 import styles from "./welcome.module.scss"
 import { Col, Row } from "@/components/CustomTags"
-import ItemList from "@/components/ItemList"
-import { SkeletonGrid } from "@/components/Skeleton"
-import QuickLinksCards from "@/components/QuickLinksCards"
 
 // ---------------------
 // types

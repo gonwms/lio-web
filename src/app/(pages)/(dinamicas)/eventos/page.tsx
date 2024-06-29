@@ -2,7 +2,6 @@ import React from "react"
 import ItemsInfiniteScroll from "@/components/ItemInfiniteScroll"
 import styles from "../../layout.module.scss"
 
-const revalidate = 3600
 export default function Eventos() {
   return (
     <>

@@ -7,41 +7,14 @@ import React from "react"
 import LenisScroll from "@/components/LenisScroll"
 import IpDetector from "@/components/IpDetector"
 import { wix, inter } from "@/fonts"
-
+import SEO from "./seo"
+import { GoogleTagManager } from "@next/third-parties/google"
 // ----------------- ROOT LAYOUT -----------------------
 
 const URL_WEB = process.env.NEXT_PUBLIC_MIDDLEWARE_URL
 
 export async function metadata() {
-  return {
-    robots: "index, follow",
-    googlebot: "index, follow",
-    author: "LIO",
-    title: `LIO ~ Los Inorgánicos Organizados`,
-    description:
-      "Guillermo Moreno conducción. Con Principios y Valores en el movimiento peronista",
-    icons: { icon: "/favicon.png" },
-    keywords:
-      "LIO, Los Inorganicos Organizados, Peronismo, Guillermo Moreno, Nydia Lirola, ",
-
-    openGraph: {
-      title: `LIO ~ Los Inorgánicos Organizados`,
-      description:
-        "Guillermo Moreno conducción. Con Principios y Valores en el movimiento peronista",
-      type: "website",
-      url: "https://www.lio.com.ar",
-      images: ["https://www.lio.com.ar/cover.webp"],
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: `LIO ~ Los Inorgánicos Organizados`,
-      description:
-        "Guillermo Moreno conducción. Con Principios y Valores en el movimiento peronista",
-      site: "@Hacemos_Lio",
-      url: "https://www.lio.com.ar",
-      images: "https://www.lio.com.ar/cover.webp",
-    },
-  }
+  return SEO
 }
 
 type props = {
@@ -51,6 +24,7 @@ type props = {
 export default function RootLayout({ children }: props) {
   return (
     <html lang="es" className={classNames(wix.variable, inter.variable)}>
+      <GoogleTagManager gtmId="G-XKGVC1CXW2" />
       <body
       // suppressHydrationWarning={true}
       >

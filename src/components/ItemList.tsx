@@ -31,11 +31,11 @@ export default async function ItemList({ req }: propsType) {
   }
   return (
     <div>
-      <div className={classNames(styles.filters)}>
+      {/* <div className={classNames(styles.filters)}>
         <span>Ordenar por</span>
         <span>Categorias</span>
         <input type="text" name="" id="" placeholder="Buscar" />
-      </div>
+      </div> */}
       <div className={classNames(styles.gridCollection)}>
         {sortedData?.map((item: any) => {
           return (

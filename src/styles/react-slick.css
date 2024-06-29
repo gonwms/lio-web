@@ -8,6 +8,7 @@
 }
 
 .slick-arrow {
+  color: #000;
   z-index: 1;
   background: #ffffff;
   display: grid;
@@ -17,9 +18,10 @@
   height: 50px;
   margin: 0;
   border-radius: 100%;
-  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.4);
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
 }
 .slick-arrow:hover {
+  color: #000;
   background: #f1f1f1;
 }
 .slick-arrow::before {

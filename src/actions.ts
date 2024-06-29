@@ -5,23 +5,23 @@ import { pause } from "@/libs/utils"
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL as string
 
-interface req {
+export interface req {
   url?: string
   resource: "docs" | "posts" | "events" | "products"
   page?: string | number
   pageSize?: string | number
   deep?: string | number
   sort?: string
-  filter?: string
+  filters?: string
 }
 
-const REVALIDATE = { next: { revalidate: 5 } }
+const REVALIDATE = { next: { revalidate: 20 } }
 
 // ---------------------------------------------------------------
 //  GET RESOURCE
 // ---------------------------------------------------------------
 export const getResource = async (req: req) => {
-  const { resource, page, pageSize, deep, sort, filter } = req
+  const { resource, page, pageSize, deep, sort, filters } = req
   const endpoint = CreateEndPointString({
     url: API_URL,
     resource: resource,
@@ -29,10 +29,11 @@ export const getResource = async (req: req) => {
     pageSize,
     deep,
     sort,
-    filter,
+    filters,
   })
 
   try {
+    console.log(endpoint)
     const res = await fetch(endpoint, REVALIDATE)
     // const wait = pause(2000)
     let data = await res.json()
@@ -54,7 +55,7 @@ export const getResource = async (req: req) => {
 //  GET ALL RESOURCE
 // ---------------------------------------------------------------
 export const getAllResource = async () => {
-  const string = `?populate=deep,2&pagination[page]=1&pagination[pagesize]=10`
+  const string = `?populate=deep,2&pagination[page]=1&pagination[pagesize]=10&filters[visibility][$eqi]=público`
   try {
     const [docsRes, postsRes, eventsRes, productsRes] = await Promise.all([
       fetch(`${API_URL}/api/docs/${string}, REVALIDATE`),
@@ -98,7 +99,7 @@ export const getAllResource = async () => {
 //  GET FEATURED RESOURCE
 // ---------------------------------------------------------------
 export const getFeatured = async () => {
-  const filter = `?populate=deep,2&filters[featured][$eq]=true`
+  const filter = `?populate=deep,2&filters[featured][$eq]=true&filters[visibility][$eqi]=público`
   try {
     const [docsRes, postsRes, eventsRes, productsRes] = await Promise.all([
       fetch(`${API_URL}/api/docs/${filter}`, REVALIDATE),
@@ -147,7 +148,7 @@ const CreateEndPointString = ({
   pageSize,
   deep,
   sort,
-  filter,
+  filters,
 }: Partial<req>) => {
   const ep = {
     url: `${url}/api/${resource}`,
@@ -155,7 +156,8 @@ const CreateEndPointString = ({
     sort: `&sort=${sort ? sort : "rank:asc"}`,
     pageSize: `&pagination[pageSize]=${pageSize ? pageSize : 5}`,
     page: `&pagination[page]=${page ? page : 1}`,
-    // filter: `&filter=${filter ? filter : ""}`,
+    public: `&filters[visibility][$eqi]=público`,
+    filter: filters ? `&filters${filters}` : "",
   }
   const endpointString = Object.values(ep).join("")
   return endpointString

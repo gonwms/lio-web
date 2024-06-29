@@ -1,4 +1,5 @@
 import BlogContent from "@/components/blogTemplate"
+import formatDataType from "@/libs/formatDataType"
 const URL = process.env.NEXT_PUBLIC_API_URL
 const PATH = "events"
 
@@ -30,10 +31,12 @@ export async function generateMetadata({ params }: any) {
       title: data?.attributes?.title,
       description: data?.attributes?.subTitle,
       type: "website",
-      url: "https://www.lio.com.ar",
-      // images: `${URL}/uploads/open-graph.jpg`,
+      url: `https://www.lio.com.ar/${
+        formatDataType(data?.attributes?.type).path
+      }/${data?.attributes?.slug}`,
+
       images: [
-        URL + data?.attributes?.cover?.data?.attributes?.formats?.xl_webp?.url,
+        data?.attributes?.cover?.data?.attributes?.formats?.xl_webp?.url,
       ],
     },
     twitter: {
@@ -41,9 +44,10 @@ export async function generateMetadata({ params }: any) {
       title: "LIO | " + data?.attributes?.title,
       description: data?.attributes?.subTitle,
       site: "@Hacemos_Lio",
-      url: "https://www.lio.com.ar",
-      images:
-        URL + data?.attributes?.cover?.data?.attributes?.formats?.xl_webp?.url,
+      url: `https://www.lio.com.ar/${
+        formatDataType(data?.attributes?.type).path
+      }/${data?.attributes?.slug}`,
+      images: data?.attributes?.cover?.data?.attributes?.formats?.xl_webp?.url,
     },
   }
 }

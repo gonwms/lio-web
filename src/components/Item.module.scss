@@ -38,6 +38,7 @@
   aspect-ratio: 1 / 1;
   border-radius: 0.5rem;
   overflow: hidden;
+  position: relative;
   // background: red;
   object-fit: cover;
   aspect-ratio: 1 / 1;
@@ -55,6 +56,29 @@
     object-position: center;
   }
 }
+
+.card .categories {
+  position: absolute;
+  bottom: 0.5rem;
+  left: 0.5rem;
+  display: flex;
+  gap: 0.5rem;
+  z-index: 99;
+  font-size: 0.75rem;
+  // opacity: 0;
+  transition: opacity 0.3s ease;
+  span {
+    display: block;
+    background: #51617bb3;
+    color: #ffffffb3;
+    border-radius: 6rem;
+    padding: 0.1em 0.6em;
+  }
+}
+.card:hover .categories {
+  opacity: 1;
+}
+
 .card h3 a {
   margin: 0.1em 0;
   font-size: 1.3rem;
@@ -79,8 +103,9 @@
   span {
     // color: var(--gray-9);
     opacity: 0.5;
-    line-height: 0em;
+    line-height: 1em;
   }
+
   img {
     opacity: 0.4;
   }
