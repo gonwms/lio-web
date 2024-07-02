@@ -1,8 +1,9 @@
 import React from "react"
-import styles from "./Item.module.scss"
+import styles from "./itemCard.module.scss"
 import Link from "next/link"
-import { formatDate } from "@/libs/formateDate"
+import { formatDate, formatEventDay } from "@/libs/formateDate"
 import formatDataType from "@/libs/formatDataType"
+import classNames from "classnames"
 
 // const API_URL = process.env.NEXT_PUBLIC_API_URL
 
@@ -50,19 +51,26 @@ export default function ItemCard({ item, style }: props) {
             </picture>
           )}
         </Link>
-        <div className={styles.categories}>
+        <div className={classNames(styles.tags, styles.tagCategory)}>
           {item.attributes.category &&
             item.attributes.category.map((cat: string) => (
               <span key={cat}>{cat}</span>
             ))}
         </div>
+        <div className={classNames(styles.tags, styles.tagDate)}>
+          {item.attributes.event_start && (
+            <span>
+              <img src="/ico-bell-w.svg" alt="" />
+              {formatEventDay(item.attributes.event_start).day}
+            </span>
+          )}
+        </div>
       </div>
 
       <div className={styles.meta}>
         <img src={type.ico} alt={type.path} height={14} width={14} />
-        <span>{formatDate(item.attributes.publishedAt)}</span>
-
-        <span>{item?.attributes.author}</span>
+        <span>publicado el {formatDate(item.attributes.publishedAt)}</span>
+        <span>por {item?.attributes.author}</span>
       </div>
       <h3>
         <Link href={`/${type.path}/${item.attributes.slug}`}>

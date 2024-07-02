@@ -1,4 +1,5 @@
 import BlogContent from "@/components/blogTemplate"
+import seo from "../../seoInternas"
 const URL = process.env.NEXT_PUBLIC_API_URL
 const PATH = "posts"
 
@@ -12,39 +13,13 @@ async function getPostById(id: string) {
     const data = await res.json()
     return data.data
   } catch (error) {
-    console.error("❌ actions.ts ~ CATCH error", "\n ❌", error)
+    console.error("❌ CATCH error", "\n ❌", error)
   }
 }
 // SEO
 export async function generateMetadata({ params }: any) {
   const data = await getPostById(params.id)
-  return {
-    title: data?.attributes?.title,
-    description: data?.attributes?.subTitle,
-    keywords: data?.attributes?.tags,
-    author: "LIO",
-    robots: "index, follow",
-    googlebot: "index, follow",
-    openGraph: {
-      title: data?.attributes?.title,
-      description: data?.attributes?.subTitle,
-      type: "website",
-      url: "https://www.lio.com.ar",
-      // images: `${URL}/uploads/open-graph.jpg`,
-      images: [
-        URL + data?.attributes?.cover?.data?.attributes?.formats?.xl_webp?.url,
-      ],
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: "LIO | " + data?.attributes?.title,
-      description: data?.attributes?.subTitle,
-      site: "@Hacemos_Lio",
-      url: "https://www.lio.com.ar",
-      images:
-        URL + data?.attributes?.cover?.data?.attributes?.formats?.xl_webp?.url,
-    },
-  }
+  return seo(data)
 }
 
 // PAGE

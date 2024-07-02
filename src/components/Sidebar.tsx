@@ -8,20 +8,20 @@ import classNames from "classnames"
 import useMediaQuery from "@/app/hooks/useMediaQuery"
 import { sendGTMEvent } from "@next/third-parties/google"
 const menu = [
-  { ico: "inicio", label: "Inicio", href: "/" },
+  { ico: "inicio", label: "Inicio", href: "/inicio" },
   { ico: "eventos", label: "Eventos", href: "/eventos" },
   { ico: "noticias", label: "Noticias", href: "/noticias" },
   { ico: "recursos", label: "Recursos", href: "/recursos" },
   { ico: "tienda", label: "Tienda", href: "/tienda" },
 ]
 
-const menu2 = [
-  { label: "Juventud", href: "/" },
-  { label: "Ágrafos", href: "/" },
-  { label: "Femenina", href: "/" },
-  { label: "Técnicos y profesionales", href: "/" },
-  { label: "Comunicación", href: "/" },
-  { label: "Desarrollo", href: "/" },
+const menu2: any[] = [
+  // { label: "Juventud", href: "/" },
+  // { label: "Ágrafos", href: "/" },
+  // { label: "Femenina", href: "/" },
+  // { label: "Técnicos y profesionales", href: "/" },
+  // { label: "Comunicación", href: "/" },
+  // { label: "Desarrollo", href: "/" },
 ]
 interface props {
   className?: string
@@ -85,14 +85,16 @@ export default function Sidebar({ className }: props) {
             })}
           </nav>
           {/* NAV 2 */}
-          <div className={classNames(styles.nav, styles.grupos)}>
-            <span className={styles.title}>Nuestros Grupos</span>
-            <ul>
-              {menu2.map((item, index) => {
-                return <li key={item.label}>{item.label}</li>
-              })}
-            </ul>
-          </div>
+          {menu2.length > 0 && (
+            <div className={classNames(styles.nav, styles.grupos)}>
+              <span className={styles.title}>Nuestros Grupos</span>
+              <ul>
+                {menu2.map((item, index) => {
+                  return <li key={item.label}>{item.label}</li>
+                })}
+              </ul>
+            </div>
+          )}
         </div>
         {/* NAV 3 */}
         <div

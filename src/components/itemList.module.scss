@@ -1,0 +1,36 @@
+@use "@/styles/main.module.scss" as *;
+
+.filters {
+  display: flex;
+  gap: 2rem;
+  padding: 0.5rem 1rem;
+  border-radius: 0.4rem;
+  text-transform: capitalize;
+  option {
+    text-transform: capitalize;
+  }
+}
+
+.gridCollection {
+  max-width: 100%;
+  display: grid;
+
+  gap: 1.5rem;
+  row-gap: 2rem;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  @include up("md") {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  }
+}
+
+.loadMoreBtn {
+  align-self: center;
+  border: 1px solid grey;
+  padding: 0.8rem 2rem;
+  text-decoration: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  &:hover {
+    opacity: 0.8;
+  }
+}

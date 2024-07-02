@@ -1,7 +1,7 @@
 import "server-only"
 
 import classNames from "classnames"
-import styles from "./Item.module.scss"
+import styles from "./itemList.module.scss"
 import { getAllResource } from "@/actions"
 import ItemCard from "./itemCard"
 
@@ -14,6 +14,7 @@ export default async function ItemList({ req }: propsType) {
   // fetch data
   // ------------------------------------------
   const { data, error } = await getAllResource()
+  console.log("data: ", data)
   var sortedData = data?.sort(
     (a: any, b: any) =>
       new Date(b.attributes.publishedAt).getTime() -
@@ -31,11 +32,6 @@ export default async function ItemList({ req }: propsType) {
   }
   return (
     <div>
-      {/* <div className={classNames(styles.filters)}>
-        <span>Ordenar por</span>
-        <span>Categorias</span>
-        <input type="text" name="" id="" placeholder="Buscar" />
-      </div> */}
       <div className={classNames(styles.gridCollection)}>
         {sortedData?.map((item: any) => {
           return (

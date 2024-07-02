@@ -55,7 +55,7 @@ export const getResource = async (req: req) => {
 //  GET ALL RESOURCE
 // ---------------------------------------------------------------
 export const getAllResource = async () => {
-  const string = `?populate=deep,2&pagination[page]=1&pagination[pagesize]=10&filters[visibility][$eqi]=público`
+  const string = `?populate=deep,2&filters[visibility][$eqi]=público&pagination[page]=1&pagination[pagesize]=10`
   try {
     const [docsRes, postsRes, eventsRes, productsRes] = await Promise.all([
       fetch(`${API_URL}/api/docs/${string}, REVALIDATE`),
@@ -86,6 +86,7 @@ export const getAllResource = async () => {
       ...(products.data ? products.data : []),
     ]
     // pause(5000)
+    console.log(data)
     return { data: data }
   } catch (error) {
     console.error("❌ actions.ts ~ CATCH getAllResource", "\n ❌", error)
@@ -153,10 +154,10 @@ const CreateEndPointString = ({
   const ep = {
     url: `${url}/api/${resource}`,
     deep: `?populate=deep,${deep ? deep : 2}`,
+    public: `&filters[visibility][$eqi]=público`,
     sort: `&sort=${sort ? sort : "rank:asc"}`,
     pageSize: `&pagination[pageSize]=${pageSize ? pageSize : 5}`,
     page: `&pagination[page]=${page ? page : 1}`,
-    public: `&filters[visibility][$eqi]=público`,
     filter: filters ? `&filters${filters}` : "",
   }
   const endpointString = Object.values(ep).join("")

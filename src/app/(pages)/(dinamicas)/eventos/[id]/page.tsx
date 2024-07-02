@@ -1,9 +1,9 @@
 import BlogContent from "@/components/blogTemplate"
 import formatDataType from "@/libs/formatDataType"
+import seo from "../seoEventos"
+
 const URL = process.env.NEXT_PUBLIC_API_URL
 const PATH = "events"
-
-const revalidate = 3600
 
 //FETCH
 async function getPostById(id: string) {
@@ -17,39 +17,11 @@ async function getPostById(id: string) {
     console.error("❌ actions.ts ~ CATCH error", "\n ❌", error)
   }
 }
+
 // SEO
 export async function generateMetadata({ params }: any) {
   const data = await getPostById(params.id)
-  return {
-    title: data?.attributes?.title,
-    description: data?.attributes?.subTitle,
-    keywords: data?.attributes?.tags,
-    author: "LIO",
-    robots: "index, follow",
-    googlebot: "index, follow",
-    openGraph: {
-      title: data?.attributes?.title,
-      description: data?.attributes?.subTitle,
-      type: "website",
-      url: `https://www.lio.com.ar/${
-        formatDataType(data?.attributes?.type).path
-      }/${data?.attributes?.slug}`,
-
-      images: [
-        data?.attributes?.cover?.data?.attributes?.formats?.xl_webp?.url,
-      ],
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: "LIO | " + data?.attributes?.title,
-      description: data?.attributes?.subTitle,
-      site: "@Hacemos_Lio",
-      url: `https://www.lio.com.ar/${
-        formatDataType(data?.attributes?.type).path
-      }/${data?.attributes?.slug}`,
-      images: data?.attributes?.cover?.data?.attributes?.formats?.xl_webp?.url,
-    },
-  }
+  return seo(data)
 }
 
 // PAGE

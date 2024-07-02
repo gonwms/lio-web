@@ -4,8 +4,9 @@ import classNames from "classnames"
 import React, { useEffect, useState } from "react"
 import { getResource } from "@/actions"
 import ItemCard from "@/components/itemCard"
-import styles from "./Item.module.scss"
+import styles from "./itemList.module.scss"
 import { SkeletonGrid } from "./Skeleton"
+import Filters from "@/components/filters"
 
 interface props {
   resourceType: "events" | "products" | "docs" | "posts"
@@ -22,7 +23,6 @@ export default function ItemInfiniteScroll({ resourceType }: props) {
 
   // Fetch
   useEffect(() => {
-    console.log("trigger page")
     setLoading(true)
     ;(async () => {
       const { data, error } = await getResource({
@@ -40,34 +40,14 @@ export default function ItemInfiniteScroll({ resourceType }: props) {
     })()
   }, [page, filters])
 
-  //Fetch
-  // useEffect(() => {
-  //   console.log("trigger filter")
-  //   setLoading(true)
-  //   ;(async () => {
-  //     const { data, error } = await getResource({
-  //       resource: resourceType,
-  //       filters:
-  //         filters !== "" ? `[category][$containsi]=${filters}` : undefined,
-  //     })
-  //     data && setData(data.data)
-  //     data && setPagination(data?.meta?.pagination)
-  //     error && setError(error)
-  //     setLoading(false)
-  //   })()
-  // }, [filters])
-
   useEffect(() => {
-    console.log("pagination.page: ", pagination?.page)
-    console.log("page: ", page)
-  }, [pagination, page, filters])
-
+    console.log(dataState)
+  }, [dataState])
   // ------------------------------------------
   // handlers
   //------------------------------------------
 
   function handleMoreButtonClick() {
-    console.log("handleMoreButtonClick;", pagination.page + 1)
     setPage(pagination.page + 1)
   }
 
@@ -80,40 +60,40 @@ export default function ItemInfiniteScroll({ resourceType }: props) {
   // Render
   // ------------------------------------------
 
-  {
-    if (error) {
-      return <span>{error.message}</span>
-    }
-
-    if (dataState?.length === 0 && loading === false) {
-      return <h1>no hay resultados</h1>
-    }
-
-    // if (page === 1 && loading) {
-    //   return <SkeletonGrid count={10} />
-    // }
+  if (error) {
+    return <span>{error.message}</span>
   }
+
   return (
     <>
-      filtrar por categorias
-      <select onChange={handleFilters} value={filters}>
-        {/* {dataState?.category.map((item, index) => {
-          return <option key={index} value="">todos</option>
-        
-        })} */}
-        <option value="defensa">defensa</option>
-        <option value="juventud">juventud</option>
-        <option value="comunidad">comunidad</option>
-      </select>
-      <div className={classNames(styles.gridCollection)}>
-        {dataState?.map((item: any) => {
-          return <ItemCard key={item.id} item={item} />
-        })}
-      </div>
-      {pagination?.page < pagination?.pageCount && (
-        <a onClick={handleMoreButtonClick} className={styles.loadMoreBtn}>
-          Ver Más
-        </a>
+      <Filters
+        className={styles.filters}
+        handleFilters={handleFilters}
+        filters={filters}
+        type={"categories"}
+      ></Filters>
+
+      {/* loading */}
+      {page === 1 && loading === true && <SkeletonGrid count={10} />}
+
+      {/* no results */}
+      {dataState?.length === 0 ||
+        (dataState === null && loading === false && <h1>no hay resultados</h1>)}
+
+      {/* results */}
+      {dataState?.length > 0 && !loading && (
+        <>
+          <div className={classNames(styles.gridCollection)}>
+            {dataState?.map((item: any) => {
+              return <ItemCard key={item.id} item={item} />
+            })}
+          </div>
+          {pagination?.page < pagination?.pageCount && (
+            <a onClick={handleMoreButtonClick} className={styles.loadMoreBtn}>
+              Ver Más
+            </a>
+          )}
+        </>
       )}
     </>
   )

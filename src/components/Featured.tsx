@@ -4,14 +4,17 @@
 import { getFeatured } from "@/actions"
 import React, { useEffect, useState } from "react"
 import { Carousel, Settings } from "@/components/Carousel"
-import styles from "./home.module.scss"
+
 import ItemCard from "@/components/itemCard"
 import { SkeletonFeatured } from "@/components/Skeleton"
-
+import useMediaQuery from "@/app/hooks/useMediaQuery"
+import styles from "./featured.module.scss"
 export default function Featured() {
   //
   const [dataState, setData] = useState<any[] | null>(null)
   const [errorState, setError] = useState<{ message: string }>()
+
+  const mobile = useMediaQuery("(max-width: 768px)")
 
   useEffect(() => {
     ;(async () => {
@@ -53,10 +56,9 @@ export default function Featured() {
             {
               breakpoint: 1024,
               settings: {
-                slidesToShow: 1,
+                slidesToShow: 3,
                 slidesToScroll: 1,
                 // centerMode: dataState?.length > 3 ? true : false,
-
                 draggable: dataState?.length > 3 ? true : false,
               },
             },
@@ -75,12 +77,31 @@ export default function Featured() {
   }
 
   return (
-    <Carousel settings={settings} className={styles.carousel}>
-      {dataState?.map((item: any) => {
-        return (
-          <ItemCard key={`${item.attributes.type}-${item.id}`} item={item} />
-        )
-      })}
-    </Carousel>
+    <>
+      {mobile === true && (
+        <div className={styles.featuredMobile}>
+          {dataState?.map((item: any) => {
+            return (
+              <ItemCard
+                key={`${item.attributes.type}-${item.id}`}
+                item={item}
+              />
+            )
+          })}
+        </div>
+      )}
+      {mobile === false && (
+        <Carousel settings={settings}>
+          {dataState?.map((item: any) => {
+            return (
+              <ItemCard
+                key={`${item.attributes.type}-${item.id}`}
+                item={item}
+              />
+            )
+          })}
+        </Carousel>
+      )}
+    </>
   )
 }
