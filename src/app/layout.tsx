@@ -8,7 +8,7 @@ import LenisScroll from "@/components/LenisScroll"
 import IpDetector from "@/components/IpDetector"
 import { wix, inter } from "@/fonts"
 import SEO from "./seo"
-import { GoogleTagManager } from "@next/third-parties/google"
+import { GoogleTagManager, GoogleAnalytics } from "@next/third-parties/google"
 // ----------------- ROOT LAYOUT -----------------------
 
 const URL_WEB = process.env.NEXT_PUBLIC_MIDDLEWARE_URL
@@ -24,7 +24,7 @@ type props = {
 export default function RootLayout({ children }: props) {
   return (
     <html lang="es" className={classNames(wix.variable, inter.variable)}>
-      <GoogleTagManager gtmId="G-XKGVC1CXW2" />
+      <GoogleAnalytics gaId="G-XKGVC1CXW2" />
       <body
       // suppressHydrationWarning={true}
       >
