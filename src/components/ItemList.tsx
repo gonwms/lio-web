@@ -14,7 +14,7 @@ export default async function ItemList({ req }: propsType) {
   // fetch data
   // ------------------------------------------
   const { data, error } = await getAllResource()
-  console.log("data: ", data)
+
   var sortedData = data?.sort(
     (a: any, b: any) =>
       new Date(b.attributes.publishedAt).getTime() -

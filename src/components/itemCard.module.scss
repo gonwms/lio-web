@@ -70,17 +70,21 @@
     display: block;
     border-radius: 6rem;
     padding: 0.2em 0.6em;
-    background: #ffd800;
-    background: #2dabe2;
-    background: rgb(230, 0, 0);
     color: rgb(255, 255, 255);
     font-size: 0.8rem;
     display: flex;
     align-content: center;
-    gap: 0.5rem;
+    gap: 0.3rem;
     img {
       // height: 1em;
       width: 1em;
+    }
+    &.past {
+      background: #000000;
+      opacity: 0.8;
+    }
+    &.future {
+      background: #c20a0a;
     }
   }
 }

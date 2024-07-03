@@ -1,5 +1,5 @@
 import formatDataType from "@/libs/formatDataType"
-import { formatEventDay } from "@/libs/formateDate"
+import { formatEventDay } from "@/libs/dates"
 
 export default function seo(data: any) {
   return {

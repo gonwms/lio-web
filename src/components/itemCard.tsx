@@ -1,10 +1,15 @@
+"use client"
 import React from "react"
 import styles from "./itemCard.module.scss"
 import Link from "next/link"
-import { formatDate, formatEventDay } from "@/libs/formateDate"
+
 import formatDataType from "@/libs/formatDataType"
 import classNames from "classnames"
+import dayjs from "dayjs"
 
+dayjs.locale("es")
+const now = dayjs()
+import "dayjs/locale/es"
 // const API_URL = process.env.NEXT_PUBLIC_API_URL
 
 interface props {
@@ -17,7 +22,24 @@ export default function ItemCard({ item, style }: props) {
     item?.attributes?.type
   )
 
+  function formatEventDate(date: string) {
+    // hoy
+    if (now.isSame(date, "day")) return `Hoy ${dayjs(date).format("HH:mm")}hs`
+    // mañana
+    if (now.add(1, "day").isSame(date, "day"))
+      return `mañana ${dayjs(date).format("HH:mm")}hs`
+    // en la semana
+    if (now.isSame(date, "week") && now.isBefore(date, "day"))
+      return `este ${dayjs(date).format("ddd HH:mm")}hs`
+    //ya pasó
+    if (now.isAfter(date, "day")) return dayjs(date).format("DD/MM/YY")
+    // default
+    else return dayjs(date).format("DD MMMM")
+  }
+
   const cover = item?.attributes?.cover?.data?.attributes
+
+  // RENDER
   return (
     <div
       key={`${item.attributes.type}-${item.id}`}
@@ -59,9 +81,23 @@ export default function ItemCard({ item, style }: props) {
         </div>
         <div className={classNames(styles.tags, styles.tagDate)}>
           {item.attributes.event_start && (
-            <span>
-              <img src="/ico-bell-w.svg" alt="" />
-              {formatEventDay(item.attributes.event_start).day}
+            <span
+              className={
+                now.isAfter(item.attributes.event_start, "day")
+                  ? styles.past
+                  : styles.future
+              }
+            >
+              {now.isSame(item.attributes.event_start, "week") &&
+              now
+                .subtract(1, "day")
+                .isBefore(item.attributes.event_start, "day") ? (
+                <img src="/ico-bell-w.svg" alt="" />
+              ) : (
+                <img src="/ico-eventos-w.svg" alt="" />
+              )}
+
+              {formatEventDate(item.attributes.event_start)}
             </span>
           )}
         </div>
@@ -69,7 +105,10 @@ export default function ItemCard({ item, style }: props) {
 
       <div className={styles.meta}>
         <img src={type.ico} alt={type.path} height={14} width={14} />
-        <span>publicado el {formatDate(item.attributes.publishedAt)}</span>
+        <span>
+          publicado el {dayjs(item.attributes.publishedAt).format("DD/MM/YY")}
+        </span>
+
         <span>por {item?.attributes.author}</span>
       </div>
       <h3>

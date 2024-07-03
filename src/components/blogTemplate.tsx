@@ -3,12 +3,18 @@
 import React, { useEffect, useRef, useState } from "react"
 import CustomBlocksRenderer from "@/components/CustomBlocksRenderer"
 import styles from "./blogTemplate.module.scss"
-import { formatDate, formatEventDay } from "@/libs/formateDate"
+import { formatDate, formatEventDay } from "@/libs/dates"
 import formatDataType from "@/libs/formatDataType"
 import Lightbox from "yet-another-react-lightbox"
 import Zoom from "yet-another-react-lightbox/plugins/zoom"
 import "yet-another-react-lightbox/styles.css"
 import "@/styles/lightbox.css"
+import classNames from "classnames"
+import dayjs from "dayjs"
+
+dayjs.locale("es")
+const now = dayjs()
+import "dayjs/locale/es"
 
 export const revalidate = 3600
 
@@ -162,18 +168,43 @@ export default function BlogTemplate({ data }: any) {
                 {data.attributes.type === "events" && (
                   <>
                     <div className={styles.calendar}>
-                      <span className={styles.day}>
-                        <img src="/ico-bell.svg" alt="" />
-                        {formatEventDay(data.attributes.event_start).day}
+                      <span
+                        className={classNames(
+                          styles.day,
+                          dayjs().isAfter(data.attributes.event_start, "day")
+                            ? styles.past
+                            : styles.future
+                        )}
+                      >
+                        {/* ICONO */}
+                        {now.isSame(data.attributes.event_start, "week") &&
+                        now
+                          .subtract(1, "day")
+                          .isBefore(data.attributes.event_start, "day") ? (
+                          <img src="/ico-bell-w.svg" alt="" />
+                        ) : (
+                          <img src="/ico-eventos-w.svg" alt="" />
+                        )}
+                        {dayjs(data.attributes.event_start).format(
+                          "dddd DD MMMM"
+                        )}
                       </span>
 
                       <span>
                         <img src="/ico-clock.svg" alt="" />
-                        de {formatEventDay(data.attributes.event_start).hour} hs
-                        a {formatEventDay(data.attributes.event_end).hour} hs
+                        {data.attributes.event_start &&
+                          `${dayjs(data.attributes.event_start).format(
+                            "HH:mm"
+                          )}hs`}
+                        {data.attributes.event_end &&
+                          ` a ${dayjs(data.attributes.event_end).format(
+                            "HH:mm"
+                          )}hs`}
                       </span>
                       <span>
-                        <img src="/ico-map.svg" alt="" />
+                        {data.attributes.mapa_link && (
+                          <img src="/ico-map.svg" alt="" />
+                        )}
                         {data.attributes.mapa_link ? (
                           <a href={data.attributes.mapa_link} target="_blank">
                             {data.attributes.ubicacion}
