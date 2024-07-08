@@ -13,3 +13,11 @@
   --gray-3: #f0f0f3;
   --gray-4: #e8e8ec;
 }
+
+:root {
+  --xs: 520px;
+  --sm: 768px;
+  --md: 1024px;
+  --lg: 1280px;
+  --xl: 1640px;
+}

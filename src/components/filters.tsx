@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
 
-interface props extends React.HTMLAttributes<HTMLSelectElement> {
+interface props extends React.HTMLAttributes<HTMLLabelElement> {
   handleFilters: any
   filters: any
   type: string
@@ -35,18 +35,21 @@ export default function Filters({
 
   return (
     <>
-      <select onChange={handleFilters} value={filters} {...rest}>
-        <option value="">todos</option>
+      <label htmlFor="cat" {...rest}>
+        <span>Categoria</span>
+        <select id="cat" onChange={handleFilters} value={filters}>
+          <option value="">todos</option>
 
-        {/* TODO make al components documentation */}
-        {dataState?.map((option: any) => {
-          return (
-            <option key={option.id} value={option.attributes.name}>
-              {option.attributes.name}
-            </option>
-          )
-        })}
-      </select>
+          {/* TODO make al components documentation */}
+          {dataState?.map((option: any) => {
+            return (
+              <option key={option.id} value={option.attributes.name}>
+                {option.attributes.name}
+              </option>
+            )
+          })}
+        </select>
+      </label>
     </>
   )
 }

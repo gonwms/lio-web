@@ -17,7 +17,8 @@
 
   gap: 1.5rem;
   row-gap: 2rem;
-  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+
   @include up("md") {
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   }
@@ -32,5 +33,25 @@
   cursor: pointer;
   &:hover {
     opacity: 0.8;
+  }
+}
+
+.filters {
+  max-width: min(20%);
+  min-width: 250px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+
+  @include down("sm") {
+    max-width: min(100%);
+  }
+  span {
+    font-size: 0.8rem;
+  }
+  select {
+    padding: 0.5rem 1rem;
+    border-radius: 0;
   }
 }
