@@ -2,14 +2,14 @@ import formatDataType from "@/libs/formatDataType"
 
 export default function seo(data: any) {
   return {
-    title: data?.attributes?.title + " ~ LIO",
+    title: "LIO - " + data?.attributes?.title,
     description: data?.attributes?.subTitle,
     keywords: data?.attributes?.tags,
     author: "LIO",
     robots: "index, follow",
     googlebot: "index, follow",
     openGraph: {
-      title: "LIO ~ " + data?.attributes?.title,
+      title: "LIO - " + data?.attributes?.title,
       description: data?.attributes?.subTitle,
       type: "website",
       url: `https://www.lio.com.ar/${
@@ -22,7 +22,7 @@ export default function seo(data: any) {
     },
     twitter: {
       card: "summary_large_image",
-      title: "LIO ~ " + data?.attributes?.title,
+      title: "LIO - " + data?.attributes?.title,
       description: data?.attributes?.subTitle,
       site: "@Hacemos_Lio",
       url: `https://www.lio.com.ar/${

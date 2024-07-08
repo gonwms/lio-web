@@ -1,5 +1,4 @@
 import BlogContent from "@/components/blogTemplate"
-import formatDataType from "@/libs/formatDataType"
 import seo from "../seoEventos"
 
 const URL = process.env.NEXT_PUBLIC_API_URL

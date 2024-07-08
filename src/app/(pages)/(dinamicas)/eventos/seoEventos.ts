@@ -1,25 +1,28 @@
 import formatDataType from "@/libs/formatDataType"
-import { formatEventDay } from "@/libs/dates"
+import dayjs from "dayjs"
+
+dayjs.locale("es")
+const now = dayjs()
+import "dayjs/locale/es"
+import classNames from "classnames"
 
 export default function seo(data: any) {
   return {
-    title: data?.attributes?.title + " ~ LIO",
-    description:
-      formatEventDay(data.attributes.event_start).day +
-      " " +
-      formatEventDay(data.attributes.event_start).hour +
-      "hs",
+    title: "LIO - " + data?.attributes?.title,
+    description: `El ${dayjs(data.attributes.event_start).format(
+      "dddd MMMM [a las] HH:mm"
+    )}hs`,
+
     keywords: data?.attributes?.tags,
     author: "LIO",
     robots: "index, follow",
     googlebot: "index, follow",
     openGraph: {
-      title: "LIO ~ " + data?.attributes?.title,
-      description:
-        formatEventDay(data.attributes.event_start).day +
-        " " +
-        formatEventDay(data.attributes.event_start).hour +
-        "hs",
+      title: data?.attributes?.title,
+      description: `El ${dayjs(data.attributes.event_start).format(
+        "dddd MMMM [a las] HH:mm"
+      )}hs`,
+
       type: "website",
       url: `https://www.lio.com.ar/${
         formatDataType(data?.attributes?.type).path
@@ -31,12 +34,11 @@ export default function seo(data: any) {
     },
     twitter: {
       card: "summary_large_image",
-      title: "LIO ~ " + data?.attributes?.title,
-      description:
-        formatEventDay(data.attributes.event_start).day +
-        " " +
-        formatEventDay(data.attributes.event_start).hour +
-        "hs",
+      title: data?.attributes?.title,
+      description: `El ${dayjs(data.attributes.event_start).format(
+        "dddd MMMM [a las] HH:mm"
+      )}hs`,
+
       site: "@Hacemos_Lio",
       url: `https://www.lio.com.ar/${
         formatDataType(data?.attributes?.type).path

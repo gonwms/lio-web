@@ -2,7 +2,7 @@ const SEO = {
   robots: "index, follow",
   googlebot: "index, follow",
   author: "LIO",
-  title: `LIO ~ Los Inorgánicos Organizados`,
+  title: `LIO - Los Inorgánicos Organizados ✌️`,
   description:
     "Guillermo Moreno conducción. Con Principios y Valores en el movimiento peronista",
   icons: { icon: "/favicon.png" },
@@ -10,7 +10,7 @@ const SEO = {
     "LIO, Los Inorganicos Organizados, Peronismo, Guillermo Moreno, Nydia Lirola, ",
 
   openGraph: {
-    title: `LIO ~ Los Inorgánicos Organizados`,
+    title: `LIO - Los Inorgánicos Organizados ✌️`,
     description:
       "Guillermo Moreno conducción. Con Principios y Valores en el movimiento peronista",
     type: "website",
@@ -19,7 +19,7 @@ const SEO = {
   },
   twitter: {
     card: "summary_large_image",
-    title: `LIO ~ Los Inorgánicos Organizados`,
+    title: `LIO - Los Inorgánicos Organizados ✌️`,
     description:
       "Guillermo Moreno conducción. Con Principios y Valores en el movimiento peronista",
     site: "@Hacemos_Lio",

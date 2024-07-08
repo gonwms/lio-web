@@ -29,7 +29,9 @@ export default function ItemInfiniteScroll({ resourceType }: props) {
         resource: resourceType,
         page: page,
         filters:
-          filters !== "" ? `[category][$containsi]=${filters}` : undefined,
+          filters !== ""
+            ? `[category_${resourceType}][name][$eqi]=${filters}`
+            : undefined,
       })
       data && page > 1
         ? setData([...dataState, ...data.data])
@@ -40,9 +42,9 @@ export default function ItemInfiniteScroll({ resourceType }: props) {
     })()
   }, [page, filters])
 
-  useEffect(() => {
-    console.log(dataState)
-  }, [dataState])
+  // useEffect(() => {
+  //   console.log(dataState)
+  // }, [dataState])
   // ------------------------------------------
   // handlers
   //------------------------------------------
@@ -66,20 +68,21 @@ export default function ItemInfiniteScroll({ resourceType }: props) {
 
   return (
     <>
-      <Filters
-        className={styles.filters}
-        handleFilters={handleFilters}
-        filters={filters}
-        type={"categories"}
-      ></Filters>
-
+      {(resourceType == "docs" || resourceType == "posts") && (
+        <>
+          <Filters
+            className={styles.filters}
+            handleFilters={handleFilters}
+            filters={filters}
+            type={resourceType == "docs" ? "category-docs" : "category-posts"}
+          ></Filters>
+        </>
+      )}
       {/* loading */}
       {page === 1 && loading === true && <SkeletonGrid count={10} />}
-
       {/* no results */}
       {dataState?.length === 0 ||
         (dataState === null && loading === false && <h1>no hay resultados</h1>)}
-
       {/* results */}
       {dataState?.length > 0 && !loading && (
         <>

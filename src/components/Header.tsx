@@ -10,9 +10,10 @@ import classNames from "classnames"
 import useMediaQuery from "@/app/hooks/useMediaQuery"
 
 const menu = [
-  { label: "Quienes somos", href: "/quienes-somos", target: "_self" },
-  { label: "En dónde estamos", href: "/en-donde-estamos", target: "_self" },
-  { label: "Contacto", href: "/contacto", target: "_self" },
+  { label: "Inicio", href: "/inicio", target: "_self" },
+  // { label: "Quienes somos", href: "/quienes-somos", target: "_self" },
+  // { label: "En dónde estamos", href: "/en-donde-estamos", target: "_self" },
+  // { label: "Contacto", href: "/contacto", target: "_self" },
 ]
 interface props {
   className?: string
@@ -57,7 +58,7 @@ const Header = ({ className }: props) => {
               href="https://chat.whatsapp.com/FhOhNQHdUvMFRx4r8GML0w"
               target="_blank"
             >
-              <img src="/whatsapp.svg" alt="whatsapp" />
+              Contacto <img src="/whatsapp.svg" alt="whatsapp" />
             </a>
           </nav>
           <a href="https://www.principiosyvalores.org/" target="_blank">

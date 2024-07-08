@@ -1,9 +1,8 @@
 "use client"
 
-import React, { useEffect, useRef, useState } from "react"
+import React, { useEffect, useState } from "react"
 import CustomBlocksRenderer from "@/components/CustomBlocksRenderer"
 import styles from "./blogTemplate.module.scss"
-import { formatDate, formatEventDay } from "@/libs/dates"
 import formatDataType from "@/libs/formatDataType"
 import Lightbox from "yet-another-react-lightbox"
 import Zoom from "yet-another-react-lightbox/plugins/zoom"
@@ -11,17 +10,17 @@ import "yet-another-react-lightbox/styles.css"
 import "@/styles/lightbox.css"
 import classNames from "classnames"
 import dayjs from "dayjs"
+import "dayjs/locale/es"
+import { BlogDateTag } from "./DateTags"
 
 dayjs.locale("es")
-const now = dayjs()
-import "dayjs/locale/es"
-
 export const revalidate = 3600
 
 export default function BlogTemplate({ data }: any) {
   //
+
   const cover = data?.attributes?.cover?.data?.attributes
-  const allContent = [
+  const allContentBlocks = [
     { id: 0, __component: "texto.texto", content: data?.attributes?.content },
     ...data?.attributes?.contents,
   ]
@@ -43,11 +42,9 @@ export default function BlogTemplate({ data }: any) {
   const [pinchZoomDistanceFactor, setPinchZoomDistanceFactor] = useState(100)
   const [scrollToZoom, setScrollToZoom] = useState(false)
 
-  // const srcs: { src: string }[] = []
-
   const onClick = (index: number) => {
     setIndex(index)
-    console.log(album)
+    // console.log(album)
   }
   // buscar todas las imágenes y almacenarlas en album
   useEffect(() => {
@@ -83,7 +80,7 @@ export default function BlogTemplate({ data }: any) {
   /*--------------------------------
    * HANDLE CONTENTS BLOCKS
    *-------------------------------  */
-  const contents = allContent.reduce((acc: any, curr: any, index) => {
+  const contents = allContentBlocks.reduce((acc: any, curr: any, index) => {
     switch (curr.__component) {
       //  TEXTOS
       case "texto.texto":
@@ -163,66 +160,29 @@ export default function BlogTemplate({ data }: any) {
             </div>
             <div className={styles.headerContent}>
               <div>
-                {/* fecha */}
                 <h1>{data?.attributes?.title}</h1>
-                {data.attributes.type === "events" && (
-                  <>
-                    <div className={styles.calendar}>
-                      <span
-                        className={classNames(
-                          styles.day,
-                          dayjs().isAfter(data.attributes.event_start, "day")
-                            ? styles.past
-                            : styles.future
-                        )}
-                      >
-                        {/* ICONO */}
-                        {now.isSame(data.attributes.event_start, "week") &&
-                        now
-                          .subtract(1, "day")
-                          .isBefore(data.attributes.event_start, "day") ? (
-                          <img src="/ico-bell-w.svg" alt="" />
-                        ) : (
-                          <img src="/ico-eventos-w.svg" alt="" />
-                        )}
-                        {dayjs(data.attributes.event_start).format(
-                          "dddd DD MMMM"
-                        )}
-                      </span>
 
-                      <span>
-                        <img src="/ico-clock.svg" alt="" />
-                        {data.attributes.event_start &&
-                          `${dayjs(data.attributes.event_start).format(
-                            "HH:mm"
-                          )}hs`}
-                        {data.attributes.event_end &&
-                          ` a ${dayjs(data.attributes.event_end).format(
-                            "HH:mm"
-                          )}hs`}
-                      </span>
-                      <span>
-                        {data.attributes.mapa_link && (
-                          <img src="/ico-map.svg" alt="" />
-                        )}
-                        {data.attributes.mapa_link ? (
-                          <a href={data.attributes.mapa_link} target="_blank">
-                            {data.attributes.ubicacion}
-                          </a>
-                        ) : (
-                          data.attributes.ubicacion
-                        )}
-                      </span>
-                    </div>
-                  </>
+                {data.attributes.type === "events" && (
+                  <BlogDateTag data={data} styles={styles} />
                 )}
               </div>
               <h2>{data?.attributes?.subTitle}</h2>
-
+              <div className={classNames(styles.tags, styles.tagCategory)}>
+                {console.log(
+                  data.attributes[`category_${data?.attributes?.type}`]?.data
+                )}
+                {data.attributes[`category_${data?.attributes?.type}`] &&
+                  data.attributes[
+                    `category_${data?.attributes?.type}`
+                  ].data?.map((cat: any) => (
+                    <span key={cat.id}>{cat.attributes.name}</span>
+                  ))}
+              </div>
               <div className={styles.meta}>
                 <img src={type.ico} alt={type.path} height={14} width={14} />
                 <span>
-                  Publicado el {formatDate(data?.attributes?.publishedAt)}
+                  publicado el{" "}
+                  {dayjs(data.attributes.publishedAt).format("DD/MM/YY")}
                 </span>
                 {data?.attributes?.author && (
                   <span>
@@ -238,55 +198,11 @@ export default function BlogTemplate({ data }: any) {
               </div>
             </div>
           </div>
-          <div className={styles.content}>
-            {/* {data.attributes.type === "events" && (
-              <div className={styles.date}>
-                <table>
-                  {data.attributes.event_start && (
-                    <>
-                      <tr>
-                        <th>Día </th>
-                        <td>
-                          {formatEventDay(data.attributes.event_start).day}{" "}
-                        </td>
-                      </tr>
-                      <tr>
-                        <th>A las </th>
-                        <td>
-                          {formatEventDay(data.attributes.event_start).hour} hs
-                        </td>
-                      </tr>
-                    </>
-                  )}
-                  {data.attributes.event_end && (
-                    <tr>
-                      <th>Hasta </th>
-                      <td>
-                        {formatEventDay(data.attributes.event_end).hour} hs
-                      </td>
-                    </tr>
-                  )}
-                  {data.attributes.ubicacion && (
-                    <tr>
-                      <th>Lugar </th>
-                      <td>
-                        {data.attributes.mapa_link ? (
-                          <a href={data.attributes.mapa_link} target="_blank">
-                            {data.attributes.ubicacion}
-                          </a>
-                        ) : (
-                          data.attributes.ubicacion
-                        )}
-                      </td>
-                    </tr>
-                  )}
-                </table>
-              </div>
-            )} */}
-            {contents}
-          </div>
+
+          <div className={styles.content}>{contents}</div>
         </div>
       )}
+
       <Lightbox
         className={styles.lightbox}
         index={index}

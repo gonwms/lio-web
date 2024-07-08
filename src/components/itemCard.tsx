@@ -2,14 +2,14 @@
 import React from "react"
 import styles from "./itemCard.module.scss"
 import Link from "next/link"
-
 import formatDataType from "@/libs/formatDataType"
 import classNames from "classnames"
 import dayjs from "dayjs"
 
 dayjs.locale("es")
-const now = dayjs()
+
 import "dayjs/locale/es"
+import { CardDateTag } from "./DateTags"
 // const API_URL = process.env.NEXT_PUBLIC_API_URL
 
 interface props {
@@ -21,21 +21,6 @@ export default function ItemCard({ item, style }: props) {
   const type: { path: string; ico: string } = formatDataType(
     item?.attributes?.type
   )
-
-  function formatEventDate(date: string) {
-    // hoy
-    if (now.isSame(date, "day")) return `Hoy ${dayjs(date).format("HH:mm")}hs`
-    // mañana
-    if (now.add(1, "day").isSame(date, "day"))
-      return `mañana ${dayjs(date).format("HH:mm")}hs`
-    // en la semana
-    if (now.isSame(date, "week") && now.isBefore(date, "day"))
-      return `este ${dayjs(date).format("ddd HH:mm")}hs`
-    //ya pasó
-    if (now.isAfter(date, "day")) return dayjs(date).format("DD/MM/YY")
-    // default
-    else return dayjs(date).format("DD MMMM")
-  }
 
   const cover = item?.attributes?.cover?.data?.attributes
 
@@ -79,28 +64,11 @@ export default function ItemCard({ item, style }: props) {
               <span key={cat}>{cat}</span>
             ))}
         </div>
-        <div className={classNames(styles.tags, styles.tagDate)}>
-          {item.attributes.event_start && (
-            <span
-              className={
-                now.isAfter(item.attributes.event_start, "day")
-                  ? styles.past
-                  : styles.future
-              }
-            >
-              {now.isSame(item.attributes.event_start, "week") &&
-              now
-                .subtract(1, "day")
-                .isBefore(item.attributes.event_start, "day") ? (
-                <img src="/ico-bell-w.svg" alt="" />
-              ) : (
-                <img src="/ico-eventos-w.svg" alt="" />
-              )}
-
-              {formatEventDate(item.attributes.event_start)}
-            </span>
-          )}
-        </div>
+        {item.attributes.event_start && (
+          <div className={classNames(styles.tags, styles.tagDate)}>
+            <CardDateTag data={item} styles={styles} />
+          </div>
+        )}
       </div>
 
       <div className={styles.meta}>

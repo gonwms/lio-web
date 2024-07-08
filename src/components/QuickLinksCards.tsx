@@ -94,12 +94,16 @@ export default function QuickLinksCards() {
             </div>
           </a>
 
-          <a href="#" className={classNames(styles.quickLink, styles.plan)}>
+          <a
+            href="https://www.youtube.com/@RadioInclusiva/streams"
+            className={classNames(styles.quickLink, styles.plan)}
+            target="_blank"
+          >
             <div className={styles.content}>
               <img src="/ico-cast.svg" alt="" />
               <div>
                 <strong>Mundo LIO</strong>
-                <span>Miercoles 20:00hs</span>
+                <span>Los miercoles 20:00hs</span>
               </div>
             </div>
           </a>

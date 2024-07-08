@@ -15,7 +15,7 @@ export interface req {
   filters?: string
 }
 
-const REVALIDATE = { next: { revalidate: 20 } }
+const REVALIDATE = { next: { revalidate: 600 } }
 
 // ---------------------------------------------------------------
 //  GET RESOURCE
@@ -33,7 +33,7 @@ export const getResource = async (req: req) => {
   })
 
   try {
-    console.log(endpoint)
+    // console.log(endpoint)
     const res = await fetch(endpoint, REVALIDATE)
     // const wait = pause(2000)
     let data = await res.json()
@@ -55,7 +55,7 @@ export const getResource = async (req: req) => {
 //  GET ALL RESOURCE
 // ---------------------------------------------------------------
 export const getAllResource = async () => {
-  const string = `?populate=deep,2&filters[visibility][$eqi]=público&pagination[page]=1&pagination[pagesize]=10`
+  const string = `?populate=deep,2&filters[visibility][$eqi]=público&pagination[page]=1&pagination[pagesize]=15`
   try {
     const [docsRes, postsRes, eventsRes, productsRes] = await Promise.all([
       fetch(`${API_URL}/api/docs/${string}, REVALIDATE`),
@@ -86,7 +86,7 @@ export const getAllResource = async () => {
       ...(products.data ? products.data : []),
     ]
     // pause(5000)
-    console.log(data)
+    // console.log(data)
     return { data: data }
   } catch (error) {
     console.error("❌ actions.ts ~ CATCH getAllResource", "\n ❌", error)
@@ -156,7 +156,7 @@ const CreateEndPointString = ({
     deep: `?populate=deep,${deep ? deep : 2}`,
     public: `&filters[visibility][$eqi]=público`,
     sort: `&sort=${sort ? sort : "rank:asc"}`,
-    pageSize: `&pagination[pageSize]=${pageSize ? pageSize : 5}`,
+    pageSize: `&pagination[pageSize]=${pageSize ? pageSize : 20}`,
     page: `&pagination[page]=${page ? page : 1}`,
     filter: filters ? `&filters${filters}` : "",
   }
