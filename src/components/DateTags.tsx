@@ -16,13 +16,13 @@ interface props extends React.HTMLAttributes<HTMLDivElement> {
 export function CardDateTag({ data, styles }: props) {
   function formatEventDate(date: string) {
     // hoy
-    if (now.isSame(date, "day")) return `Hoy ${dayjs(date).format("HH:mm")}hs`
+    if (now.isSame(date, "day")) return `Hoy ${dayjs(date).format("hh:mma")}`
     // mañana
     if (now.add(1, "day").isSame(date, "day"))
-      return `mañana ${dayjs(date).format("HH:mm")}hs`
+      return `mañana ${dayjs(date).format("hh:mma")}`
     // en la semana
     if (now.isSame(date, "week") && now.isBefore(date, "day"))
-      return `este ${dayjs(date).format("ddd HH:mm")}hs`
+      return `este ${dayjs(date).format("ddd hh:mma")}`
     //ya pasó
     if (now.isAfter(date, "day")) return dayjs(date).format("DD/MM/YY")
     // default
@@ -97,9 +97,9 @@ export function BlogDateTag({ data, styles }: props) {
           <span>
             <img src="/ico-clock.svg" alt="" />
             {data.attributes.event_start &&
-              `${dayjs(data.attributes.event_start).format("HH:mm")}hs`}
+              `${dayjs(data.attributes.event_start).format("hh:mma")}`}
             {data.attributes.event_end &&
-              ` a ${dayjs(data.attributes.event_end).format("HH:mm")}hs`}
+              ` a ${dayjs(data.attributes.event_end).format("hh:mma")}`}
           </span>
         )}
 

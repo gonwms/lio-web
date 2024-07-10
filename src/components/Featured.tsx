@@ -2,7 +2,7 @@
 "use client"
 
 import { getFeatured } from "@/actions"
-import React, { useEffect, useState } from "react"
+import React, { ReactElement, ReactNode, useEffect, useState } from "react"
 import { Carousel, Settings } from "@/components/Carousel"
 
 import ItemCard from "@/components/itemCard"
@@ -33,7 +33,7 @@ export default function Featured() {
     dataState === null
       ? {}
       : {
-          slidesToShow: dataState?.length >= 3 ? 3 : 1,
+          slidesToShow: dataState?.length >= 3 ? 3 : 3,
           slidesToScroll: 1,
           initialSlide: 0,
           infinite: dataState?.length > 3 ? false : false,
@@ -41,14 +41,16 @@ export default function Featured() {
           arrows: dataState?.length > 3 ? true : false,
           speed: 500,
           autoplay: dataState?.length >= 4 ? true : false,
+
           // autoplay: false,
           autoplaySpeed: 5000,
           // centerMode: dataState?.length > 3 ? true : false,
-          // variableWidth: true,
+          variableWidth: false,
           responsive: [
             {
               breakpoint: 1552,
               settings: {
+                arrows: dataState?.length > 2 ? true : false,
                 slidesToShow: 2,
                 slidesToScroll: 1,
               },
@@ -56,7 +58,7 @@ export default function Featured() {
             {
               breakpoint: 1024,
               settings: {
-                slidesToShow: 3,
+                slidesToShow: 2,
                 slidesToScroll: 1,
                 // centerMode: dataState?.length > 3 ? true : false,
                 draggable: dataState?.length > 3 ? true : false,
@@ -73,7 +75,7 @@ export default function Featured() {
   }
   if (!dataState) return <SkeletonFeatured count={3} />
   if (dataState?.length === 0) {
-    return <h1>no hay resultados</h1>
+    return <></>
   }
 
   return (
@@ -100,6 +102,9 @@ export default function Featured() {
               />
             )
           })}
+          {/* rellenar minimos */}
+          {dataState.length < 3 && <div></div>}
+          {dataState.length < 2 && <div></div>}
         </Carousel>
       )}
     </>

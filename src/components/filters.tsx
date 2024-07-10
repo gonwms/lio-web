@@ -35,21 +35,23 @@ export default function Filters({
 
   return (
     <>
-      <label htmlFor="cat" {...rest}>
-        <span>Categoria</span>
-        <select id="cat" onChange={handleFilters} value={filters}>
-          <option value="">todos</option>
+      {dataState.length > 1 && (
+        <label htmlFor="cat" {...rest}>
+          <span>Categoria</span>
+          <select id="cat" onChange={handleFilters} value={filters}>
+            <option value="">todos</option>
 
-          {/* TODO make al components documentation */}
-          {dataState?.map((option: any) => {
-            return (
-              <option key={option.id} value={option.attributes.name}>
-                {option.attributes.name}
-              </option>
-            )
-          })}
-        </select>
-      </label>
+            {/* TODO make al components documentation */}
+            {dataState?.map((option: any) => {
+              return (
+                <option key={option.id} value={option.attributes.name}>
+                  {option.attributes.name}
+                </option>
+              )
+            })}
+          </select>
+        </label>
+      )}
     </>
   )
 }

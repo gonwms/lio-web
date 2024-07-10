@@ -10,7 +10,7 @@ export default function seo(data: any) {
   return {
     title: "LIO - " + data?.attributes?.title,
     description: `El ${dayjs(data.attributes.event_start).format(
-      "dddd MMMM [a las] HH:mm"
+      "dddd MMMM [a las] hh:mma"
     )}hs`,
 
     keywords: data?.attributes?.tags,
@@ -20,7 +20,7 @@ export default function seo(data: any) {
     openGraph: {
       title: data?.attributes?.title,
       description: `El ${dayjs(data.attributes.event_start).format(
-        "dddd MMMM [a las] HH:mm"
+        "dddd MMMM [a las] hh:mma"
       )}hs`,
 
       type: "website",
@@ -36,7 +36,7 @@ export default function seo(data: any) {
       card: "summary_large_image",
       title: data?.attributes?.title,
       description: `El ${dayjs(data.attributes.event_start).format(
-        "dddd MMMM [a las] HH:mm"
+        "dddd MMMM [a las] hh:mma"
       )}hs`,
 
       site: "@Hacemos_Lio",

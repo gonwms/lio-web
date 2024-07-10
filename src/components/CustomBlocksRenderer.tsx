@@ -1,4 +1,4 @@
-// "use client"
+"use client"
 import React, { useRef, useState } from "react"
 import {
   BlocksRenderer,
@@ -14,12 +14,32 @@ interface props {
 
 export default function CustomBlocksRender({ content, id }: props) {
   if (!content) return null
+
+  const sanitazeContent: BlocksContent = []
+  content.forEach((block) => {
+    if (block.type === "paragraph") {
+      const parafragh = block.children[0] as { text: string }
+      if (parafragh.text !== "") {
+        sanitazeContent.push(block)
+      }
+    } else {
+      sanitazeContent.push(block)
+    }
+  })
   return (
     <>
       <BlocksRenderer
-        content={content}
+        content={sanitazeContent}
         // key={id}
         blocks={{
+          paragraph: ({ children }: any) => {
+            // conver \br to <br>
+            const convertedString = children[0]?.props.text?.replace(
+              /([^\\])\n/g,
+              "$1<br>"
+            )
+            return <p dangerouslySetInnerHTML={{ __html: convertedString }}></p>
+          },
           heading: ({ children, level }) => {
             switch (level) {
               case 1:

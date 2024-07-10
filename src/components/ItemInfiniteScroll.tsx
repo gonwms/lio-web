@@ -69,14 +69,12 @@ export default function ItemInfiniteScroll({ resourceType }: props) {
   return (
     <>
       {(resourceType == "docs" || resourceType == "posts") && (
-        <>
-          <Filters
-            className={styles.filters}
-            handleFilters={handleFilters}
-            filters={filters}
-            type={resourceType == "docs" ? "category-docs" : "category-posts"}
-          ></Filters>
-        </>
+        <Filters
+          className={styles.filters}
+          handleFilters={handleFilters}
+          filters={filters}
+          type={resourceType == "docs" ? "category-docs" : "category-posts"}
+        ></Filters>
       )}
       {/* loading */}
       {page === 1 && loading === true && <SkeletonGrid count={10} />}

@@ -168,9 +168,9 @@ export default function BlogTemplate({ data }: any) {
               </div>
               <h2>{data?.attributes?.subTitle}</h2>
               <div className={classNames(styles.tags, styles.tagCategory)}>
-                {console.log(
+                {/* {console.log(
                   data.attributes[`category_${data?.attributes?.type}`]?.data
-                )}
+                )} */}
                 {data.attributes[`category_${data?.attributes?.type}`] &&
                   data.attributes[
                     `category_${data?.attributes?.type}`
