@@ -35,7 +35,7 @@ export default function Filters({
 
   return (
     <>
-      {dataState.length > 1 && (
+      {dataState?.length > 1 && (
         <label htmlFor="cat" {...rest}>
           <span>Categoria</span>
           <select id="cat" onChange={handleFilters} value={filters}>
