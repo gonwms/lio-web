@@ -1,0 +1,22 @@
+.form {
+  margin-top: 1rem;
+  display: flex;
+  // align-items: center;
+  gap: 0.5rem;
+  input {
+    font-size: 1rem;
+    line-height: 1rem;
+    min-width: 600px;
+    padding: 0.5rem;
+    border-radius: 0;
+    border: 1px solid black;
+  }
+  button {
+    line-height: 1rem;
+    border: 1px solid black;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    background: black;
+    color: white;
+  }
+}

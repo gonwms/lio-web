@@ -1,4 +1,4 @@
-import BlogContent from "@/components/blogTemplate"
+import BlogContent, { revalidate } from "@/components/blogTemplate"
 import seo from "../seoEventos"
 
 const URL = process.env.NEXT_PUBLIC_API_URL

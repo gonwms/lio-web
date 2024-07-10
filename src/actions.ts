@@ -18,6 +18,15 @@ export interface req {
 const REVALIDATE = { next: { revalidate: 600 } }
 
 // ---------------------------------------------------------------
+//  CLEAR CACHE
+// ---------------------------------------------------------------
+export async function clearCache(formData: any) {
+  const pathname = formData.get("name")
+  console.log("pathname:", pathname)
+  revalidatePath(pathname)
+}
+
+// ---------------------------------------------------------------
 //  GET RESOURCE
 // ---------------------------------------------------------------
 export const getResource = async (req: req) => {
@@ -58,10 +67,10 @@ export const getAllResource = async () => {
   const string = `?populate=deep,2&filters[visibility][$eqi]=público&pagination[page]=1&pagination[pagesize]=15`
   try {
     const [docsRes, postsRes, eventsRes, productsRes] = await Promise.all([
-      fetch(`${API_URL}/api/docs/${string}, REVALIDATE`),
-      fetch(`${API_URL}/api/posts/${string}, REVALIDATE`),
-      fetch(`${API_URL}/api/events/${string}, REVALIDATE`),
-      fetch(`${API_URL}/api/products/${string}, REVALIDATE`),
+      fetch(`${API_URL}/api/docs/${string}`, REVALIDATE),
+      fetch(`${API_URL}/api/posts/${string}`, REVALIDATE),
+      fetch(`${API_URL}/api/events/${string}`, REVALIDATE),
+      fetch(`${API_URL}/api/products/${string}`, REVALIDATE),
     ])
 
     const docs = await docsRes.json()

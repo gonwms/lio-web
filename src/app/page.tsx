@@ -15,7 +15,7 @@ interface propsType {
 
 const revalidate = 3600
 
-export default async function Home({ params, searchParams }: propsType) {
+export default async function Welcome({ params, searchParams }: propsType) {
   //
 
   return (
@@ -28,14 +28,12 @@ export default async function Home({ params, searchParams }: propsType) {
             height={130}
           />
 
-          {/* <a href="https://www.principiosyvalores.org/" target="_blank"> */}
           <img
             className={styles.logoPyV}
             src="/pyv-logo.svg"
             alt="Principios y Valores"
             height={130}
           />
-          {/* </a> */}
         </Col>
         <Col className={classNames(styles.comunicate)}>
           <span className={styles.title}>comunicate</span>
