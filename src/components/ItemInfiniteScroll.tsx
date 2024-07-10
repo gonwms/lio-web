@@ -79,8 +79,9 @@ export default function ItemInfiniteScroll({ resourceType }: props) {
       {/* loading */}
       {page === 1 && loading === true && <SkeletonGrid count={10} />}
       {/* no results */}
-      {dataState?.length === 0 ||
-        (dataState === null && loading === false && <h1>no hay resultados</h1>)}
+      {(dataState?.length === 0 || dataState === null) && loading === false && (
+        <h3>no hay resultados</h3>
+      )}
       {/* results */}
       {dataState?.length > 0 && !loading && (
         <>
