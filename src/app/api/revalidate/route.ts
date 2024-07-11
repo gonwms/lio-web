@@ -2,15 +2,18 @@
 
 import { NextResponse } from "next/server"
 import { revalidatePath } from "next/cache"
+import formatDataType from "@/libs/formatDataType"
 
 // FUNCION SE EJECUTA EN WEBHOOKS THE STRAPI
 export async function POST(request: any) {
   const body = await request.json()
   const slug = body?.entry?.slug
-  const type = body?.entry?.type
+  const type = formatDataType(body?.entry?.type)
 
   if (slug && type) {
-    revalidatePath(`/${type}/${slug}`)
+    revalidatePath(`/${type}/${slug}`, "page")
+    revalidatePath(`/${type}`, "page")
+    revalidatePath(`/`, "page")
     return NextResponse.json({ message: `path updated: /${type}/${slug}` })
   } else {
     return NextResponse.json(
