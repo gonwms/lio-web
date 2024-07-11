@@ -14,6 +14,7 @@ export async function POST(request: any) {
     console.log(`/${type}/${slug}`)
     revalidatePath(`/${type}/${slug}`)
     revalidatePath(`/${type}`)
+    revalidatePath(`/inicio`)
     revalidatePath(`/`)
     return NextResponse.json({ message: `path updated: /${type}/${slug}` })
   } else {
