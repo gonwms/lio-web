@@ -36,7 +36,6 @@ export default function CustomBlocksRender({ content, id }: props) {
             // conver \br to <br>
             const convertedString = children.map((child: any) => {
               let text = child.props.text
-              console.log(child)
               if (child.props.italic === true) text = `<i>${text}</i>`
               if (child.props.bold === true) text = `<strong>${text}</strong>`
               return text?.replace(/([^\\])\n/g, "$1<br>")
