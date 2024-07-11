@@ -209,9 +209,12 @@
     position: relative;
     margin: 2.5em 2.5em 2.5em 2.5em;
     margin-left: 4rem;
-
     font-size: 1.8rem;
     line-height: 1.1em;
+    @include down("md") {
+      margin: 2.5em 1em 2.5em 1em;
+      font-size: 1.5rem;
+    }
   }
   blockquote::before {
     position: absolute;
@@ -222,6 +225,11 @@
     font-size: 8rem;
     line-height: 1em;
     color: skyblue;
+    @include down("md") {
+      left: -2rem;
+      top: -0.4rem;
+      font-size: 5rem;
+    }
     em {
       font-size: 1rem;
       display: block;
