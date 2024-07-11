@@ -34,10 +34,13 @@ export default function CustomBlocksRender({ content, id }: props) {
         blocks={{
           paragraph: ({ children }: any) => {
             // conver \br to <br>
-            const convertedString = children[0]?.props.text?.replace(
-              /([^\\])\n/g,
-              "$1<br>"
-            )
+            const convertedString = children.map((child: any) => {
+              let text = child.props.text
+              console.log(child)
+              if (child.props.italic === true) text = `<i>${text}</i>`
+              if (child.props.bold === true) text = `<strong>${text}</strong>`
+              return text?.replace(/([^\\])\n/g, "$1<br>")
+            })
             return <p dangerouslySetInnerHTML={{ __html: convertedString }}></p>
           },
           heading: ({ children, level }) => {

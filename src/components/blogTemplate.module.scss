@@ -196,7 +196,9 @@
     margin: 1.2rem 0;
     // margin: 1.1em 0;
   }
-
+  strong {
+    font-weight: 600;
+  }
   ul,
   ol {
     padding: 1em;
@@ -220,10 +222,10 @@
     font-size: 8rem;
     line-height: 1em;
     color: skyblue;
-  }
-  em {
-    font-size: 1rem;
-    display: block;
+    em {
+      font-size: 1rem;
+      display: block;
+    }
   }
 
   table {
