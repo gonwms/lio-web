@@ -8,9 +8,10 @@ import formatDataType from "@/libs/formatDataType"
 export async function POST(request: any) {
   const body = await request.json()
   const slug = body?.entry?.slug
-  const type = formatDataType(body?.entry?.type)
+  const type = formatDataType(body?.entry?.type)?.path
 
   if (slug && type) {
+    console.log(`/${type}/${slug}`, "page")
     revalidatePath(`/${type}/${slug}`, "page")
     revalidatePath(`/${type}`, "page")
     revalidatePath(`/`, "page")

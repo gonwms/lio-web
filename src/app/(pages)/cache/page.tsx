@@ -16,7 +16,7 @@ export default function Clear({ searchParams }: any) {
       <form action={manualClearCache} className={styles.form}>
         <input
           name="name"
-          type="text"
+          type="url"
           placeholder="https://www.lio.com/recursos/la-marcha-peronista"
         />
         <button type="submit">actualizar</button>
