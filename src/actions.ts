@@ -16,11 +16,11 @@ export interface req {
   filters?: string
 }
 
-// const CACHE = { next: { revalidate: 3600 } }
-const CACHE = { cache: "force-cache" }
+// const REVALIDATE = { next: { revalidate: 600 } }
+const REVALIDATE = { cache: "force-cache" }
 
 // ---------------------------------------------------------------
-//  CLEAR CACHE
+//  CLEAR REVALIDATE
 // ---------------------------------------------------------------
 export async function manualClearCache(formData: any) {
   const pathname = formData.get("name")
@@ -47,7 +47,7 @@ export const getResource = async (req: req) => {
 
   try {
     // console.log(endpoint)
-    const res = await fetch(endpoint, CACHE)
+    const res = await fetch(endpoint, { cache: "force-cache" })
     // const wait = pause(2000)
     let data = await res.json()
 
@@ -71,10 +71,10 @@ export const getAllResource = async () => {
   const string = `?populate=deep,2&filters[visibility][$eqi]=público&pagination[page]=1&pagination[pagesize]=15`
   try {
     const [docsRes, postsRes, eventsRes, productsRes] = await Promise.all([
-      fetch(`${API_URL}/api/docs/${string}`, CACHE),
-      fetch(`${API_URL}/api/posts/${string}`, CACHE),
-      fetch(`${API_URL}/api/events/${string}`, CACHE),
-      fetch(`${API_URL}/api/products/${string}`, CACHE),
+      fetch(`${API_URL}/api/docs/${string}`, { cache: "force-cache" }),
+      fetch(`${API_URL}/api/posts/${string}`, { cache: "force-cache" }),
+      fetch(`${API_URL}/api/events/${string}`, { cache: "force-cache" }),
+      fetch(`${API_URL}/api/products/${string}`, { cache: "force-cache" }),
     ])
 
     const docs = await docsRes.json()
@@ -116,10 +116,10 @@ export const getFeatured = async () => {
   const filter = `?populate=deep,2&filters[featured][$eq]=true&filters[visibility][$eqi]=público`
   try {
     const [docsRes, postsRes, eventsRes, productsRes] = await Promise.all([
-      fetch(`${API_URL}/api/docs/${filter}`, CACHE),
-      fetch(`${API_URL}/api/posts/${filter}`, CACHE),
-      fetch(`${API_URL}/api/events/${filter}`, CACHE),
-      fetch(`${API_URL}/api/products/${filter}`, CACHE),
+      fetch(`${API_URL}/api/docs/${filter}`, { cache: "force-cache" }),
+      fetch(`${API_URL}/api/posts/${filter}`, { cache: "force-cache" }),
+      fetch(`${API_URL}/api/events/${filter}`, { cache: "force-cache" }),
+      fetch(`${API_URL}/api/products/${filter}`, { cache: "force-cache" }),
     ])
     const docs = await docsRes.json()
     const posts = await postsRes.json()
