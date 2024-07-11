@@ -11,10 +11,10 @@ export async function POST(request: any) {
   const type = formatDataType(body?.entry?.type)?.path
 
   if (slug && type) {
-    console.log(`/${type}/${slug}`, "page")
-    revalidatePath(`/${type}/${slug}`, "page")
-    revalidatePath(`/${type}`, "page")
-    revalidatePath(`/`, "page")
+    console.log(`/${type}/${slug}`)
+    revalidatePath(`/${type}/${slug}`)
+    revalidatePath(`/${type}`)
+    revalidatePath(`/`)
     return NextResponse.json({ message: `path updated: /${type}/${slug}` })
   } else {
     return NextResponse.json(
