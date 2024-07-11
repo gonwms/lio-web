@@ -9,7 +9,7 @@
   justify-content: space-between;
   height: calc(100vh - 64px - 2rem);
   padding: 0rem 1rem 1rem 2rem;
-  @include down("md") {
+  @include down("lg") {
     display: none;
   }
 }
@@ -95,7 +95,7 @@
   padding: 0.2rem 1.2rem;
   background: #fff;
   z-index: 2;
-  @include up("md") {
+  @include up("lg") {
     display: none;
   }
   & .nav {
@@ -107,7 +107,6 @@
     gap: 5px;
     margin-left: 0;
     padding-bottom: 0;
-
     .link {
       font-size: 18px;
       width: 50px;
@@ -121,7 +120,6 @@
       border-radius: 100%;
       display: grid;
       place-items: center;
-
       &:hover {
         background: var(--sky-1);
       }

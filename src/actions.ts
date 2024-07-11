@@ -2,6 +2,7 @@
 
 import { revalidatePath } from "next/cache"
 import { pause } from "@/libs/utils"
+import { redirect } from "next/navigation"
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL as string
 
@@ -15,15 +16,18 @@ export interface req {
   filters?: string
 }
 
-const REVALIDATE = { next: { revalidate: 600 } }
+// const CACHE = { next: { revalidate: 3600 } }
+const CACHE = { cache: "force-cache" }
 
 // ---------------------------------------------------------------
 //  CLEAR CACHE
 // ---------------------------------------------------------------
-export async function clearCache(formData: any) {
+export async function manualClearCache(formData: any) {
   const pathname = formData.get("name")
-  console.log("pathname:", pathname)
-  revalidatePath(pathname)
+  const url = new URL(pathname)
+  console.log(url.pathname)
+  revalidatePath(url.pathname)
+  redirect("/cache?clearedPathName=" + url.pathname)
 }
 
 // ---------------------------------------------------------------
@@ -43,7 +47,7 @@ export const getResource = async (req: req) => {
 
   try {
     // console.log(endpoint)
-    const res = await fetch(endpoint, REVALIDATE)
+    const res = await fetch(endpoint, CACHE)
     // const wait = pause(2000)
     let data = await res.json()
 
@@ -67,10 +71,10 @@ export const getAllResource = async () => {
   const string = `?populate=deep,2&filters[visibility][$eqi]=público&pagination[page]=1&pagination[pagesize]=15`
   try {
     const [docsRes, postsRes, eventsRes, productsRes] = await Promise.all([
-      fetch(`${API_URL}/api/docs/${string}`, REVALIDATE),
-      fetch(`${API_URL}/api/posts/${string}`, REVALIDATE),
-      fetch(`${API_URL}/api/events/${string}`, REVALIDATE),
-      fetch(`${API_URL}/api/products/${string}`, REVALIDATE),
+      fetch(`${API_URL}/api/docs/${string}`, CACHE),
+      fetch(`${API_URL}/api/posts/${string}`, CACHE),
+      fetch(`${API_URL}/api/events/${string}`, CACHE),
+      fetch(`${API_URL}/api/products/${string}`, CACHE),
     ])
 
     const docs = await docsRes.json()
@@ -112,10 +116,10 @@ export const getFeatured = async () => {
   const filter = `?populate=deep,2&filters[featured][$eq]=true&filters[visibility][$eqi]=público`
   try {
     const [docsRes, postsRes, eventsRes, productsRes] = await Promise.all([
-      fetch(`${API_URL}/api/docs/${filter}`, REVALIDATE),
-      fetch(`${API_URL}/api/posts/${filter}`, REVALIDATE),
-      fetch(`${API_URL}/api/events/${filter}`, REVALIDATE),
-      fetch(`${API_URL}/api/products/${filter}`, REVALIDATE),
+      fetch(`${API_URL}/api/docs/${filter}`, CACHE),
+      fetch(`${API_URL}/api/posts/${filter}`, CACHE),
+      fetch(`${API_URL}/api/events/${filter}`, CACHE),
+      fetch(`${API_URL}/api/products/${filter}`, CACHE),
     ])
     const docs = await docsRes.json()
     const posts = await postsRes.json()

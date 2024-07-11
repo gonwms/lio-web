@@ -20,9 +20,10 @@ export default function BlogTemplate({ data }: any) {
   //
 
   const cover = data?.attributes?.cover?.data?.attributes
+  // format content as extra block content
   const allContentBlocks = [
     { id: 0, __component: "texto.texto", content: data?.attributes?.content },
-    ...data?.attributes?.contents,
+    ...(data?.attributes?.contents ? data.attributes.contents : []),
   ]
 
   // const img_xl = image?.formats as { xl_webp: { url: string } }

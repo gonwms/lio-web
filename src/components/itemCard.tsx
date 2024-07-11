@@ -58,12 +58,14 @@ export default function ItemCard({ item, style }: props) {
             </picture>
           )}
         </Link>
+        {/* CATEGORIES */}
         <div className={classNames(styles.tags, styles.tagCategory)}>
-          {item.attributes.category &&
-            item.attributes.category.map((cat: string) => (
-              <span key={cat}>{cat}</span>
-            ))}
+          {item.attributes[`category_${item?.attributes?.type}`] &&
+            item.attributes[`category_${item?.attributes?.type}`].data?.map(
+              (cat: any) => <span key={cat.id}>{cat.attributes.name}</span>
+            )}
         </div>
+        {/* DATE */}
         {item.attributes.event_start && (
           <div className={classNames(styles.tags, styles.tagDate)}>
             <CardDateTag data={item} styles={styles} />

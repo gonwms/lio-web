@@ -9,7 +9,7 @@ import classNames from "classnames"
 export default function seo(data: any) {
   return {
     title: "LIO - " + data?.attributes?.title,
-    description: `El ${dayjs(data.attributes.event_start).format(
+    description: `El ${dayjs(data?.attributes?.event_start).format(
       "dddd MMMM [a las] hh:mma"
     )}hs`,
 
@@ -19,7 +19,7 @@ export default function seo(data: any) {
     googlebot: "index, follow",
     openGraph: {
       title: data?.attributes?.title,
-      description: `El ${dayjs(data.attributes.event_start).format(
+      description: `El ${dayjs(data?.attributes?.event_start).format(
         "dddd MMMM [a las] hh:mma"
       )}hs`,
 
@@ -35,7 +35,7 @@ export default function seo(data: any) {
     twitter: {
       card: "summary_large_image",
       title: data?.attributes?.title,
-      description: `El ${dayjs(data.attributes.event_start).format(
+      description: `El ${dayjs(data?.attributes?.event_start).format(
         "dddd MMMM [a las] hh:mma"
       )}hs`,
 
