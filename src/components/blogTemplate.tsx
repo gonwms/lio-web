@@ -138,12 +138,12 @@ export default function BlogTemplate({ data }: any) {
               {cover && (
                 <picture>
                   <source
-                    media="(max-width: 480px)"
+                    media="(max-width: 768px)"
                     srcSet={cover.formats.sm_webp?.url}
                     type="image/webp"
                   />
                   <source
-                    media="(min-width: 481px) and (max-width: 960px)"
+                    media="(min-width: 769px) and (max-width: 1920px)"
                     srcSet={cover.formats.md_webp?.url}
                     type="image/webp"
                   />
