@@ -3,7 +3,9 @@ import { NextRequest, NextResponse } from "next/server"
 export async function GET() {
   try {
     // Fetch the XML sitemap from Strapi
-    const response = await fetch("http://127.0.0.1:1337/api/sitemap/index.xml")
+    const response = await fetch(
+      "https://lio-server-production.up.railway.app/api/sitemap/index.xml"
+    )
     if (!response.ok) {
       throw new Error("Failed to fetch the sitemap from Strapi")
     }
