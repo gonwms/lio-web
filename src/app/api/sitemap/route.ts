@@ -4,7 +4,8 @@ export async function GET() {
   try {
     // Fetch the XML sitemap from Strapi
     const response = await fetch(
-      "https://lio-server-production.up.railway.app/api/sitemap/index.xml"
+      "https://lio-server-production.up.railway.app/api/sitemap/index.xml",
+      { next: { revalidate: 3600 } }
     )
     if (!response.ok) {
       throw new Error("Failed to fetch the sitemap from Strapi")
