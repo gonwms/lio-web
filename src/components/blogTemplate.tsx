@@ -166,8 +166,8 @@ export default function BlogTemplate({ data }: any) {
               <h2>{data?.attributes?.subTitle}</h2>
               {/* TAGS */}
 
-              {!!data?.attributes?.[`category_${data?.attributes?.type}`]?.data
-                ?.length && (
+              {data?.attributes?.[`category_${data?.attributes?.type}`]?.data
+                ?.length > 0 && (
                 <div className={classNames(styles.tags, styles.tagCategory)}>
                   {data.attributes[`category_${data?.attributes?.type}`] &&
                     data.attributes[
