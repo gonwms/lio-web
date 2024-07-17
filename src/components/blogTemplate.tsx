@@ -1,7 +1,7 @@
 "use client"
 
 import React, { useEffect, useState } from "react"
-import CustomBlocksRenderer from "@/components/CustomBlocksRenderer"
+
 import styles from "./blogTemplate.module.scss"
 import formatDataType from "@/libs/formatDataType"
 import Lightbox from "yet-another-react-lightbox"
@@ -12,86 +12,36 @@ import classNames from "classnames"
 import dayjs from "dayjs"
 import "dayjs/locale/es"
 import { BlogDateTag } from "./DateTags"
+import HTMLRenderer from "./HTMLRenderer"
 
 dayjs.locale("es")
 export const revalidate = 3600
 
 export default function BlogTemplate({ data }: any) {
   //
-
   const cover = data?.attributes?.cover?.data?.attributes
-  // format content as extra block content
-  const allContentBlocks = [
-    { id: 0, __component: "texto.texto", content: data?.attributes?.content },
-    ...(data?.attributes?.contents ? data.attributes.contents : []),
-  ]
-
-  // const img_xl = image?.formats as { xl_webp: { url: string } }
-
-  const [album, setAlbum] = useState<{ src: string }[]>([])
-  const [index, setIndex] = useState(-1)
-
-  // Lightbox
-  const [animationDuration, setAnimationDuration] = useState(500)
-  const [maxZoomPixelRatio, setMaxZoomPixelRatio] = useState(1)
-  const [zoomInMultiplier, setZoomInMultiplier] = useState(2)
-  const [doubleTapDelay, setDoubleTapDelay] = useState(300)
-  const [doubleClickDelay, setDoubleClickDelay] = useState(300)
-  const [doubleClickMaxStops, setDoubleClickMaxStops] = useState(2)
-  const [keyboardMoveDistance, setKeyboardMoveDistance] = useState(50)
-  const [wheelZoomDistanceFactor, setWheelZoomDistanceFactor] = useState(100)
-  const [pinchZoomDistanceFactor, setPinchZoomDistanceFactor] = useState(100)
-  const [scrollToZoom, setScrollToZoom] = useState(false)
-
-  const onClick = (index: number) => {
-    setIndex(index)
-    // console.log(album)
-  }
-  // buscar todas las imágenes y almacenarlas en album
-  useEffect(() => {
-    if (index !== -1) return
-    const images = Array.from(
-      document.querySelectorAll(`.${styles.content} img`)
-    ) as HTMLImageElement[]
-    const albums = images.map((image) => {
-      return { src: image.src.replace("md_webp_", "xl_webp_") }
-    })
-    setAlbum(albums)
-  }, [])
-
-  // agregar click a todas las imagenes para abrir el lightbox
-  useEffect(() => {
-    if (index !== -1) return
-    const images = Array.from(
-      document.querySelectorAll(`.${styles.content} img`)
-    ) as HTMLImageElement[]
-    images?.forEach((img, index) => {
-      img.addEventListener("click", () => onClick(index))
-      img.style.cursor = "pointer"
-    })
-  }, [album, index])
-
-  /*--------------------------------
-   * HANDLE TYPES
-   *------------------------------  */
-  const type: { path: string; ico: string } = formatDataType(
-    data?.attributes?.type
-  )
 
   /*--------------------------------
    * HANDLE CONTENTS BLOCKS
    *-------------------------------  */
+  // format content as extra block content
+  const allContentBlocks = [
+    {
+      id: 0,
+      __component: "texto.texto",
+      contentck: data?.attributes?.contentck,
+    },
+    ...(data?.attributes?.contents ? data.attributes.contents : []),
+  ]
+
+  // render blocks
   const contents = allContentBlocks.reduce((acc: any, curr: any, index) => {
     switch (curr.__component) {
       //  TEXTOS
       case "texto.texto":
         return [
           ...acc,
-          <CustomBlocksRenderer
-            key={index}
-            id={index}
-            content={curr.content}
-          />,
+          <HTMLRenderer key={index} id={index} content={curr.contentck} />,
         ]
         break
 
@@ -107,9 +57,10 @@ export default function BlogTemplate({ data }: any) {
       //  VIDEO
       case "video.video":
         //
+        // handle 2 url formats
         const videoURL = curr.url.includes("watch?v=")
-          ? curr.url.split("watch?v=")[1]
-          : curr.url.split("/").pop()
+          ? curr.url.split("watch?v=")[1] //https://www.youtube.com/watch?v=3AFjscM-5vQ
+          : curr.url.split("/").pop() // https://youtu.be/3AFjscM-5vQ
         return [
           ...acc,
           <iframe
@@ -127,6 +78,55 @@ export default function BlogTemplate({ data }: any) {
         break
     }
   }, [])
+
+  // Lightbox
+  const [indexLightbox, setIndexLightbox] = useState(-1)
+  const [albumLightbox, setAlbumLightbox] = useState<{ src: string }[]>([])
+  const [animationDuration, setAnimationDuration] = useState(500)
+  const [maxZoomPixelRatio, setMaxZoomPixelRatio] = useState(1)
+  const [zoomInMultiplier, setZoomInMultiplier] = useState(2)
+  const [doubleTapDelay, setDoubleTapDelay] = useState(300)
+  const [doubleClickDelay, setDoubleClickDelay] = useState(300)
+  const [doubleClickMaxStops, setDoubleClickMaxStops] = useState(2)
+  const [keyboardMoveDistance, setKeyboardMoveDistance] = useState(50)
+  const [wheelZoomDistanceFactor, setWheelZoomDistanceFactor] = useState(100)
+  const [pinchZoomDistanceFactor, setPinchZoomDistanceFactor] = useState(100)
+  const [scrollToZoom, setScrollToZoom] = useState(false)
+
+  const onClick = (index: number) => {
+    setIndexLightbox(index)
+    // console.log(album)
+  }
+  // buscar todas las imágenes y almacenarlas en album
+  useEffect(() => {
+    if (indexLightbox !== -1) return
+    const images = Array.from(
+      document.querySelectorAll(`.${styles.content} img`)
+    ) as HTMLImageElement[]
+    const albums = images.map((image) => {
+      return { src: image.src.replace("md_webp_", "xl_webp_") }
+    })
+    setAlbumLightbox(albums)
+  }, [])
+
+  // agregar click a todas las imagenes para abrir el lightbox
+  useEffect(() => {
+    if (indexLightbox !== -1) return
+    const images = Array.from(
+      document.querySelectorAll(`.${styles.content} img`)
+    ) as HTMLImageElement[]
+    images?.forEach((img, index) => {
+      img.addEventListener("click", () => onClick(index))
+      img.style.cursor = "pointer"
+    })
+  }, [albumLightbox, indexLightbox])
+
+  /*--------------------------------
+   * HANDLE TYPES
+   *------------------------------  */
+  const type: { path: string; ico: string } = formatDataType(
+    data?.attributes?.type
+  )
 
   // RENDER  ----------------------
   return (
@@ -162,26 +162,28 @@ export default function BlogTemplate({ data }: any) {
             <div className={styles.headerContent}>
               <div>
                 <h1>{data?.attributes?.title}</h1>
-
-                {data.attributes.type === "events" && (
-                  <BlogDateTag data={data} styles={styles} />
-                )}
               </div>
               <h2>{data?.attributes?.subTitle}</h2>
-              <div className={classNames(styles.tags, styles.tagCategory)}>
-                {/* {console.log(
-                  data.attributes[`category_${data?.attributes?.type}`]?.data
-                )} */}
-                {data.attributes[`category_${data?.attributes?.type}`] &&
-                  data.attributes[
-                    `category_${data?.attributes?.type}`
-                  ].data?.map((cat: any) => (
-                    <span key={cat.id}>{cat.attributes.name}</span>
-                  ))}
-              </div>
+              {/* TAGS */}
+
+              {data?.attributes?.[`category_${data?.attributes?.type}`]?.data
+                ?.length && (
+                <div className={classNames(styles.tags, styles.tagCategory)}>
+                  {data.attributes[`category_${data?.attributes?.type}`] &&
+                    data.attributes[
+                      `category_${data?.attributes?.type}`
+                    ].data?.map((cat: any) => (
+                      <span key={cat.id}>{cat.attributes.name}</span>
+                    ))}
+                </div>
+              )}
+              {data?.attributes?.type === "events" && (
+                <BlogDateTag data={data} styles={styles} />
+              )}
+              {/* META */}
               <div className={styles.meta}>
-                <img src={type.ico} alt={type.path} height={14} width={14} />
                 <span>
+                  <img src={type.ico} alt={type.path} height={14} width={14} />
                   publicado el{" "}
                   {dayjs(data.attributes.publishedAt).format("DD/MM/YY")}
                 </span>
@@ -200,16 +202,21 @@ export default function BlogTemplate({ data }: any) {
             </div>
           </div>
 
-          <div className={styles.content}>{contents}</div>
+          <div className={styles.content}>
+            {contents}
+            {/* {data?.attributes?.contentck && (
+              <HTMLRenderer data={data?.attributes?.contentck} />
+            )} */}
+          </div>
         </div>
       )}
 
       <Lightbox
         className={styles.lightbox}
-        index={index}
-        open={index >= 0}
-        close={() => setIndex(-1)}
-        slides={album}
+        index={indexLightbox}
+        open={indexLightbox >= 0}
+        close={() => setIndexLightbox(-1)}
+        slides={albumLightbox}
         plugins={[Zoom]}
         animation={{ zoom: animationDuration }}
         zoom={{
