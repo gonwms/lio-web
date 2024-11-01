@@ -8,7 +8,7 @@ import LenisScroll from "@/components/LenisScroll"
 import IpDetector from "@/components/IpDetector"
 import { wix, inter } from "@/fonts"
 import SEO from "./seo"
-import { GoogleTagManager, GoogleAnalytics } from "@next/third-parties/google"
+import { GoogleAnalytics } from "@next/third-parties/google"
 // ----------------- ROOT LAYOUT -----------------------
 
 const URL_WEB = process.env.NEXT_PUBLIC_MIDDLEWARE_URL

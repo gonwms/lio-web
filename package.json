@@ -10,8 +10,6 @@
   },
   "dependencies": {
     "@next/third-parties": "^14.2.4",
-    "@radix-ui/react-navigation-menu": "^1.1.4",
-    "@radix-ui/themes": "^3.0.2",
     "@strapi/blocks-react-renderer": "^1.0.1",
     "@studio-freight/react-lenis": "^0.0.47",
     "@typescript-eslint/eslint-plugin": "^7.7.0",

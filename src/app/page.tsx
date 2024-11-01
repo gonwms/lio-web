@@ -25,14 +25,14 @@ export default async function Welcome({ params, searchParams }: propsType) {
           <img
             src="/lio-logo.svg"
             alt="LIO los inorgánicos organizados"
-            height={130}
+            height={110}
           />
 
           <img
             className={styles.logoPyV}
             src="/pyv-logo.svg"
             alt="Principios y Valores"
-            height={130}
+            height={110}
           />
         </Col>
         <Col className={classNames(styles.comunicate)}>
@@ -41,7 +41,7 @@ export default async function Welcome({ params, searchParams }: propsType) {
             href="https://chat.whatsapp.com/FhOhNQHdUvMFRx4r8GML0w"
             target="_blank"
           >
-            Whatsapp <img src="/whatsapp.svg" alt="whatsapp" />
+            Whatsapp <img src="/whatsapp-w.svg" alt="whatsapp" height={30} />
           </a>
         </Col>
         <Col className={classNames(styles.social)}>

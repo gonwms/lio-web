@@ -22,14 +22,18 @@ export default function Filters({
   // const data = await getCategories(type)
   useEffect(() => {
     ;(async () => {
-      const res = await fetch(`${URL}/api/${type}`, {
-        method: "GET",
-      })
-      const data = await res.json()
-      // console.log(data)
-      setData(data.data)
-      error && setError(error)
-      setLoading(false)
+      try {
+        const res = await fetch(`${URL}/api/${type}`, {
+          method: "GET",
+        })
+        const data = await res.json()
+        // console.log(data)
+        setData(data.data)
+        error && setError(error)
+        setLoading(false)
+      } catch (error) {
+        console.log("error", error)
+      }
     })()
   }, [])
 

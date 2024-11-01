@@ -3,7 +3,8 @@
 import { revalidatePath } from "next/cache"
 import { pause } from "@/libs/utils"
 import { redirect } from "next/navigation"
-
+import { cookies } from "next/headers"
+import { encrypt } from "@/libs/encrypt"
 const API_URL = process.env.NEXT_PUBLIC_API_URL as string
 
 export interface req {
@@ -175,4 +176,51 @@ const CreateEndPointString = ({
   }
   const endpointString = Object.values(ep).join("")
   return endpointString
+}
+
+// ---------------------------------------------------------------
+// AUTH
+// ---------------------------------------------------------------
+
+export interface req {
+  [key: string]: any
+  user: string
+  pass: string
+}
+
+export const login = async (formData: any) => {
+  const user = formData.get("user")
+  const pass = formData.get("pass")
+
+  const requestOptions = {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ identifier: user, password: pass }),
+  }
+  // FETCH
+  try {
+    const res = await fetch(`${API_URL}/api/auth/local/`, requestOptions)
+    const data = await res.json()
+
+    const encryptedSessionData = encrypt(JSON.stringify(data))
+    // const encryptedSessionData = data
+
+    cookies().set("session", encryptedSessionData, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      maxAge: 60 * 60 * 24 * 7, // One week
+      path: "/",
+    })
+
+    if (!res.ok) {
+      console.error(
+        `❌ actions.ts ~ login
+        \n data ${JSON.stringify(data)}`
+      )
+    }
+    return data
+  } catch (error) {
+    console.error("❌ actions.ts ~ CATCH error", "\n ❌", error)
+    return { error: { message: "falló la conexion con el servidor" } }
+  }
 }
