@@ -164,7 +164,7 @@ const CreateEndPointString = ({
   deep,
   sort,
   filters,
-}: Partial<req>) => {
+}: Partial<reqResource>) => {
   const ep = {
     url: `${url}/api/${resource}`,
     deep: `?populate=deep,${deep ? deep : 2}`,
