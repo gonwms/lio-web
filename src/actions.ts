@@ -188,7 +188,7 @@ export interface reqAuth {
   pass: string
 }
 
-export const login = async (formData: reqAuth) => {
+export const login = async (formData: any) => {
   const user = formData.get("user")
   const pass = formData.get("pass")
 
