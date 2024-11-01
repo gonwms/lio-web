@@ -1,5 +1,5 @@
 "use client"
-import { Flex } from "@radix-ui/themes"
+// import { Flex } from "@radix-ui/themes"
 import React from "react"
 import styles from "./sidebar.module.scss"
 import Link from "next/link"
@@ -66,7 +66,7 @@ export default function Sidebar({ className }: props) {
       {/* -----------------------------------------
       *           DESKTOP VERSION
       ----------------------------------------- */}
-      <Flex className={classNames(styles.sidebar, className)}>
+      <div className={classNames(styles.sidebar, className)}>
         {/* NAV 1 */}
         <div className={styles.navs}>
           <nav className={classNames(styles.nav, styles.mainNav)}>
@@ -132,7 +132,7 @@ export default function Sidebar({ className }: props) {
       </a> */}
           </div>
         </div>
-      </Flex>
+      </div>
     </>
   )
 }
