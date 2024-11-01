@@ -13,6 +13,11 @@ const nextConfig = {
         destination: "https://chat.whatsapp.com/FhOhNQHdUvMFRx4r8GML0w",
         permanent: true,
       },
+      {
+        source: "/wsp",
+        destination: "https://chat.whatsapp.com/FhOhNQHdUvMFRx4r8GML0w",
+        permanent: true,
+      },
     ]
   },
 }
