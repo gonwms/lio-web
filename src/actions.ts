@@ -7,7 +7,7 @@ import { cookies } from "next/headers"
 import { encrypt } from "@/libs/encrypt"
 const API_URL = process.env.NEXT_PUBLIC_API_URL as string
 
-export interface req {
+export interface reqResource {
   url?: string
   resource: "docs" | "posts" | "events" | "products"
   page?: string | number
@@ -34,7 +34,7 @@ export async function manualClearCache(formData: any) {
 // ---------------------------------------------------------------
 //  GET RESOURCE
 // ---------------------------------------------------------------
-export const getResource = async (req: req) => {
+export const getResource = async (req: reqResource) => {
   const { resource, page, pageSize, deep, sort, filters } = req
   const endpoint = CreateEndPointString({
     url: API_URL,
@@ -182,13 +182,13 @@ const CreateEndPointString = ({
 // AUTH
 // ---------------------------------------------------------------
 
-export interface req {
+export interface reqAuth {
   [key: string]: any
   user: string
   pass: string
 }
 
-export const login = async (formData: any) => {
+export const login = async (formData: reqAuth) => {
   const user = formData.get("user")
   const pass = formData.get("pass")
 
