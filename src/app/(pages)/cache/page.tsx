@@ -13,6 +13,7 @@ export default function Clear({ searchParams }: any) {
       <p>
         copiá la ruta que querés que se actualize con el formato del ejemplo
       </p>
+      <code>https://www.lio.com/recursos/la-marcha-peronista</code>
       <form action={manualClearCache} className={styles.form}>
         <input
           name="name"
