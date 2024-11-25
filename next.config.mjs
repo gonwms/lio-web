@@ -5,7 +5,8 @@ const nextConfig = {
       // Basic redirect
       {
         source: "/editar",
-        destination: "https://lio-server-production.up.railway.app/admin",
+        destination:
+          "https://lio-server-production-c17d.up.railway.app/admin/auth/login",
         permanent: true,
       },
       {
