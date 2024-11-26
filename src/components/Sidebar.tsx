@@ -28,6 +28,7 @@ interface props {
 }
 export default function Sidebar({ className }: props) {
   const path = usePathname()
+  const currentPath = `/${path.split("/")[1]}`
   const mobile = useMediaQuery("(max-width: 1023px)")
   // console.log(mobile)
   // console.log(path)
@@ -76,7 +77,7 @@ export default function Sidebar({ className }: props) {
                   key={item.label}
                   href={item.href}
                   className={styles.link}
-                  data-active={path === item.href}
+                  data-active={currentPath === item.href}
                 >
                   <img src={`/ico-${item.ico}.svg`} alt="" />
                   {item.label}

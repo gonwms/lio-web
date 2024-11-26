@@ -13,6 +13,8 @@ import dayjs from "dayjs"
 import "dayjs/locale/es"
 import { BlogDateTag } from "./DateTags"
 import HTMLRenderer from "./HTMLRenderer"
+import { json } from "stream/consumers"
+import { Carousel } from "./Carousel"
 
 dayjs.locale("es")
 export const revalidate = 3600
@@ -49,9 +51,29 @@ export default function BlogTemplate({ data }: any) {
       case "galeria.galeria":
         //
         const images = curr.galeria.data.reduce((acc: any, cur: any) => {
-          return [...acc, cur.attributes.name]
+          return [
+            ...acc,
+            <img
+              key={cur.attributes.id}
+              src={cur.attributes.formats.md_webp.url}
+              alt={cur.attributes.alternativeText}
+            />,
+          ]
         }, [])
-        return [...acc, images]
+        return [
+          ...acc,
+          <Carousel
+            key={curr.id}
+            settings={{
+              slidesToShow: images.length > 2 ? 3 : 2,
+              infinite: false,
+              centerMode: false,
+              // variableWidth: true,
+            }}
+          >
+            {images}
+          </Carousel>,
+        ]
         break
 
       //  VIDEO

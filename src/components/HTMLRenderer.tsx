@@ -8,10 +8,12 @@ interface props {
 }
 
 const HTMLRenderer = ({ content, id }: props) => {
+  console.log(content)
   const sanitizedHTML = DOMPurify.sanitize(content)
   const finalHTML = sanitizedHTML
     // replace h6, h5, h4, h3, h2, h1
     .replace(/<h6>/g, "<b>")
+    .replaceAll("<p>&nbsp;</p>", "")
     .replaceAll("<p>&nbsp;</p>", "")
     .replace(/<h5>/g, "<strong>")
     .replace(/<h4>/g, "<h6>")
@@ -28,7 +30,7 @@ const HTMLRenderer = ({ content, id }: props) => {
       const newUrl = path + newFilename
       return `<img src="${newUrl}">`
     })
-
+  // console.log(finalHTML)
   return <div dangerouslySetInnerHTML={{ __html: finalHTML }} />
 }
 

@@ -5,6 +5,11 @@
   background: white;
   z-index: 2;
   border-bottom: 1px solid var(--gray-3);
+  h1 {
+    font-size: 0.9rem;
+    font-weight: 500;
+    font-family: var(--font-inter);
+  }
   & > div {
     @include up("md") {
       padding: 0rem 3rem;
