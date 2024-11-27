@@ -33,9 +33,10 @@ export default function ItemInfiniteScroll({ resourceType }: props) {
             ? `[category_${resourceType}][name][$eqi]=${filters}`
             : undefined,
       })
+      console.log(data)
       data && page > 1
-        ? setData([...dataState, ...data.data])
-        : setData(data.data)
+        ? setData([...dataState, ...data?.data])
+        : setData(data?.data)
       data && setPagination(data?.meta?.pagination)
       error && setError(error)
       setLoading(false)

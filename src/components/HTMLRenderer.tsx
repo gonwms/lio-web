@@ -8,7 +8,7 @@ interface props {
 }
 
 const HTMLRenderer = ({ content, id }: props) => {
-  console.log(content)
+  // console.log(content)
   const sanitizedHTML = DOMPurify.sanitize(content)
   const finalHTML = sanitizedHTML
     // replace h6, h5, h4, h3, h2, h1
@@ -30,7 +30,20 @@ const HTMLRenderer = ({ content, id }: props) => {
       const newUrl = path + newFilename
       return `<img src="${newUrl}">`
     })
-  // console.log(finalHTML)
+    // replace <pre><code> por html
+    .replace(
+      /<pre><code[^>]*>([\s\S]*?)<\/code><\/pre>/g,
+      (match, encodedContent) => {
+        // Decodificar el contenido HTML dentro de <pre><code>
+        const tempDiv = document.createElement("div")
+        tempDiv.innerHTML = encodedContent // Decodifica entidades HTML (&lt;, &gt;)
+        const decodedHTML = tempDiv.textContent || tempDiv.innerText
+
+        // Retorna el contenido decodificado como HTML funcional
+        return decodedHTML
+      }
+    )
+  console.log(finalHTML)
   return <div dangerouslySetInnerHTML={{ __html: finalHTML }} />
 }
 
