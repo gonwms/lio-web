@@ -60,6 +60,9 @@ export default async function Home({ params, searchParams }: propsType) {
         </Row>
       </section>
       {/* ----------------------------- Highlights --------------------- */}
+      <h1 className={styles.h1}>
+        LIO <span>Los Inorgánicos Organizados</span>
+      </h1>
       <section>
         <Row>
           <Featured />

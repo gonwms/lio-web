@@ -35,7 +35,7 @@ const Header = ({ className }: props) => {
               width={52}
               height={50}
             />{" "}
-            <h1>LIO - Los Inorgánicos Organizados</h1>
+            {/* Los Inorgánicos Organizados */}
           </Link>
 
           {/* MENU DESKTOP VERSION */}

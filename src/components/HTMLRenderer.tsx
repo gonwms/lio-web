@@ -8,7 +8,6 @@ interface props {
 }
 
 const HTMLRenderer = ({ content, id }: props) => {
-  // console.log(content)
   const sanitizedHTML = DOMPurify.sanitize(content)
   const finalHTML = sanitizedHTML
     // replace h6, h5, h4, h3, h2, h1
@@ -30,7 +29,7 @@ const HTMLRenderer = ({ content, id }: props) => {
       const newUrl = path + newFilename
       return `<img src="${newUrl}">`
     })
-    // replace <pre><code> por html
+    // replace <pre><code> por html *esto no se usa. no vale la pena. Es muy dificil darle estilos
     .replace(
       /<pre><code[^>]*>([\s\S]*?)<\/code><\/pre>/g,
       (match, encodedContent) => {
@@ -43,7 +42,7 @@ const HTMLRenderer = ({ content, id }: props) => {
         return decodedHTML
       }
     )
-  console.log(finalHTML)
+
   return <div dangerouslySetInnerHTML={{ __html: finalHTML }} />
 }
 

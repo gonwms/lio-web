@@ -32,7 +32,7 @@ export default function Filters({
         error && setError(error)
         setLoading(false)
       } catch (error) {
-        console.log("error", error)
+        console.error("error", error)
       }
     })()
   }, [])

@@ -26,7 +26,7 @@ const REVALIDATE = { cache: "force-cache" }
 export async function manualClearCache(formData: any) {
   const pathname = formData.get("name")
   const url = new URL(pathname)
-  console.log(url.pathname)
+  // console.log(url.pathname)
   revalidatePath(url.pathname)
   redirect("/cache?clearedPathName=" + url.pathname)
 }
