@@ -1,22 +1,22 @@
-"use client"
+'use client'
 
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useState } from 'react'
 
-import styles from "./blogTemplate.module.scss"
-import formatDataType from "@/libs/formatDataType"
-import Lightbox from "yet-another-react-lightbox"
-import Zoom from "yet-another-react-lightbox/plugins/zoom"
-import "yet-another-react-lightbox/styles.css"
-import "@/styles/lightbox.css"
-import classNames from "classnames"
-import dayjs from "dayjs"
-import "dayjs/locale/es"
-import { BlogDateTag } from "./DateTags"
-import HTMLRenderer from "./HTMLRenderer"
-import { json } from "stream/consumers"
-import { Carousel } from "./Carousel"
+import styles from './blogTemplate.module.scss'
+import formatDataType from '@/libs/formatDataType'
+import Lightbox from 'yet-another-react-lightbox'
+import Zoom from 'yet-another-react-lightbox/plugins/zoom'
+import 'yet-another-react-lightbox/styles.css'
+import '@/styles/lightbox.css'
+import classNames from 'classnames'
+import dayjs from 'dayjs'
+import 'dayjs/locale/es'
+import { BlogDateTag } from './DateTags'
+import HTMLRenderer from './HTMLRenderer'
+import { json } from 'stream/consumers'
+import { Carousel } from './Carousel'
 
-dayjs.locale("es")
+dayjs.locale('es')
 export const revalidate = 3600
 
 export default function BlogTemplate({ data }: any) {
@@ -30,25 +30,25 @@ export default function BlogTemplate({ data }: any) {
   const allContentBlocks = [
     {
       id: 0,
-      __component: "texto.texto",
-      contentck: data?.attributes?.contentck,
+      __component: 'texto.texto',
+      contentck: data?.attributes?.contentck
     },
-    ...(data?.attributes?.contents ? data.attributes.contents : []),
+    ...(data?.attributes?.contents ? data.attributes.contents : [])
   ]
 
   // render blocks
   const contents = allContentBlocks.reduce((acc: any, curr: any, index) => {
     switch (curr.__component) {
       //  TEXTOS
-      case "texto.texto":
+      case 'texto.texto':
         return [
           ...acc,
-          <HTMLRenderer key={index} id={index} content={curr.contentck} />,
+          <HTMLRenderer key={index} id={index} content={curr.contentck} />
         ]
         break
 
       //  GALERIA
-      case "galeria.galeria":
+      case 'galeria.galeria':
         //
         const images = curr.galeria.data.reduce((acc: any, cur: any) => {
           return [
@@ -57,7 +57,7 @@ export default function BlogTemplate({ data }: any) {
               key={cur.attributes.id}
               src={cur.attributes.formats.md_webp.url}
               alt={cur.attributes.alternativeText}
-            />,
+            />
           ]
         }, [])
         return [
@@ -67,22 +67,22 @@ export default function BlogTemplate({ data }: any) {
             settings={{
               slidesToShow: images.length > 2 ? 3 : 2,
               infinite: false,
-              centerMode: false,
+              centerMode: false
               // variableWidth: true,
             }}
           >
             {images}
-          </Carousel>,
+          </Carousel>
         ]
         break
 
       //  VIDEO
-      case "video.video":
+      case 'video.video':
         //
         // handle 2 url formats
-        const videoURL = curr.url.includes("watch?v=")
-          ? curr.url.split("watch?v=")[1] //https://www.youtube.com/watch?v=3AFjscM-5vQ
-          : curr.url.split("/").pop() // https://youtu.be/3AFjscM-5vQ
+        const videoURL = curr.url.includes('watch?v=')
+          ? curr.url.split('watch?v=')[1] //https://www.youtube.com/watch?v=3AFjscM-5vQ
+          : curr.url.split('/').pop() // https://youtu.be/3AFjscM-5vQ
         return [
           ...acc,
           <iframe
@@ -92,7 +92,7 @@ export default function BlogTemplate({ data }: any) {
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen
             frameBorder={0}
-          ></iframe>,
+          ></iframe>
         ]
         break
       default:
@@ -126,7 +126,9 @@ export default function BlogTemplate({ data }: any) {
       document.querySelectorAll(`.${styles.content} img`)
     ) as HTMLImageElement[]
     const albums = images.map((image) => {
-      return { src: image.src.replace("md_webp_", "xl_webp_") }
+      return {
+        src: image.src.replace('md_webp_', 'xl_webp_')
+      }
     })
     setAlbumLightbox(albums)
   }, [])
@@ -138,8 +140,8 @@ export default function BlogTemplate({ data }: any) {
       document.querySelectorAll(`.${styles.content} img`)
     ) as HTMLImageElement[]
     images?.forEach((img, index) => {
-      img.addEventListener("click", () => onClick(index))
-      img.style.cursor = "pointer"
+      img.addEventListener('click', () => onClick(index))
+      img.style.cursor = 'pointer'
     })
   }, [albumLightbox, indexLightbox])
 
@@ -199,15 +201,15 @@ export default function BlogTemplate({ data }: any) {
                     ))}
                 </div>
               )}
-              {data?.attributes?.type === "events" && (
+              {data?.attributes?.type === 'events' && (
                 <BlogDateTag data={data} styles={styles} />
               )}
               {/* META */}
               <div className={styles.meta}>
                 <span>
                   <img src={type.ico} alt={type.path} height={14} width={14} />
-                  publicado el{" "}
-                  {dayjs(data.attributes.publishedAt).format("DD/MM/YY")}
+                  publicado el{' '}
+                  {dayjs(data.attributes.publishedAt).format('DD/MM/YY')}
                 </span>
                 {data?.attributes?.author && (
                   <span>
@@ -250,7 +252,7 @@ export default function BlogTemplate({ data }: any) {
           keyboardMoveDistance,
           wheelZoomDistanceFactor,
           pinchZoomDistanceFactor,
-          scrollToZoom,
+          scrollToZoom
         }}
       ></Lightbox>
     </>

@@ -1,21 +1,18 @@
-import React from "react"
-import ItemsInfiniteScroll from "@/components/ItemInfiniteScroll"
-import styles from "../../layout.module.scss"
+import React from 'react'
+import ItemsInfiniteScroll from '@/components/ItemInfiniteScroll'
+import styles from '../../layout.module.scss'
+import seo from '../seoDinamicas'
 
 // SEO
 export async function generateMetadata({ params }: any) {
-  return {
-    title: "Noticias - LIO",
-    description: "novedades",
-    openGraph: {
-      title: "Noticias - LIO",
-      description: "novedades",
-    },
-    twitter: {
-      title: "Noticias - LIO",
-      description: "novedades",
-    },
-  }
+  return seo({
+    title: 'Noticias',
+    subTitle: 'Novedades y noticias',
+    tags: 'Novedades y noticias',
+    visibility: 'Público',
+    cover: 'https://www.lio.com.ar/cover.webp',
+    slug: `https://www.lio.com.ar/eventos`
+  })
 }
 export default function Noticias() {
   return (

@@ -1,21 +1,18 @@
-import React from "react"
-import ItemsInfiniteScroll from "@/components/ItemInfiniteScroll"
-import styles from "../../layout.module.scss"
+import React from 'react'
+import ItemsInfiniteScroll from '@/components/ItemInfiniteScroll'
+import styles from '../../layout.module.scss'
+import seo from '../seoDinamicas'
 
 // SEO
 export async function generateMetadata({ params }: any) {
-  return {
-    title: "Recursos - LIO",
-    description: "novedades",
-    openGraph: {
-      title: "Recursos - LIO",
-      description: "novedades",
-    },
-    twitter: {
-      title: "Recursos - LIO",
-      description: "novedades",
-    },
-  }
+  return seo({
+    title: 'Recursos',
+    subTitle: 'Documentos, recursos y doctrina',
+    tags: 'Documentos, recursos, doctrina',
+    visibility: 'Público',
+    cover: 'https://www.lio.com.ar/cover.webp',
+    slug: `https://www.lio.com.ar/eventos`
+  })
 }
 export default function Recursos() {
   return (

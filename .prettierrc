@@ -1,0 +1,15 @@
+{
+  "tabWidth": 2,
+  "useTabs": false,
+  "singleQuote": true,
+  "trailingComma": "none",
+  "semi": false,
+  "overrides": [
+    {
+      "files": ["seoDinamicas.ts", "seo.ts", "seoEventos.ts"],
+      "options": {
+        "printWidth": 250
+      }
+    }
+  ]
+}
