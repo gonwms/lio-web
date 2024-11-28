@@ -1,6 +1,6 @@
 import formatDataType from "@/libs/formatDataType"
 
-export default async function seo(data: any) {
+export default function seo(data: any) {
   return {
     title: data?.attributes?.title + " - LIO, Los Inorgánicos Organizados",
     description:
