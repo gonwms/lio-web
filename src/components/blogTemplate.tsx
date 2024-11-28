@@ -208,7 +208,7 @@ export default function BlogTemplate({ data }: any) {
               <div className={styles.meta}>
                 <span>
                   <img src={type.ico} alt={type.path} height={14} width={14} />
-                  publicado el{' '}
+                  creado el{' '}
                   {dayjs(data.attributes.publishedAt).format('DD/MM/YY')}
                 </span>
                 {data?.attributes?.author && (

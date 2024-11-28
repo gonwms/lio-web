@@ -1,15 +1,15 @@
-"use client"
-import React from "react"
-import styles from "./itemCard.module.scss"
-import Link from "next/link"
-import formatDataType from "@/libs/formatDataType"
-import classNames from "classnames"
-import dayjs from "dayjs"
+'use client'
+import React from 'react'
+import styles from './itemCard.module.scss'
+import Link from 'next/link'
+import formatDataType from '@/libs/formatDataType'
+import classNames from 'classnames'
+import dayjs from 'dayjs'
 
-dayjs.locale("es")
+dayjs.locale('es')
 
-import "dayjs/locale/es"
-import { CardDateTag } from "./DateTags"
+import 'dayjs/locale/es'
+import { CardDateTag } from './DateTags'
 // const API_URL = process.env.NEXT_PUBLIC_API_URL
 
 interface props {
@@ -76,10 +76,12 @@ export default function ItemCard({ item, style }: props) {
       <div className={styles.meta}>
         <img src={type.ico} alt={type.path} height={14} width={14} />
         <span>
-          publicado el {dayjs(item.attributes.publishedAt).format("DD/MM/YY")}
+          creado: {dayjs(item.attributes.publishedAt).format('DD/MM/YY')}
         </span>
-
-        <span>por {item?.attributes.author}</span>
+        <span>
+          {/* <img src="/ico-pen.svg" alt={type.path} height={14} width={14} /> por{' '} */}
+          por: {item?.attributes.author}
+        </span>
       </div>
       <h3>
         <Link href={`/${type.path}/${item.attributes.slug}`}>
