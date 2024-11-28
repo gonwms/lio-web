@@ -1,8 +1,6 @@
 import formatDataType from "@/libs/formatDataType"
 
 export default async function seo(data: any) {
-  console.log("METADATA")
-  console.log(data)
   return {
     title: data?.attributes?.title + " - LIO, Los Inorgánicos Organizados",
     description:

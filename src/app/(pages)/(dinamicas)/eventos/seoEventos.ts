@@ -4,7 +4,7 @@ import dayjs from "dayjs"
 dayjs.locale("es")
 import "dayjs/locale/es"
 
-export default function seo(data: any) {
+export default async function seo(data: any) {
   return {
     title: "LIO - " + data?.attributes?.title,
     description: `El ${dayjs(data?.attributes?.event_start).format(

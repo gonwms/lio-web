@@ -20,7 +20,8 @@ async function getPostById(id: string) {
 // SEO
 export async function generateMetadata({ params }: any) {
   const data = await getPostById(params.id)
-  return seo(data)
+  const seodata = await seo(data)
+  return seodata
 }
 
 // PAGE
