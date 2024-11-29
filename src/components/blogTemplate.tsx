@@ -201,28 +201,36 @@ export default function BlogTemplate({ data }: any) {
                     ))}
                 </div>
               )}
+              {/* DATE */}
               {data?.attributes?.type === 'events' && (
                 <BlogDateTag data={data} styles={styles} />
               )}
               {/* META */}
-              <div className={styles.meta}>
-                <span>
-                  <img src={type.ico} alt={type.path} height={14} width={14} />
-                  creado el{' '}
-                  {dayjs(data.attributes.publishedAt).format('DD/MM/YY')}
-                </span>
-                {data?.attributes?.author && (
+              {data?.attributes?.type !== 'events' && (
+                <div className={styles.meta}>
                   <span>
                     <img
-                      src="/ico-pen.svg"
+                      src={type.ico}
                       alt={type.path}
                       height={14}
                       width={14}
                     />
-                    por {data?.attributes?.author}
+                    creado el{' '}
+                    {dayjs(data.attributes.publishedAt).format('DD/MM/YY')}
                   </span>
-                )}
-              </div>
+                  {data?.attributes?.author && (
+                    <span>
+                      <img
+                        src="/ico-pen.svg"
+                        alt={type.path}
+                        height={14}
+                        width={14}
+                      />
+                      por {data?.attributes?.author}
+                    </span>
+                  )}
+                </div>
+              )}
             </div>
           </div>
 

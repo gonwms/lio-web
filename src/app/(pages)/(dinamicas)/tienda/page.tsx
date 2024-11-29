@@ -17,7 +17,9 @@ export async function generateMetadata({ params }: any) {
 export default function Tienda() {
   return (
     <>
-      <h1 className={styles.plp}>Tienda</h1>
+      <h1 className={styles.plp}>
+        LIO <span>Tienda</span>
+      </h1>
       <ItemsInfiniteScroll resourceType="products" />
     </>
   )

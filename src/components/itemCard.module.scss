@@ -92,12 +92,12 @@
 
 .card h3 a {
   margin: 0.1em 0;
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   line-height: 1em;
   font-weight: 600;
   text-decoration: none;
   @media (width < 767px) {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
   }
 }
 .card .excerpt {
@@ -107,6 +107,9 @@
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
+  @media (width < 767px) {
+    font-size: 1rem;
+  }
 }
 .card .meta {
   display: flex;

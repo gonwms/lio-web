@@ -57,19 +57,22 @@ export function CardDateTag({ data, styles }: props) {
   )
 }
 
+// -------------------------
+
 // BLOG DATE TAG
+
+// --------------------------
 
 export function BlogDateTag({ data, styles }: props) {
   function formatEventDate(date: string) {
     // hoy
-    if (now.isSame(date, 'day'))
-      return `Hoy ${dayjs(date).format('dddd  [-]  hh:mma')}`
+    if (now.isSame(date, 'day')) return `Hoy ${dayjs(date).format('dddd DD')}`
     // mañana
     if (now.add(1, 'day').isSame(date, 'day'))
-      return `mañana ${dayjs(date).format('ddddhh:mma')}`
+      return `mañana ${dayjs(date).format('dddd')}`
     // en la semana
     if (now.isSame(date, 'week') && now.isBefore(date, 'day'))
-      return `Este ${dayjs(date).format('dddd DD [-]  hh:mma')}`
+      return `Este ${dayjs(date).format('dddd DD')}`
     //ya pasó
     if (now.isAfter(date, 'day')) return dayjs(date).format('DD/MM/YY')
     // default
@@ -113,13 +116,14 @@ export function BlogDateTag({ data, styles }: props) {
 
         {/* DIRECCION EVENTO*/}
         <span className={styles.map}>
-          {data.attributes.mapa_link && <img src="/ico-map.svg" alt="" />}
-          {data.attributes.mapa_link ? (
-            <a href={data.attributes.mapa_link} target="_blank">
-              {data.attributes.ubicacion}
-            </a>
-          ) : (
-            data.attributes.ubicacion
+          {data.attributes.ubicacion && (
+            <>
+              <img src="/ico-map.svg" alt="" />
+              <a href={data?.attributes?.mapa_link} target="_blank">
+                {data.attributes.ubicacion}
+                {data.attributes.mapa_link && <span>ver mapa</span>}
+              </a>
+            </>
           )}
         </span>
       </div>

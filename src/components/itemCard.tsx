@@ -65,6 +65,7 @@ export default function ItemCard({ item, style }: props) {
               (cat: any) => <span key={cat.id}>{cat.attributes.name}</span>
             )}
         </div>
+
         {/* DATE */}
         {item.attributes.event_start && (
           <div className={classNames(styles.tags, styles.tagDate)}>
@@ -75,14 +76,16 @@ export default function ItemCard({ item, style }: props) {
 
       <div className={styles.meta}>
         <img src={type.ico} alt={type.path} height={14} width={14} />
-        <span>
-          creado: {dayjs(item.attributes.publishedAt).format('DD/MM/YY')}
-        </span>
-        <span>
-          {/* <img src="/ico-pen.svg" alt={type.path} height={14} width={14} /> por{' '} */}
-          por: {item?.attributes.author}
-        </span>
+
+        <span>{item?.attributes.author}</span>
+        {item.attributes.type !== 'events' && (
+          <span>
+            creado {dayjs(item.attributes.publishedAt).format('DD/MM/YY')}
+          </span>
+        )}
       </div>
+
+      {/* CONTENT */}
       <h3>
         <Link href={`/${type.path}/${item.attributes.slug}`}>
           {item?.attributes.title}

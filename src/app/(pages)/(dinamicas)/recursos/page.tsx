@@ -17,7 +17,9 @@ export async function generateMetadata({ params }: any) {
 export default function Recursos() {
   return (
     <>
-      <h1 className={styles.plp}>Recursos</h1>
+      <h1 className={styles.plp}>
+        LIO <span>Recursos</span>
+      </h1>
       <ItemsInfiniteScroll resourceType="docs" />
     </>
   )

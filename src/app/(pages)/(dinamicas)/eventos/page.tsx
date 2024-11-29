@@ -18,7 +18,9 @@ export async function generateMetadata({ params }: any) {
 export default function Eventos() {
   return (
     <>
-      <h1 className={styles.plp}>Eventos</h1>
+      <h1 className={styles.plp}>
+        LIO <span>Eventos</span>
+      </h1>
       <ItemsInfiniteScroll resourceType="events" />
     </>
   )

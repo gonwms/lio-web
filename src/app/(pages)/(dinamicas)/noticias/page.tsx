@@ -17,7 +17,9 @@ export async function generateMetadata({ params }: any) {
 export default function Noticias() {
   return (
     <>
-      <h1 className={styles.plp}>Noticias</h1>
+      <h1 className={styles.plp}>
+        LIO <span>Noticias</span>
+      </h1>
       <ItemsInfiniteScroll resourceType="posts" />
     </>
   )
