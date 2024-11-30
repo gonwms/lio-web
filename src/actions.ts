@@ -1,15 +1,15 @@
-"use server"
+'use server'
 
-import { revalidatePath } from "next/cache"
-import { pause } from "@/libs/utils"
-import { redirect } from "next/navigation"
-import { cookies } from "next/headers"
-import { encrypt } from "@/libs/encrypt"
+import { revalidatePath } from 'next/cache'
+import { pause } from '@/libs/utils'
+import { redirect } from 'next/navigation'
+import { cookies } from 'next/headers'
+import { encrypt } from '@/libs/encrypt'
 const API_URL = process.env.NEXT_PUBLIC_API_URL as string
 
 export interface reqResource {
   url?: string
-  resource: "docs" | "posts" | "events" | "products"
+  resource: 'docs' | 'posts' | 'events' | 'products'
   page?: string | number
   pageSize?: string | number
   deep?: string | number
@@ -18,17 +18,17 @@ export interface reqResource {
 }
 
 // const REVALIDATE = { next: { revalidate: 600 } }
-const REVALIDATE = { cache: "force-cache" }
+const REVALIDATE = { cache: 'force-cache' }
 
 // ---------------------------------------------------------------
 //  CLEAR REVALIDATE
 // ---------------------------------------------------------------
 export async function manualClearCache(formData: any) {
-  const pathname = formData.get("name")
+  const pathname = formData.get('name')
   const url = new URL(pathname)
   // console.log(url.pathname)
   revalidatePath(url.pathname)
-  redirect("/cache?clearedPathName=" + url.pathname)
+  redirect('/cache?clearedPathName=' + url.pathname)
 }
 
 // ---------------------------------------------------------------
@@ -43,12 +43,12 @@ export const getResource = async (req: reqResource) => {
     pageSize,
     deep,
     sort,
-    filters,
+    filters
   })
 
   try {
     // console.log(endpoint)
-    const res = await fetch(endpoint, { cache: "force-cache" })
+    const res = await fetch(endpoint, { cache: 'force-cache' })
     // const wait = pause(2000)
     let data = await res.json()
 
@@ -56,12 +56,12 @@ export const getResource = async (req: reqResource) => {
       data = JSON.parse(JSON.stringify(data))
       return { data: data }
     } else {
-      console.error("❌ endpoint ~", endpoint, "\n❌ data ~", data)
+      console.error('❌ endpoint ~', endpoint, '\n❌ data ~', data)
       return { data: data }
     }
   } catch (error) {
-    console.error("❌ actions.ts ~ CATCH error", "\n ❌", error)
-    return { error: { message: "falló la conexion con el servidor" } }
+    console.error('❌ actions.ts ~ CATCH error', '\n ❌', error)
+    return { error: { message: 'falló la conexion con el servidor' } }
   }
 }
 
@@ -72,10 +72,10 @@ export const getAllResource = async () => {
   const string = `?populate=deep,2&filters[visibility][$eqi]=público&pagination[page]=1&pagination[pagesize]=15`
   try {
     const [docsRes, postsRes, eventsRes, productsRes] = await Promise.all([
-      fetch(`${API_URL}/api/docs/${string}`, { cache: "force-cache" }),
-      fetch(`${API_URL}/api/posts/${string}`, { cache: "force-cache" }),
-      fetch(`${API_URL}/api/events/${string}`, { cache: "force-cache" }),
-      fetch(`${API_URL}/api/products/${string}`, { cache: "force-cache" }),
+      fetch(`${API_URL}/api/docs/${string}`, { cache: 'force-cache' }),
+      fetch(`${API_URL}/api/posts/${string}`, { cache: 'force-cache' }),
+      fetch(`${API_URL}/api/events/${string}`, { cache: 'force-cache' }),
+      fetch(`${API_URL}/api/products/${string}`, { cache: 'force-cache' })
     ])
 
     const docs = await docsRes.json()
@@ -97,15 +97,15 @@ export const getAllResource = async () => {
       ...(docs.data ? docs.data : []),
       ...(posts.data ? posts.data : []),
       ...(events.data ? events.data : []),
-      ...(products.data ? products.data : []),
+      ...(products.data ? products.data : [])
     ]
     // pause(5000)
     // console.log(data)
     return { data: data }
   } catch (error) {
-    console.error("❌ actions.ts ~ CATCH getAllResource", "\n ❌", error)
+    console.error('❌ actions.ts ~ CATCH getAllResource', '\n ❌', error)
     return {
-      error: { message: "falló la conexion con el servidor" },
+      error: { message: 'falló la conexion con el servidor' }
     }
   }
 }
@@ -117,10 +117,10 @@ export const getFeatured = async () => {
   const filter = `?populate=deep,2&filters[featured][$eq]=true&filters[visibility][$eqi]=público`
   try {
     const [docsRes, postsRes, eventsRes, productsRes] = await Promise.all([
-      fetch(`${API_URL}/api/docs/${filter}`, { cache: "force-cache" }),
-      fetch(`${API_URL}/api/posts/${filter}`, { cache: "force-cache" }),
-      fetch(`${API_URL}/api/events/${filter}`, { cache: "force-cache" }),
-      fetch(`${API_URL}/api/products/${filter}`, { cache: "force-cache" }),
+      fetch(`${API_URL}/api/docs/${filter}`, { cache: 'force-cache' }),
+      fetch(`${API_URL}/api/posts/${filter}`, { cache: 'force-cache' }),
+      fetch(`${API_URL}/api/events/${filter}`, { cache: 'force-cache' }),
+      fetch(`${API_URL}/api/products/${filter}`, { cache: 'force-cache' })
     ])
     const docs = await docsRes.json()
     const posts = await postsRes.json()
@@ -141,14 +141,14 @@ export const getFeatured = async () => {
       ...(docs.data ? docs.data : []),
       ...(posts.data ? posts.data : []),
       ...(events.data ? events.data : []),
-      ...(products.data ? products.data : []),
+      ...(products.data ? products.data : [])
     ]
     // console.log(docs)
 
     return { data: data }
   } catch (error) {
-    console.error("❌ actions.ts ~ CATCH error", "\n ❌", error)
-    return { error: { message: "falló la conexion con el servidor" } }
+    console.error('❌ actions.ts ~ CATCH error', '\n ❌', error)
+    return { error: { message: 'falló la conexion con el servidor' } }
   }
 }
 
@@ -163,18 +163,18 @@ const CreateEndPointString = ({
   pageSize,
   deep,
   sort,
-  filters,
+  filters
 }: Partial<reqResource>) => {
   const ep = {
     url: `${url}/api/${resource}`,
     deep: `?populate=deep,${deep ? deep : 2}`,
     public: `&filters[visibility][$eqi]=público`,
-    sort: `&sort=${sort ? sort : "rank:asc"}`,
-    pageSize: `&pagination[pageSize]=${pageSize ? pageSize : 20}`,
+    sort: `&sort=${sort ? sort : 'rank:asc'}`,
+    pageSize: `&pagination[pageSize]=${pageSize ? pageSize : 15}`,
     page: `&pagination[page]=${page ? page : 1}`,
-    filter: filters ? `&filters${filters}` : "",
+    filter: filters ? `&filters${filters}` : ''
   }
-  const endpointString = Object.values(ep).join("")
+  const endpointString = Object.values(ep).join('')
   return endpointString
 }
 
@@ -189,13 +189,13 @@ export interface reqAuth {
 }
 
 export const login = async (formData: any) => {
-  const user = formData.get("user")
-  const pass = formData.get("pass")
+  const user = formData.get('user')
+  const pass = formData.get('pass')
 
   const requestOptions = {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ identifier: user, password: pass }),
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ identifier: user, password: pass })
   }
   // FETCH
   try {
@@ -205,11 +205,11 @@ export const login = async (formData: any) => {
     const encryptedSessionData = encrypt(JSON.stringify(data))
     // const encryptedSessionData = data
 
-    cookies().set("session", encryptedSessionData, {
+    cookies().set('session', encryptedSessionData, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
+      secure: process.env.NODE_ENV === 'production',
       maxAge: 60 * 60 * 24 * 7, // One week
-      path: "/",
+      path: '/'
     })
 
     if (!res.ok) {
@@ -220,7 +220,7 @@ export const login = async (formData: any) => {
     }
     return data
   } catch (error) {
-    console.error("❌ actions.ts ~ CATCH error", "\n ❌", error)
-    return { error: { message: "falló la conexion con el servidor" } }
+    console.error('❌ actions.ts ~ CATCH error', '\n ❌', error)
+    return { error: { message: 'falló la conexion con el servidor' } }
   }
 }
