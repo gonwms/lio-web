@@ -15,6 +15,7 @@ import { BlogDateTag } from './DateTags'
 import HTMLRenderer from './HTMLRenderer'
 import { json } from 'stream/consumers'
 import { Carousel } from './Carousel'
+import ShareBar from './shareBar'
 
 dayjs.locale('es')
 export const revalidate = 3600
@@ -152,7 +153,7 @@ export default function BlogTemplate({ data }: any) {
   const type: { path: string; ico: string } = formatDataType(
     data?.attributes?.type
   )
-  console.log(data)
+
   // RENDER  ----------------------
   return (
     <>
@@ -242,93 +243,7 @@ export default function BlogTemplate({ data }: any) {
             )} */}
           </div>
           {/* share */}
-          <div className={styles.share}>
-            <p>compartir</p>
-            {/* facebook */}
-            <button
-              onClick={() =>
-                window.open(
-                  `https://www.facebook.com/sharer/sharer.php?u=${window.location.href}`,
-                  '_blank',
-                  'noopener,noreferrer'
-                )
-              }
-            >
-              facebook
-            </button>
-            {/* twitter */}
-            <button
-              onClick={() =>
-                window.open(
-                  `https://twitter.com/intent/tweet?url=${window.location.href}`,
-                  '_blank',
-                  'noopener,noreferrer'
-                )
-              }
-            >
-              twitter
-            </button>
-            {/* whatsapp */}
-            <button
-              onClick={() =>
-                window.open(
-                  `https://api.whatsapp.com/send?text=${window.location.href}`,
-                  '_blank',
-                  'noopener,noreferrer'
-                )
-              }
-            >
-              whatsapp
-            </button>
-            {/* instagram */}
-            <button
-              onClick={() =>
-                window.open(
-                  `https://www.instagram.com/sharer/sharer.php?u=${window.location.href}`,
-                  '_blank',
-                  'noopener,noreferrer'
-                )
-              }
-            >
-              instagram
-            </button>
-            {/* linkedin */}
-            <button
-              onClick={() =>
-                window.open(
-                  `https://www.linkedin.com/sharing/share-offsite/?url=${window.location.href}`,
-                  '_blank',
-                  'noopener,noreferrer'
-                )
-              }
-            >
-              linkedin
-            </button>
-            {/* email */}
-            <button
-              onClick={() =>
-                window.open(
-                  `mailto:?subject=${data?.attributes?.title}&body=${window.location.href}`,
-                  '_blank',
-                  'noopener,noreferrer'
-                )
-              }
-            >
-              email
-            </button>
-            {/* telegram */}
-            <button
-              onClick={() =>
-                window.open(
-                  `https://t.me/share/url?url=${window.location.href}`,
-                  '_blank',
-                  'noopener,noreferrer'
-                )
-              }
-            >
-              telegram
-            </button>
-          </div>
+          <ShareBar data={data} />
         </div>
       )}
 

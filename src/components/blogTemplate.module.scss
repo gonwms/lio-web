@@ -295,18 +295,3 @@
     }
   }
 }
-.share {
-  display: flex;
-  justify-content: flex-start;
-  gap: 1rem;
-  button {
-    border: none;
-    background-color: #000000;
-    color: white;
-    padding: 0.5rem 1rem;
-    border-radius: 0.2rem;
-    cursor: pointer;
-    font-weight: 600;
-    font-size: 0.9rem;
-  }
-}
