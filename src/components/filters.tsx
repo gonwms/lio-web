@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useState } from 'react'
 
 interface props extends React.HTMLAttributes<HTMLLabelElement> {
   handleFilters: any
@@ -24,7 +24,7 @@ export default function Filters({
     ;(async () => {
       try {
         const res = await fetch(`${URL}/api/${type}`, {
-          method: "GET",
+          method: 'GET'
         })
         const data = await res.json()
         // console.log(data)
@@ -32,7 +32,7 @@ export default function Filters({
         error && setError(error)
         setLoading(false)
       } catch (error) {
-        console.error("error", error)
+        console.error('error', error)
       }
     })()
   }, [])
@@ -54,6 +54,41 @@ export default function Filters({
               )
             })}
           </select>
+
+          {/* <Popover.Root open={suggestions.length > 0}>
+        <Popover.Trigger>
+      
+          <input
+            name="search"
+            type="text"
+            placeholder="Buscar"
+            value={searchQuery}
+            onChange={(e) => handleAutocomplete(e)}
+          />
+        </Popover.Trigger>
+        <Popover.Content sideOffset={15} autoFocus={false}>
+          <ul>
+            {suggestions.map((label, index) => (
+              <li key={index}>
+                <button
+                  onClick={() => {
+                    setSearchQuery(label)
+                    setSuggestions([])
+                  }}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" || e.key === " ") {
+                      setSearchQuery(label)
+                      setSuggestions([])
+                    }
+                  }}
+                >
+                  {label}
+                </button>
+              </li>
+            ))}
+          </ul>
+        </Popover.Content>
+      </Popover.Root> */}
         </label>
       )}
     </>

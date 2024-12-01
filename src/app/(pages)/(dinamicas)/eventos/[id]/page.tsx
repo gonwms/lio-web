@@ -2,7 +2,7 @@ import BlogContent, { revalidate } from '@/components/blogTemplate'
 // import seo from "../seoEventos"
 import seo from '../../seoDinamicas'
 import formatDataType from '@/libs/formatDataType'
-
+import styles from '../../../layout.module.scss'
 const URL = process.env.NEXT_PUBLIC_API_URL
 const PATH = 'events'
 
@@ -53,6 +53,9 @@ export default async function Eventos({ params, searchParams }: any) {
 
   return (
     <section>
+      <h1 className={styles.plp}>
+        LIO <span>Eventos</span>
+      </h1>
       <BlogContent data={data} />
     </section>
   )

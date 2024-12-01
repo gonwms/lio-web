@@ -1,16 +1,5 @@
 @use '@/styles/main.module.scss' as *;
 
-.filters {
-  display: flex;
-  gap: 2rem;
-  padding: 0.5rem 1rem;
-  border-radius: 0.4rem;
-  text-transform: capitalize;
-  option {
-    text-transform: capitalize;
-  }
-}
-
 .gridCollection {
   max-width: 100%;
   display: grid;
@@ -51,6 +40,30 @@
   }
   select {
     padding: 0.5rem 1rem;
-    border-radius: 0;
+    border-radius: 0.3rem;
+    text-transform: capitalize;
+    // all: unset;
+    -webkit-appearance: none; /* Removes native styling in WebKit browsers */
+    -moz-appearance: none; /* Removes native styling in Firefox */
+    appearance: none; /* Standard property to reset appearance */
+  }
+  select option {
+    text-transform: capitalize;
+  }
+  select option:hover {
+    background-color: lightblue;
   }
 }
+
+// .filters {
+//   display: flex;
+//   gap: 2rem;
+//   select {
+//     padding: 0.5rem 1rem;
+//     border-radius: 0.4rem;
+//     text-transform: capitalize;
+//   }
+//   option {
+//     text-transform: capitalize;
+//   }
+// }

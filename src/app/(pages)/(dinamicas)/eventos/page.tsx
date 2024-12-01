@@ -2,6 +2,7 @@ import React from 'react'
 import ItemsInfiniteScroll from '@/components/ItemInfiniteScroll'
 import styles from '../../layout.module.scss'
 import seo from '../seoDinamicas'
+import { Col, Row } from '@/components/CustomTags'
 
 // SEO
 export async function generateMetadata({ params }: any) {
@@ -18,10 +19,16 @@ export async function generateMetadata({ params }: any) {
 export default function Eventos() {
   return (
     <>
-      <h1 className={styles.plp}>
-        LIO <span>Eventos</span>
-      </h1>
-      <ItemsInfiniteScroll resourceType="events" />
+      <section>
+        <Row>
+          <Col>
+            <h1 className={styles.plp}>
+              LIO <span>Eventos</span>
+            </h1>
+            <ItemsInfiniteScroll resourceType="events" />
+          </Col>
+        </Row>
+      </section>
     </>
   )
 }

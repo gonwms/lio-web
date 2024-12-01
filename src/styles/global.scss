@@ -14,7 +14,7 @@ main {
 
 ::selection {
   // color: $dark;
-  // background: $yellow;
+  background: #ffd800;
 }
 
 
@@ -88,49 +88,12 @@ a {
   color: inherit;
 }
 
+
+// select{
+//   border-radius: 0.3rem;
+// }
+
 // OCULTAR CAPTCHA
 .grecaptcha-badge {
   visibility: hidden;
-}
-
-// RADIX CUSTOM COLOR
-
-
-@supports (color: color(display-p3 1 1 1)) {
-  @media (color-gamut: p3) {
-    :root,
-    .light,
-    .light-theme {
-      --blue-1: oklch(99.3% 0.004 239.4);
-      --blue-2: oklch(98.2% 0.01 239.4);
-      --blue-3: oklch(96% 0.022 239.4);
-      --blue-4: oklch(93.7% 0.033 239.4);
-      --blue-5: oklch(90.6% 0.033 239.4);
-      --blue-6: oklch(86.4% 0.033 239.4);
-      --blue-7: oklch(80.9% 0.033 239.4);
-      --blue-8: oklch(73.5% 0.033 239.4);
-      --blue-9: oklch(64.9% 0.033 239.4);
-      --blue-10: oklch(60.9% 0.033 239.4);
-      --blue-11: oklch(55.8% 0.033 239.4);
-      --blue-12: oklch(32.4% 0.033 239.4);
-
-      --blue-a1: color(display-p3 0.024 0.514 1 / 0.016);
-      --blue-a2: color(display-p3 0.02 0.557 0.914 / 0.044);
-      --blue-a3: color(display-p3 0.012 0.529 0.961 / 0.091);
-      --blue-a4: color(display-p3 0.008 0.506 0.918 / 0.142);
-      --blue-a5: color(display-p3 0.004 0.396 0.722 / 0.181);
-      --blue-a6: color(display-p3 0.004 0.29 0.545 / 0.232);
-      --blue-a7: color(display-p3 0.004 0.224 0.416 / 0.302);
-      --blue-a8: color(display-p3 0.004 0.173 0.314 / 0.393);
-      --blue-a9: color(display-p3 0.004 0.129 0.239 / 0.495);
-      --blue-a10: color(display-p3 0 0.11 0.212 / 0.538);
-      --blue-a11: color(display-p3 0 0.098 0.192 / 0.597);
-      --blue-a12: color(display-p3 0 0.067 0.122 / 0.844);
-
-      --blue-contrast: #fff;
-      --blue-surface: color(display-p3 0.953 0.976 1 / 0.8);
-      --blue-indicator: oklch(64.9% 0.033 239.4);
-      --blue-track: oklch(64.9% 0.033 239.4);
-    }
-  }
 }

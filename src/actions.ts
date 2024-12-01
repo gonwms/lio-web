@@ -69,7 +69,7 @@ export const getResource = async (req: reqResource) => {
 //  GET ALL RESOURCE
 // ---------------------------------------------------------------
 export const getAllResource = async () => {
-  const string = `?populate=deep,2&filters[visibility][$eqi]=público&pagination[page]=1&pagination[pagesize]=15`
+  const string = `?populate=deep,2&filters[visibility][$eqi]=público&pagination[page]=1&pagination[pageSize]=4`
   try {
     const [docsRes, postsRes, eventsRes, productsRes] = await Promise.all([
       fetch(`${API_URL}/api/docs/${string}`, { cache: 'force-cache' }),
@@ -99,6 +99,7 @@ export const getAllResource = async () => {
       ...(events.data ? events.data : []),
       ...(products.data ? products.data : [])
     ]
+
     // pause(5000)
     // console.log(data)
     return { data: data }
@@ -170,7 +171,7 @@ const CreateEndPointString = ({
     deep: `?populate=deep,${deep ? deep : 2}`,
     public: `&filters[visibility][$eqi]=público`,
     sort: `&sort=${sort ? sort : 'rank:asc'}`,
-    pageSize: `&pagination[pageSize]=${pageSize ? pageSize : 15}`,
+    pageSize: `&pagination[pageSize]=${pageSize ? pageSize : 10}`,
     page: `&pagination[page]=${page ? page : 1}`,
     filter: filters ? `&filters${filters}` : ''
   }

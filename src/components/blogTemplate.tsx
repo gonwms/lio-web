@@ -21,6 +21,7 @@ export const revalidate = 3600
 
 export default function BlogTemplate({ data }: any) {
   //
+
   const cover = data?.attributes?.cover?.data?.attributes
 
   /*--------------------------------
@@ -151,7 +152,7 @@ export default function BlogTemplate({ data }: any) {
   const type: { path: string; ico: string } = formatDataType(
     data?.attributes?.type
   )
-
+  console.log(data)
   // RENDER  ----------------------
   return (
     <>
@@ -239,6 +240,21 @@ export default function BlogTemplate({ data }: any) {
             {/* {data?.attributes?.contentck && (
               <HTMLRenderer data={data?.attributes?.contentck} />
             )} */}
+          </div>
+          {/* share */}
+          <div className={styles.share}>
+            <p>compartir</p>
+            <button
+              onClick={() =>
+                window.open(
+                  `https://www.facebook.com/sharer/sharer.php?u=${window.location.href}`,
+                  '_blank',
+                  'noopener,noreferrer'
+                )
+              }
+            >
+              facebook
+            </button>
           </div>
         </div>
       )}

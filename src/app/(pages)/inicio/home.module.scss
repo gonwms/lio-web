@@ -1,19 +1,17 @@
-@use "@/styles/main.module.scss" as *;
+@use '@/styles/main.module.scss' as *;
 
 // BANNER
 h1.h1 {
+  margin-top: 1.2rem;
   font-size: 1rem !important;
   font-weight: 500;
   line-height: 1rem;
-  // position: absolute;
-  // color: white;
-  // bottom: 0;
-  // left: 20px;
   span {
     border-left: 1px solid rgb(212, 212, 212);
     padding: 0 0.8em;
     margin: 0 0.8em;
     line-height: 1em;
+    // text-transform: uppercase;
   }
 }
 .banner {
@@ -24,10 +22,10 @@ h1.h1 {
   padding: 0 2rem;
   overflow: hidden;
   border-radius: 0.5rem;
-  background: #93dff6 url("/lio-amarillo.png") no-repeat center;
+  background: #93dff6 url('/lio-amarillo.png') no-repeat center;
   background-size: 50%;
   background-position: 30% 00%;
-  @include up("md") {
+  @include up('md') {
     padding: 0 2rem;
     background-size: 50%;
     background-position: 30% 20%;
@@ -37,7 +35,7 @@ h1.h1 {
     object-position: top;
     width: 300px;
     max-height: 100px;
-    @include up("md") {
+    @include up('md') {
       max-height: 130px;
     }
   }
@@ -50,7 +48,7 @@ h1.h1 {
   .logo {
     height: 70px;
     display: none;
-    @include up("lg") {
+    @include up('lg') {
       display: block;
     }
   }
