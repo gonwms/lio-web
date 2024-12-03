@@ -1,9 +1,9 @@
-"use client"
-import React, { useEffect, useState } from "react"
+'use client'
+import React, { useEffect, useState } from 'react'
 
-import styles from "./quickLinks.module.scss"
-import { Carousel, Settings } from "./Carousel"
-import classNames from "classnames"
+import styles from './quickLinks.module.scss'
+import { Carousel, Settings } from './Carousel'
+import classNames from 'classnames'
 
 export default function QuickLinksCards() {
   //
@@ -35,8 +35,8 @@ export default function QuickLinksCards() {
           arrows: true,
           // centerMode: true,
           slidesToShow: 2,
-          slidesToScroll: 1,
-        },
+          slidesToScroll: 1
+        }
       },
       {
         breakpoint: 1000,
@@ -46,10 +46,10 @@ export default function QuickLinksCards() {
           slidesToShow: 1,
           slidesToScroll: 1,
           centerMode: true,
-          draggable: true,
-        },
-      },
-    ],
+          draggable: true
+        }
+      }
+    ]
   }
   return (
     <>
@@ -62,7 +62,7 @@ export default function QuickLinksCards() {
             target="_blank"
           >
             <div className={styles.content}>
-              <img src="/ico-download.svg" alt="" />
+              <img src="/ico/ico-download.svg" alt="" />
               <div>
                 <strong>Plan económico Peronista</strong>
                 <span>Descargá: PDF EPUB</span>
@@ -76,7 +76,7 @@ export default function QuickLinksCards() {
             target="_blank"
           >
             <div className={styles.content}>
-              <img src="/ico-download.svg" alt="" />
+              <img src="/ico/ico-download.svg" alt="" />
               <div>
                 <strong>Plan de gobierno</strong>
                 <span>Descargá: PDF EPUB</span>
@@ -86,7 +86,7 @@ export default function QuickLinksCards() {
 
           <a href="#" className={classNames(styles.quickLink, styles.plan)}>
             <div className={styles.content}>
-              <img src="/ico-credit-card.svg" alt="" />
+              <img src="/ico/ico-credit-card.svg" alt="" />
               <div>
                 <strong>Aportes económicos</strong>
                 <span>Colaborar</span>
@@ -100,7 +100,7 @@ export default function QuickLinksCards() {
             target="_blank"
           >
             <div className={styles.content}>
-              <img src="/ico-cast.svg" alt="" />
+              <img src="/ico/ico-cast.svg" alt="" />
               <div>
                 <strong>Mundo LIO</strong>
                 <span>Los miercoles 20:00hs</span>

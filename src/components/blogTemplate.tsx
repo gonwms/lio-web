@@ -223,7 +223,7 @@ export default function BlogTemplate({ data }: any) {
                   {data?.attributes?.author && (
                     <span>
                       <img
-                        src="/ico-pen.svg"
+                        src="/ico/ico-pen.svg"
                         alt={type.path}
                         height={14}
                         width={14}

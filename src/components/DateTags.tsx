@@ -45,9 +45,9 @@ export function CardDateTag({ data, styles }: props) {
           now
             .subtract(1, 'day')
             .isBefore(data.attributes.event_start, 'day') ? (
-            <img src="/ico-bell-w.svg" alt="" />
+            <img src="/ico/ico-bell-w.svg" alt="" />
           ) : (
-            <img src="/ico-eventos-w.svg" alt="" />
+            <img src="/ico/ico-eventos-w.svg" alt="" />
           )}
 
           {formatEventDate(data.attributes.event_start)}
@@ -95,9 +95,9 @@ export function BlogDateTag({ data, styles }: props) {
           now
             .subtract(1, 'day')
             .isBefore(data.attributes.event_start, 'day') ? (
-            <img src="/ico-bell-w.svg" alt="" />
+            <img src="/ico/ico-bell-w.svg" alt="" />
           ) : (
-            <img src="/ico-eventos-w.svg" alt="" />
+            <img src="/ico/ico-eventos-w.svg" alt="" />
           )}
           {/* day */}
           {formatEventDate(data.attributes.event_start)}
@@ -106,7 +106,7 @@ export function BlogDateTag({ data, styles }: props) {
         {/* HORAS DE EVENTO. RENDER SI DÍA NO PASÓ AÚN*/}
         {!now.isAfter(data.attributes.event_start, 'day') && (
           <span className={styles.hour}>
-            <img src="/ico-clock.svg" alt="" />
+            <img src="/ico/ico-clock.svg" alt="" />
             {data.attributes.event_start &&
               `${dayjs(data.attributes.event_start).format('hh:mma')}`}
             {data.attributes.event_end &&
@@ -118,7 +118,7 @@ export function BlogDateTag({ data, styles }: props) {
         <span className={styles.map}>
           {data.attributes.ubicacion && (
             <>
-              <img src="/ico-map.svg" alt="" />
+              <img src="/ico/ico-map.svg" alt="" />
               <a href={data?.attributes?.mapa_link} target="_blank">
                 {data.attributes.ubicacion}
                 {data.attributes.mapa_link && <span>ver mapa</span>}

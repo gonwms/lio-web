@@ -1,18 +1,18 @@
-"use client"
+'use client'
 
-import React from "react"
-import styles from "./sidebar.module.scss"
-import Link from "next/link"
-import { usePathname } from "next/navigation"
-import classNames from "classnames"
-import useMediaQuery from "@/app/hooks/useMediaQuery"
-import { sendGTMEvent } from "@next/third-parties/google"
+import React from 'react'
+import styles from './sidebar.module.scss'
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
+import classNames from 'classnames'
+import useMediaQuery from '@/app/hooks/useMediaQuery'
+import { sendGTMEvent } from '@next/third-parties/google'
 const menu = [
-  { ico: "inicio", label: "Inicio", href: "/inicio" },
-  { ico: "eventos", label: "Eventos", href: "/eventos" },
-  { ico: "noticias", label: "Noticias", href: "/noticias" },
-  { ico: "recursos", label: "Recursos", href: "/recursos" },
-  { ico: "tienda", label: "Tienda", href: "/tienda" },
+  { ico: 'inicio', label: 'Inicio', href: '/inicio' },
+  { ico: 'eventos', label: 'Eventos', href: '/eventos' },
+  { ico: 'noticias', label: 'Noticias', href: '/noticias' },
+  { ico: 'recursos', label: 'Recursos', href: '/recursos' },
+  { ico: 'tienda', label: 'Tienda', href: '/tienda' }
 ]
 
 const menu2: any[] = [
@@ -28,8 +28,8 @@ interface props {
 }
 export default function Sidebar({ className }: props) {
   const path = usePathname()
-  const currentPath = `/${path.split("/")[1]}`
-  const mobile = useMediaQuery("(max-width: 1023px)")
+  const currentPath = `/${path.split('/')[1]}`
+  const mobile = useMediaQuery('(max-width: 1023px)')
   // console.log(mobile)
   // console.log(path)
 
@@ -48,20 +48,20 @@ export default function Sidebar({ className }: props) {
                 className={styles.link}
                 data-active={path === item.href}
               >
-                <img src={`/ico-${item.ico}.svg`} alt="" />
+                <img src={`/ico/ico-${item.ico}.svg`} alt="" />
               </Link>
             )
           })}
-          <a
+          {/* <a
             onClick={() =>
-              sendGTMEvent({ event: "whatsapp mobile", value: "click" })
+              sendGTMEvent({ event: 'whatsapp mobile', value: 'click' })
             }
             className={styles.link}
             href="https://chat.whatsapp.com/FhOhNQHdUvMFRx4r8GML0w?text=Hola"
             target="_blank"
           >
-            <img src="/whatsapp.svg" alt="whatsapp" />
-          </a>
+            <img src="/social/whatsapp.svg" alt="whatsapp" />
+          </a> */}
         </nav>
       </div>
       {/* -----------------------------------------
@@ -79,7 +79,7 @@ export default function Sidebar({ className }: props) {
                   className={styles.link}
                   data-active={currentPath === item.href}
                 >
-                  <img src={`/ico-${item.ico}.svg`} alt="" />
+                  <img src={`/ico/ico-${item.ico}.svg`} alt="" />
                   {item.label}
                 </Link>
               )
@@ -108,25 +108,25 @@ export default function Sidebar({ className }: props) {
               href="https://www.instagram.com/lio_losinorganicosorganizados"
               target="_blank"
             >
-              <img src="/instagram.svg" alt="instagram" />
+              <img src="/social/instagram.svg" alt="instagram" />
             </a>
             <a
               href="https://www.facebook.com/losinorganicosorganizados"
               target="_blank"
             >
-              <img src="/facebook.svg" alt="facebook" />
+              <img src="/social/facebook.svg" alt="facebook" />
             </a>
             <a href="https://www.tiktok.com/@lio_nacional" target="_blank">
-              <img src="/tiktok.svg" alt="tiktok" />
+              <img src="/social/tiktok.svg" alt="tiktok" />
             </a>
             <a href="https://twitter.com/Hacemos_Lio" target="_blank">
-              <img src="/twitter.svg" alt="twitter" />
+              <img src="/social/twitter.svg" alt="twitter" />
             </a>
             <a
               href="https://www.youtube.com/@losinorganicosorganizados4394/"
               target="_blank"
             >
-              <img src="/youtube.svg" alt="youtube" />
+              <img src="/social/youtube.svg" alt="youtube" />
             </a>
             {/* <a href="https://t.me/lioenpyv" target="_blank">
         <img src="/telegram.svg" alt="telegram" />

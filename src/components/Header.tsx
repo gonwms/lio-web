@@ -1,16 +1,16 @@
-"use client"
+'use client'
 
-import React, { useState } from "react"
-import Link from "next/link"
+import React, { useState } from 'react'
+import Link from 'next/link'
 
-import styles from "./header.module.scss"
+import styles from './header.module.scss'
 
-import { usePathname } from "next/navigation"
-import classNames from "classnames"
-import useMediaQuery from "@/app/hooks/useMediaQuery"
+import { usePathname } from 'next/navigation'
+import classNames from 'classnames'
+import useMediaQuery from '@/app/hooks/useMediaQuery'
 
 const menu = [
-  { label: "Inicio", href: "/inicio", target: "_self" },
+  { label: 'Inicio', href: '/inicio', target: '_self' }
   // { label: "Quienes somos", href: "/quienes-somos", target: "_self" },
   // { label: "En dónde estamos", href: "/en-donde-estamos", target: "_self" },
   // { label: "Contacto", href: "/contacto", target: "_self" },
@@ -20,7 +20,7 @@ interface props {
 }
 const Header = ({ className }: props) => {
   //
-  const mobile = useMediaQuery("(max-width: 1023px)")
+  const mobile = useMediaQuery('(max-width: 1023px)')
   const pathname = usePathname()
   const [menuOpen, setMenuOpen] = useState(false)
 
@@ -34,7 +34,7 @@ const Header = ({ className }: props) => {
               alt="LIO los inorgánicos organizados"
               width={52}
               height={50}
-            />{" "}
+            />{' '}
             {/* Los Inorgánicos Organizados */}
           </Link>
 
@@ -44,7 +44,7 @@ const Header = ({ className }: props) => {
               return (
                 <Link
                   style={{
-                    fontWeight: pathname === rute.href ? "600" : "400",
+                    fontWeight: pathname === rute.href ? '600' : '400'
                   }}
                   key={rute.href}
                   href={rute.href}
@@ -58,7 +58,7 @@ const Header = ({ className }: props) => {
               href="https://chat.whatsapp.com/FhOhNQHdUvMFRx4r8GML0w"
               target="_blank"
             >
-              Contacto <img src="/whatsapp.svg" alt="whatsapp" />
+              Contacto <img src="/social/whatsapp.svg" alt="whatsapp" />
             </a>
           </nav>
           <a href="https://www.principiosyvalores.org/" target="_blank">
@@ -77,7 +77,7 @@ const Header = ({ className }: props) => {
             className={classNames(styles.link, styles.burger)}
             onClick={() => setMenuOpen(!menuOpen)}
           >
-            <img src={`/ico-burger-black.svg`} alt="" />
+            <img src={`/ico/ico-burger-black.svg`} alt="" />
           </button>
         </div>
       </header>
@@ -111,7 +111,7 @@ const Header = ({ className }: props) => {
                   <Link
                     onClick={() => setMenuOpen(false)}
                     style={{
-                      fontWeight: pathname === rute.href ? "600" : "400",
+                      fontWeight: pathname === rute.href ? '600' : '400'
                     }}
                     key={rute.href}
                     href={rute.href}
@@ -125,7 +125,7 @@ const Header = ({ className }: props) => {
                 href="https://chat.whatsapp.com/FhOhNQHdUvMFRx4r8GML0w"
                 target="_blank"
               >
-                Whatsapp <img src="/whatsapp.svg" alt="whatsapp" />
+                Whatsapp <img src="/social/whatsapp.svg" alt="whatsapp" />
               </a>
             </nav>
             <div className={styles.social}>
@@ -135,25 +135,25 @@ const Header = ({ className }: props) => {
                   href="https://www.instagram.com/lio_losinorganicosorganizados"
                   target="_blank"
                 >
-                  <img src="/instagram.svg" alt="instagram" />
+                  <img src="/social/instagram.svg" alt="instagram" />
                 </a>
                 <a
                   href="https://www.facebook.com/losinorganicosorganizados"
                   target="_blank"
                 >
-                  <img src="/facebook.svg" alt="facebook" />
+                  <img src="/social/facebook.svg" alt="facebook" />
                 </a>
                 <a href="https://www.tiktok.com/@lio_nacional" target="_blank">
-                  <img src="/tiktok.svg" alt="tiktok" />
+                  <img src="/social/tiktok.svg" alt="tiktok" />
                 </a>
                 <a href="https://twitter.com/Hacemos_Lio" target="_blank">
-                  <img src="/twitter.svg" alt="twitter" />
+                  <img src="/social/twitter.svg" alt="twitter" />
                 </a>
                 <a
                   href="https://www.youtube.com/@losinorganicosorganizados4394/"
                   target="_blank"
                 >
-                  <img src="/youtube.svg" alt="youtube" />
+                  <img src="/social/youtube.svg" alt="youtube" />
                 </a>
                 {/* <a href="https://t.me/lioenpyv" target="_blank">
               <img src="/telegram.svg" alt="telegram" />
