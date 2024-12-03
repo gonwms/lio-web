@@ -58,7 +58,8 @@ const Header = ({ className }: props) => {
               href="https://chat.whatsapp.com/FhOhNQHdUvMFRx4r8GML0w"
               target="_blank"
             >
-              Contacto <img src="/social/whatsapp.svg" alt="whatsapp" />
+              Contacto{' '}
+              <img src="/social/whatsapp.svg" alt="whatsapp" height={20} />
             </a>
           </nav>
           <a href="https://www.principiosyvalores.org/" target="_blank">
@@ -125,7 +126,8 @@ const Header = ({ className }: props) => {
                 href="https://chat.whatsapp.com/FhOhNQHdUvMFRx4r8GML0w"
                 target="_blank"
               >
-                Whatsapp <img src="/social/whatsapp.svg" alt="whatsapp" />
+                Whatsapp{' '}
+                <img src="/social/whatsapp.svg" alt="whatsapp" height={20} />
               </a>
             </nav>
             <div className={styles.social}>
@@ -135,25 +137,29 @@ const Header = ({ className }: props) => {
                   href="https://www.instagram.com/lio_losinorganicosorganizados"
                   target="_blank"
                 >
-                  <img src="/social/instagram.svg" alt="instagram" />
+                  <img
+                    src="/social/instagram.svg"
+                    alt="instagram"
+                    height={22}
+                  />
                 </a>
                 <a
                   href="https://www.facebook.com/losinorganicosorganizados"
                   target="_blank"
                 >
-                  <img src="/social/facebook.svg" alt="facebook" />
+                  <img src="/social/facebook.svg" alt="facebook" height={22} />
                 </a>
                 <a href="https://www.tiktok.com/@lio_nacional" target="_blank">
-                  <img src="/social/tiktok.svg" alt="tiktok" />
+                  <img src="/social/tiktok.svg" alt="tiktok" height={22} />
                 </a>
                 <a href="https://twitter.com/Hacemos_Lio" target="_blank">
-                  <img src="/social/twitter.svg" alt="twitter" />
+                  <img src="/social/twitter.svg" alt="twitter" height={22} />
                 </a>
                 <a
                   href="https://www.youtube.com/@losinorganicosorganizados4394/"
                   target="_blank"
                 >
-                  <img src="/social/youtube.svg" alt="youtube" />
+                  <img src="/social/youtube.svg" alt="youtube" height={22} />
                 </a>
                 {/* <a href="https://t.me/lioenpyv" target="_blank">
               <img src="/telegram.svg" alt="telegram" />

@@ -1,6 +1,8 @@
 import styles from './shareBar.module.css'
+import * as Tooltip from '@radix-ui/react-tooltip'
 
 export default function ShareBar({ data }: any) {
+  // HANDLERS
   function handleFacebook() {
     window.open(
       `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
@@ -28,7 +30,6 @@ export default function ShareBar({ data }: any) {
       'noopener,noreferrer'
     )
   }
-
   function handleTelegram() {
     window.open(
       `https://t.me/share/url?url=${encodeURIComponent(
@@ -67,31 +68,42 @@ Saludos`)}`,
     navigator.clipboard.writeText(url)
   }
 
+  const social = [
+    { name: 'Whatsapp', action: handleWhatsapp, src: '/social/whatsapp.svg' },
+    { name: 'Twitter', action: handleTwitter, src: '/social/twitter.svg' },
+    { name: 'Facebook', action: handleFacebook, src: '/social/facebook.svg' },
+    { name: 'Copiar link', action: copyLink, src: '/social/link.svg' },
+    { name: 'E-mail', action: handleEmail, src: '/social/email.svg' }
+    // { name: 'linkedin', action: handleLinkedin, src: '/social/linkedin.svg' },
+    // { name: 'telegram', action: handleTelegram, src: '/social/telegram.svg' }
+  ]
+
   return (
     <div className={styles.share}>
       <p>Compartir</p>
       <div className={styles.links}>
-        <button onClick={handleWhatsapp}>
-          <img src="/social/whatsapp.svg" alt="whatsapp" />
-        </button>
-        <button onClick={handleTwitter}>
-          <img src="/social/twitter.svg" alt="twitter" />
-        </button>
-        <button onClick={handleFacebook}>
-          <img src="/social/facebook.svg" alt="facebook" />
-        </button>
-        {/* <button onClick={handleLinkedin}>
-        <img src="/social/linkedin.svg" alt="linkedin" />
-      </button> */}
-        <button onClick={handleTelegram}>
-          <img src="/social/telegram.svg" alt="telegram" />
-        </button>
-        <button onClick={copyLink}>
-          <img src="/social/link.svg" alt="link" />
-        </button>
-        <button onClick={handleEmail}>
-          <img src="/social/email.svg" alt="email" />
-        </button>
+        {social.map((item) => {
+          return (
+            <Tooltip.Provider key={item.name} delayDuration={0}>
+              <Tooltip.Root>
+                <Tooltip.Trigger asChild>
+                  <button onClick={item.action}>
+                    <img src={item.src} alt={item.name} />
+                  </button>
+                </Tooltip.Trigger>
+                <Tooltip.Portal>
+                  <Tooltip.Content
+                    className={styles.TooltipContent}
+                    sideOffset={5}
+                  >
+                    {item.name}
+                    <Tooltip.Arrow className={styles.TooltipArrow} />
+                  </Tooltip.Content>
+                </Tooltip.Portal>
+              </Tooltip.Root>
+            </Tooltip.Provider>
+          )
+        })}
       </div>
     </div>
   )
