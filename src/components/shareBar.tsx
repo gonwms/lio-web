@@ -7,7 +7,7 @@ export default function ShareBar({ data }: any) {
     window.open(
       `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
         window.location.href
-      )}%0A${encodeURIComponent(data?.attributes?.title)}`,
+      )}`,
       '_blank',
       'noopener,noreferrer'
     )

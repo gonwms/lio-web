@@ -222,12 +222,12 @@ export default function BlogTemplate({ data }: any) {
                   </span>
                   {data?.attributes?.author && (
                     <span>
-                      <img
+                      {/* <img
                         src="/ico/ico-pen.svg"
                         alt={type.path}
                         height={14}
                         width={14}
-                      />
+                      /> */}
                       por {data?.attributes?.author}
                     </span>
                   )}
