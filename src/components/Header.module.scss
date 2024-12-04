@@ -1,4 +1,4 @@
-@use "@/styles/main.module.scss" as *;
+@use '@/styles/main.module.scss' as *;
 .header {
   position: sticky;
   top: 0;
@@ -11,7 +11,7 @@
     font-family: var(--font-inter);
   }
   & > div {
-    @include up("md") {
+    @include up('md') {
       padding: 0rem 3rem;
     }
     margin: 0 auto;
@@ -46,7 +46,7 @@
     font-weight: 400;
   }
   .logoPyV {
-    @include down("md") {
+    @include down('md') {
       display: none;
     }
   }
@@ -88,7 +88,7 @@
     padding: 2rem 4rem 5rem 3rem;
     animation: openMenu 0.2s ease-in-out;
     display: flex;
-    // justify-content: space-between;
+    justify-content: space-between;
     flex-direction: column;
     // background: red;
     .logos {

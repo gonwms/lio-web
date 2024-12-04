@@ -1,15 +1,15 @@
-"use client"
+'use client'
 
-import classNames from "classnames"
-import React, { useEffect, useState } from "react"
-import { getResource } from "@/actions"
-import ItemCard from "@/components/itemCard"
-import styles from "./itemList.module.scss"
-import { SkeletonGrid } from "./Skeleton"
-import Filters from "@/components/filters"
+import classNames from 'classnames'
+import React, { useEffect, useState } from 'react'
+import { getResource } from '@/actions'
+import ItemCard from '@/components/itemCard'
+import styles from './itemList.module.scss'
+import { SkeletonGrid } from './Skeleton'
+import Filters from '@/components/filters'
 
 interface props {
-  resourceType: "events" | "products" | "docs" | "posts"
+  resourceType: 'events' | 'products' | 'docs' | 'posts'
 }
 
 export default function ItemInfiniteScroll({ resourceType }: props) {
@@ -19,7 +19,7 @@ export default function ItemInfiniteScroll({ resourceType }: props) {
   const [loading, setLoading] = useState<any>(true)
   const [error, setError] = useState<any>(null)
   const [pagination, setPagination] = useState<any>(null)
-  const [filters, setFilters] = useState<string>("")
+  const [filters, setFilters] = useState<string>('')
 
   // Fetch
   useEffect(() => {
@@ -29,9 +29,9 @@ export default function ItemInfiniteScroll({ resourceType }: props) {
         resource: resourceType,
         page: page,
         filters:
-          filters !== ""
+          filters !== ''
             ? `[category_${resourceType}][name][$eqi]=${filters}`
-            : undefined,
+            : undefined
       })
       // console.log(data)
       data && page > 1
@@ -69,19 +69,30 @@ export default function ItemInfiniteScroll({ resourceType }: props) {
 
   return (
     <>
-      {(resourceType == "docs" || resourceType == "posts") && (
+      {(resourceType == 'docs' || resourceType == 'posts') && (
         <Filters
           className={styles.filters}
           handleFilters={handleFilters}
           filters={filters}
-          type={resourceType == "docs" ? "category-docs" : "category-posts"}
+          type={resourceType == 'docs' ? 'category-docs' : 'category-posts'}
         ></Filters>
       )}
       {/* loading */}
       {page === 1 && loading === true && <SkeletonGrid count={10} />}
       {/* no results */}
       {(dataState?.length === 0 || dataState === null) && loading === false && (
-        <h3>no hay resultados</h3>
+        <div className={styles.noResults}>
+          <img
+            src="/no-results.webp"
+            alt="no hay resultados"
+            width={150}
+            height={150}
+          />
+          Ups! Parece que <br />
+          <h3>
+            <strong>no hay resultados</strong>
+          </h3>
+        </div>
       )}
       {/* results */}
       {dataState?.length > 0 && !loading && (

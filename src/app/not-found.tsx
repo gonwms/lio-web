@@ -1,6 +1,6 @@
-import { Row } from "@/components/CustomTags"
-import React from "react"
-import styles from "./notfound.module.scss"
+import { Row } from '@/components/CustomTags'
+import React from 'react'
+import styles from './notfound.module.scss'
 const Custom404 = () => {
   return (
     <section>
@@ -11,6 +11,12 @@ const Custom404 = () => {
           height={130}
         />
         <div>
+          <img
+            src="/no-results.webp"
+            alt="no hay resultados"
+            width={200}
+            height={200}
+          />
           <h1>404</h1>
           <p>Parece que la página que buscas no existe.</p>
         </div>

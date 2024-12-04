@@ -72,9 +72,9 @@ export const getAllResource = async () => {
   const string = `?populate=deep,2&filters[visibility][$eqi]=público&pagination[page]=1&pagination[pageSize]=4`
   try {
     const [docsRes, postsRes, eventsRes, productsRes] = await Promise.all([
+      fetch(`${API_URL}/api/events/${string}`, { cache: 'force-cache' }),
       fetch(`${API_URL}/api/docs/${string}`, { cache: 'force-cache' }),
       fetch(`${API_URL}/api/posts/${string}`, { cache: 'force-cache' }),
-      fetch(`${API_URL}/api/events/${string}`, { cache: 'force-cache' }),
       fetch(`${API_URL}/api/products/${string}`, { cache: 'force-cache' })
     ])
 
@@ -94,9 +94,9 @@ export const getAllResource = async () => {
     }
 
     const data = [
-      ...(docs.data ? docs.data : []),
-      ...(posts.data ? posts.data : []),
       ...(events.data ? events.data : []),
+      ...(posts.data ? posts.data : []),
+      ...(docs.data ? docs.data : []),
       ...(products.data ? products.data : [])
     ]
 

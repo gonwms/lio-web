@@ -16,21 +16,11 @@
     flex-wrap: wrap;
     gap: 1rem;
     & > button {
-      /* height: 28px;
-      width: 28px; */
       cursor: pointer;
       background: none;
       border: none;
-      /* opacity: 0.6; */
-      /* background-color: #000000; */
-      /* padding: 0; */
-      /* color: white; */
-      /* padding: 0.5rem 1rem; */
-      /* border-radius: 0.2rem; */
-
       & > img {
         height: 22px;
-        /* width: 22px; */
         opacity: 0.9;
         &:hover {
           opacity: 1;

@@ -69,13 +69,13 @@ Saludos`)}`,
   }
 
   const social = [
+    { name: 'Copiar link', action: copyLink, src: '/social/link.svg' },
     { name: 'Whatsapp', action: handleWhatsapp, src: '/social/whatsapp.svg' },
     { name: 'Twitter', action: handleTwitter, src: '/social/twitter.svg' },
     { name: 'Facebook', action: handleFacebook, src: '/social/facebook.svg' },
-    { name: 'Copiar link', action: copyLink, src: '/social/link.svg' },
-    { name: 'E-mail', action: handleEmail, src: '/social/email.svg' }
-    // { name: 'linkedin', action: handleLinkedin, src: '/social/linkedin.svg' },
-    // { name: 'telegram', action: handleTelegram, src: '/social/telegram.svg' }
+    { name: 'E-mail', action: handleEmail, src: '/social/email.svg' },
+    // { name: 'Linkedin', action: handleLinkedin, src: '/social/linkedin.svg' },
+    { name: 'Telegram', action: handleTelegram, src: '/social/telegram.svg' }
   ]
 
   return (

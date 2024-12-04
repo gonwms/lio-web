@@ -52,28 +52,28 @@ export default async function Welcome({ params, searchParams }: propsType) {
               href="https://www.instagram.com/lio_losinorganicosorganizados"
               target="_blank"
             >
-              <img src="/social/instagram.svg" alt="instagram" />
+              <img src="/social/instagram.svg" alt="instagram" width={24} />
             </a>
             <a
               href="https://www.facebook.com/losinorganicosorganizados"
               target="_blank"
             >
-              <img src="/social/facebook.svg" alt="facebook" />
+              <img src="/social/facebook.svg" alt="facebook" width={24} />
             </a>
             <a href="https://www.tiktok.com/@lio_nacional" target="_blank">
-              <img src="/social/tiktok.svg" alt="tiktok" />
+              <img src="/social/tiktok.svg" alt="tiktok" width={24} />
             </a>
             <a href="https://twitter.com/Hacemos_Lio" target="_blank">
-              <img src="/social/twitter.svg" alt="twitter" />
+              <img src="/social/twitter.svg" alt="twitter" width={24} />
             </a>
             <a
               href="https://www.youtube.com/@losinorganicosorganizados4394/"
               target="_blank"
             >
-              <img src="/social/youtube.svg" alt="youtube" />
+              <img src="/social/youtube.svg" alt="youtube" width={24} />
             </a>
             {/* <a href="https://t.me/lioenpyv" target="_blank">
-              <img src="/telegram.svg" alt="telegram" />
+              <img src="/telegram.svg" alt="telegram" width={24}/>
             </a> */}
           </div>
         </Col>
