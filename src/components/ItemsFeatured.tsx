@@ -1,20 +1,20 @@
 // import "server-only"
-"use client"
+'use client'
 
-import { getFeatured } from "@/actions"
-import React, { ReactElement, ReactNode, useEffect, useState } from "react"
-import { Carousel, Settings } from "@/components/Carousel"
+import { getFeatured } from '@/actions'
+import React, { ReactElement, ReactNode, useEffect, useState } from 'react'
+import { Carousel, Settings } from '@/components/Carousel'
 
-import ItemCard from "@/components/itemCard"
-import { SkeletonFeatured } from "@/components/Skeleton"
-import useMediaQuery from "@/app/hooks/useMediaQuery"
-import styles from "./featured.module.scss"
+import ItemCard from '@/components/itemCard'
+import { SkeletonFeatured } from '@/components/Skeleton'
+import useMediaQuery from '@/app/hooks/useMediaQuery'
+import styles from './itemsFeatured.module.scss'
 export default function Featured() {
   //
   const [dataState, setData] = useState<any[] | null>(null)
   const [errorState, setError] = useState<{ message: string }>()
 
-  const mobile = useMediaQuery("(max-width: 768px)")
+  const mobile = useMediaQuery('(max-width: 768px)')
 
   useEffect(() => {
     ;(async () => {
@@ -52,8 +52,8 @@ export default function Featured() {
               settings: {
                 arrows: dataState?.length > 2 ? true : false,
                 slidesToShow: 2,
-                slidesToScroll: 1,
-              },
+                slidesToScroll: 1
+              }
             },
             {
               breakpoint: 1024,
@@ -61,10 +61,10 @@ export default function Featured() {
                 slidesToShow: 2,
                 slidesToScroll: 1,
                 // centerMode: dataState?.length > 3 ? true : false,
-                draggable: dataState?.length > 3 ? true : false,
-              },
-            },
-          ],
+                draggable: dataState?.length > 3 ? true : false
+              }
+            }
+          ]
         }
 
   //------------------------------------------

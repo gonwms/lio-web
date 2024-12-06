@@ -167,6 +167,30 @@
     }
   }
 }
+.bodyContent {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 3rem;
+  @media (width < 950px) {
+    flex-direction: column;
+  }
+}
+.relatedContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  @media (width > 950px) {
+    // border-left: 1px solid #0000001a;
+    padding-left: 1.5rem;
+    max-width: 300px;
+  }
+}
+.related {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
 
 .content {
   margin-top: 0rem;

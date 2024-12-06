@@ -1,4 +1,6 @@
-export default function formatDataType(type: string) {
+export default function formatDataType(
+  type: 'posts' | 'events' | 'docs' | 'products'
+) {
   switch (type) {
     case 'posts':
       return { path: 'noticias', ico: '/ico/ico-noticias.svg' }

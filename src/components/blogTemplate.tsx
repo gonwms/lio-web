@@ -13,8 +13,9 @@ import dayjs from 'dayjs'
 import 'dayjs/locale/es'
 import { BlogDateTag } from './DateTags'
 import HTMLRenderer from './HTMLRenderer'
-import { json } from 'stream/consumers'
+
 import { Carousel } from './Carousel'
+import ItemsRelated from './ItemsRelated'
 import ShareBar from './shareBar'
 
 dayjs.locale('es')
@@ -154,6 +155,15 @@ export default function BlogTemplate({ data }: any) {
     data?.attributes?.type
   )
 
+  //
+  const titles = {
+    docs: 'Recursos relacionados',
+    posts: 'Noticias relacionadas',
+    events: 'Eventos relacionados',
+    products: 'Productos relacionados'
+  }
+  const resourceType = data.attributes.type as keyof typeof titles
+
   // RENDER  ----------------------
   return (
     <>
@@ -236,14 +246,21 @@ export default function BlogTemplate({ data }: any) {
             </div>
           </div>
 
-          <div className={styles.content}>
-            {contents}
-            {/* {data?.attributes?.contentck && (
-              <HTMLRenderer data={data?.attributes?.contentck} />
-            )} */}
+          <div className={styles.bodyContent}>
+            <div>
+              <div className={styles.content}>{contents}</div>
+              <ShareBar data={data} />
+            </div>
+
+            <div className={styles.relatedContainer}>
+              <h4>{titles[resourceType]}</h4>
+              <ItemsRelated
+                resource={data.attributes.type}
+                pageSize={5}
+                className={styles.related}
+              />
+            </div>
           </div>
-          {/* share */}
-          <ShareBar data={data} />
         </div>
       )}
 

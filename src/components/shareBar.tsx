@@ -1,3 +1,4 @@
+'use client'
 import styles from './shareBar.module.css'
 import * as Tooltip from '@radix-ui/react-tooltip'
 

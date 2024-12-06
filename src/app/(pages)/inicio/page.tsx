@@ -5,8 +5,8 @@ import React, { Suspense } from 'react'
 import classNames from 'classnames'
 import styles from './home.module.scss'
 import { Col, Row } from '@/components/CustomTags'
-import Featured from '@/components/Featured'
-import ItemList from '@/components/ItemList'
+import Featured from '@/components/ItemsFeatured'
+import ItemsList from '@/components/ItemsList'
 import { SkeletonGrid } from '@/components/Skeleton'
 import QuickLinksCards from '@/components/QuickLinksCards'
 
@@ -81,7 +81,7 @@ export default async function Home({ params, searchParams }: propsType) {
       <section>
         <Row>
           <Suspense fallback={<SkeletonGrid count={10} />}>
-            <ItemList req={searchParams} />
+            <ItemsList req={searchParams} />
           </Suspense>
         </Row>
       </section>

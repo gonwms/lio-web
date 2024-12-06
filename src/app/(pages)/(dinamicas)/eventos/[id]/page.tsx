@@ -3,6 +3,7 @@ import BlogContent, { revalidate } from '@/components/blogTemplate'
 import seo from '../../seoDinamicas'
 import formatDataType from '@/libs/formatDataType'
 import styles from '../../../layout.module.scss'
+
 const URL = process.env.NEXT_PUBLIC_API_URL
 const PATH = 'events'
 

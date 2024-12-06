@@ -1,15 +1,15 @@
-import "server-only"
+import 'server-only'
 
-import classNames from "classnames"
-import styles from "./itemList.module.scss"
-import { getAllResource } from "@/actions"
-import ItemCard from "./itemCard"
+import classNames from 'classnames'
+import styles from './itemsList.module.scss'
+import { getAllResource } from '@/actions'
+import ItemCard from './itemCard'
 
 interface propsType {
   req: any
 }
 
-export default async function ItemList({ req }: propsType) {
+export default async function ItemsList({ req }: propsType) {
   // ------------------------------------------
   // fetch data
   // ------------------------------------------

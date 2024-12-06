@@ -4,15 +4,16 @@ import classNames from 'classnames'
 import React, { useEffect, useState } from 'react'
 import { getResource } from '@/actions'
 import ItemCard from '@/components/itemCard'
-import styles from './itemList.module.scss'
+import styles from './itemsList.module.scss'
 import { SkeletonGrid } from './Skeleton'
 import Filters from '@/components/filters'
 
 interface props {
   resourceType: 'events' | 'products' | 'docs' | 'posts'
+  pageSize?: number
 }
 
-export default function ItemInfiniteScroll({ resourceType }: props) {
+export default function ItemInfiniteScroll({ resourceType, pageSize }: props) {
   const [page, setPage] = useState(1)
   //
   const [dataState, setData] = useState<any>([])
@@ -28,6 +29,7 @@ export default function ItemInfiniteScroll({ resourceType }: props) {
       const { data, error } = await getResource({
         resource: resourceType,
         page: page,
+        pageSize: pageSize ? pageSize : 10,
         filters:
           filters !== ''
             ? `[category_${resourceType}][name][$eqi]=${filters}`

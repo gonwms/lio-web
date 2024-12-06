@@ -1,6 +1,7 @@
 import BlogContent from '@/components/blogTemplate'
 import seo from '../../seoDinamicas'
 import formatDataType from '@/libs/formatDataType'
+
 const URL = process.env.NEXT_PUBLIC_API_URL
 const PATH = 'posts'
 
