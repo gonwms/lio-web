@@ -156,19 +156,13 @@ export default function BlogTemplate({ data }: any) {
   )
 
   //
-  const titles = {
-    docs: 'Recursos relacionados',
-    posts: 'Noticias relacionadas',
-    events: 'Eventos relacionados',
-    products: 'Productos relacionados'
-  }
-  const resourceType = data.attributes.type as keyof typeof titles
 
   // RENDER  ----------------------
   return (
     <>
       {data && (
         <div className={styles.blogTemplate}>
+          {/* HEADER */}
           <div className={styles.header}>
             <div className={styles.picture}>
               {cover && (
@@ -246,6 +240,7 @@ export default function BlogTemplate({ data }: any) {
             </div>
           </div>
 
+          {/* CONTENT */}
           <div className={styles.mainContainer}>
             <div className={styles.col}>
               <div className={styles.content}>{contents}</div>
@@ -253,7 +248,6 @@ export default function BlogTemplate({ data }: any) {
             </div>
 
             <div className={styles.relatedContainer}>
-              <h4>{titles[resourceType]}</h4>
               <ItemsRelated
                 resource={data.attributes.type}
                 pageSize={7}

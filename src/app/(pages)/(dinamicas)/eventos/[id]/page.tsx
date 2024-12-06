@@ -3,6 +3,7 @@ import BlogContent, { revalidate } from '@/components/blogTemplate'
 import seo from '../../seoDinamicas'
 import formatDataType from '@/libs/formatDataType'
 import styles from '../../../layout.module.scss'
+import Breadcrumb from '@/components/breadcrumb'
 
 const URL = process.env.NEXT_PUBLIC_API_URL
 const PATH = 'events'
@@ -54,9 +55,7 @@ export default async function Eventos({ params, searchParams }: any) {
 
   return (
     <section>
-      <h1 className={styles.plp}>
-        LIO <span>Eventos</span>
-      </h1>
+      <Breadcrumb type={'eventos'} />
       <BlogContent data={data} />
     </section>
   )

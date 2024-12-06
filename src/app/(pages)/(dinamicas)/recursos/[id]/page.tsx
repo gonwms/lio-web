@@ -1,6 +1,7 @@
 import BlogContent from '@/components/blogTemplate'
 import seo from '../../seoDinamicas'
 import formatDataType from '@/libs/formatDataType'
+import Breadcrumb from '@/components/breadcrumb'
 const URL = process.env.NEXT_PUBLIC_API_URL
 const PATH = 'docs'
 
@@ -51,6 +52,7 @@ export default async function Recursos({ params }: any) {
 
   return (
     <section>
+      <Breadcrumb type={'recursos'} />
       <BlogContent data={data} />
     </section>
   )

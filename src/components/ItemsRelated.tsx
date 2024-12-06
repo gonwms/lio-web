@@ -36,11 +36,18 @@ export default function ItemsRelated(props: propsType) {
         sort,
         filters
       })
-
+      console.log(data.data.length)
       setDataState(data)
       setError(error)
     })()
   }, [])
+
+  const titles = {
+    docs: 'Recursos relacionados',
+    posts: 'Noticias relacionadas',
+    events: 'Eventos relacionados',
+    products: 'Productos relacionados'
+  }
 
   // ------------------------------------------
   // Render
@@ -54,6 +61,7 @@ export default function ItemsRelated(props: propsType) {
 
   return (
     <>
+      {dataState?.data?.length > 1 && <h4>{titles[resource]}</h4>}
       <div className={classNames(className)}>
         {dataState.data?.map((item: any) => {
           return (

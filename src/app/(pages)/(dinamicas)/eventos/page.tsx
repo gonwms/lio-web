@@ -3,6 +3,7 @@ import ItemsInfiniteScroll from '@/components/ItemInfiniteScroll'
 import styles from '../../layout.module.scss'
 import seo from '../seoDinamicas'
 import { Col, Row } from '@/components/CustomTags'
+import Breadcrumb from '@/components/breadcrumb'
 
 // SEO
 export async function generateMetadata({ params }: any) {
@@ -19,16 +20,8 @@ export async function generateMetadata({ params }: any) {
 export default function Eventos() {
   return (
     <>
-      <section>
-        <Row>
-          <Col>
-            <h1 className={styles.plp}>
-              LIO <span>Eventos</span>
-            </h1>
-            <ItemsInfiniteScroll resourceType="events" />
-          </Col>
-        </Row>
-      </section>
+      <Breadcrumb type={'eventos'} />
+      <ItemsInfiniteScroll resourceType="events" />
     </>
   )
 }

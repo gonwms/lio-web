@@ -1,4 +1,4 @@
-@use "@/styles/main.module.scss" as *;
+@use '@/styles/main.module.scss' as *;
 
 .sidebar {
   position: sticky;
@@ -9,7 +9,7 @@
   justify-content: space-between;
   height: calc(100vh - 64px - 2rem);
   padding: 0rem 1rem 1rem 2rem;
-  @include down("lg") {
+  @include down('lg') {
     display: none;
   }
 }
@@ -51,7 +51,7 @@
     &:hover {
       background: var(--sky-1);
     }
-    &[data-active="true"] {
+    &[data-active='true'] {
       // background: var(--sky-3);
       background: #eef3f7;
       // color: white;
@@ -95,7 +95,7 @@
   padding: 0.2rem 1.2rem;
   background: #fff;
   z-index: 2;
-  @include up("lg") {
+  @include up('lg') {
     display: none;
   }
   & .nav {
@@ -123,12 +123,12 @@
       &:hover {
         background: var(--sky-1);
       }
-      &[data-active="true"] {
+      &[data-active='true'] {
         background: var(--sky-3);
       }
       img {
-        width: 24px;
-        height: 24px;
+        width: 27px;
+        height: 27px;
       }
     }
   }
