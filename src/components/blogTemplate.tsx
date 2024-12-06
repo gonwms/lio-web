@@ -246,8 +246,8 @@ export default function BlogTemplate({ data }: any) {
             </div>
           </div>
 
-          <div className={styles.bodyContent}>
-            <div>
+          <div className={styles.mainContainer}>
+            <div className={styles.col}>
               <div className={styles.content}>{contents}</div>
               <ShareBar data={data} />
             </div>
@@ -256,7 +256,7 @@ export default function BlogTemplate({ data }: any) {
               <h4>{titles[resourceType]}</h4>
               <ItemsRelated
                 resource={data.attributes.type}
-                pageSize={5}
+                pageSize={7}
                 className={styles.related}
               />
             </div>

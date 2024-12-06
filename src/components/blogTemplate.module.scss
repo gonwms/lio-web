@@ -167,39 +167,41 @@
     }
   }
 }
-.bodyContent {
+.mainContainer {
+  max-width: 100%;
   display: flex;
   align-items: flex-start;
   justify-content: center;
-  gap: 3rem;
+  gap: 2rem;
+  // background: green;
   @media (width < 950px) {
     flex-direction: column;
   }
+  .col {
+    max-width: 100%;
+    width: calc(700px + 3rem);
+  }
 }
 .relatedContainer {
+  margin-top: 2rem;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 1.5rem;
+
   @media (width > 950px) {
-    // border-left: 1px solid #0000001a;
     padding-left: 1.5rem;
     max-width: 300px;
   }
 }
 .related {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   gap: 1rem;
 }
 
 .content {
   margin-top: 0rem;
-  // padding: 0 1rem;s
-  width: 100%;
-  max-width: calc(700px + 3rem);
-
   img {
-    // height: 400px;
     width: 100%;
     object-fit: cover;
     margin: 1.2rem 0 0rem 0;
