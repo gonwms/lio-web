@@ -10,12 +10,13 @@ const nextConfig = {
         permanent: true
       },
       // sitemap
-      {
-        source: '/sitemap',
-        destination:
-          'https://lio-server-production-c17d.up.railway.app/api/sitemap/index.xml',
-        permanent: true
-      },
+      // {
+      //   source: '/sitemap',
+      //   destination:
+      //     'https://lio-server-production-c17d.up.railway.app/api/sitemap/index.xml',
+      //   permanent: true
+      // },
+
       // CONTACTS
       {
         source: '/hola',
